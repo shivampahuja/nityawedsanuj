@@ -24,3 +24,7 @@ python3 tools/build.py export.html index.html \
 The closing card shows the countdown until 2:30 pm IST on 11 December 2026, then replaces it with a button to the shared photo and video folder (`--album`).
 
 A field mapped to an empty string is not sent; `phone` mapped to an empty string is folded into the note as `Phone: …` instead. `tools/content-patch.json` holds the copy and layout edits applied on top of the export.
+
+## Photo wall (`/wall/`)
+
+`wall/index.html` is the screen for the venue: it lists the shared Drive folder through the Drive API every minute and shows the newest uploads as a featured photo plus a mosaic, with a QR code to the folder. It needs a Google Cloud API key with the Drive API enabled, restricted to this site; set it in `CONFIG.apiKey` (the source is `tools/wall.src.html`, with the QR code inserted at `__QR_SVG__`) or pass it as `?key=…` for a quick test. `?demo=1` shows sample images. Press F or click for full screen.

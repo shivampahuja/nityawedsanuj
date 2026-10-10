@@ -21,6 +21,7 @@ ap.add_argument('--fields', default='', help='JSON mapping of posted field names
                 'e.g. {"name":"entry.123","submittedAt":""} (empty string drops a field); Google Forms needs this')
 ap.add_argument('--base', default='', help='absolute site URL, used for og:image and og:url')
 ap.add_argument('--patch', default='', help='JSON file: list of {"find","replace","count"} exact text edits applied to the page')
+ap.add_argument('--music', default='', help='URL of the background music file (relative to the page, e.g. music.mp3); empty = no music')
 a = ap.parse_args()
 if a.fields:
     json.loads(a.fields)  # must be valid JSON
@@ -52,6 +53,8 @@ props = json.loads(html.unescape(m.group(1)))
 assert 'rsvpEndpoint' in props, 'rsvpEndpoint prop missing'
 props['rsvpEndpoint']['default'] = a.endpoint
 props['rsvpFields'] = {'editor': 'text', 'default': a.fields, 'tsType': 'string', 'section': 'RSVP'}
+assert 'musicSrc' in props, 'musicSrc prop missing'
+props['musicSrc']['default'] = a.music
 new_attr = html.escape(json.dumps(props, separators=(',', ':')), quote=True)
 tpl = tpl[:m.start(1)] + new_attr + tpl[m.end(1):]
 

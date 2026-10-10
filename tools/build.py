@@ -62,9 +62,10 @@ tpl = tpl[:m.start(1)] + new_attr + tpl[m.end(1):]
 OLD_SUBMIT = """          const body = new URLSearchParams({ name: s.name, attending: s.going ? 'Yes' : 'No', guests: s.going ? s.guests : 0,
             events: s.going ? Object.keys(s.ev).filter(k => s.ev[k]).join(', ') : '', note: s.note, submittedAt: new Date().toISOString() });
           fetch(url, { method: 'POST', mode: 'no-cors', body }).catch(() => {});"""
-NEW_SUBMIT = """          const data = { name: s.name, attending: s.going ? 'Yes' : 'No', guests: s.going ? s.guests : 0,
+NEW_SUBMIT = """          const data = { name: s.name, phone: s.phone || '', attending: s.going ? 'Yes' : 'No', guests: s.going ? s.guests : 0,
             events: s.going ? Object.keys(s.ev).filter(k => s.ev[k]).join(', ') : '', note: s.note, submittedAt: new Date().toISOString() };
           let map = {}; try { map = JSON.parse(this.props.rsvpFields || '{}') || {}; } catch (e) {}
+          if ('phone' in map && !map.phone && data.phone) data.note = 'Phone: ' + data.phone + (data.note ? ' | ' + data.note : '');
           const body = new URLSearchParams();
           Object.keys(data).forEach(k => { const f = k in map ? map[k] : k; if (f) body.append(f, data[k]); });
           fetch(url, { method: 'POST', mode: 'no-cors', body }).catch(() => {});"""

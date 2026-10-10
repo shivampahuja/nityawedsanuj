@@ -8,7 +8,7 @@
  */
 
 var SPREADSHEET_ID = '1-pMkm6SDgFlIYxMSSK5PFArqzYKJlC6PLvmZzfKHVek';
-var HEADERS = ['Received', 'Name', 'Attending', 'Guests', 'Events', 'Note', 'Submitted (guest device time)'];
+var HEADERS = ['Received', 'Name', 'Phone', 'Attending', 'Guests', 'Events', 'Note', 'Submitted (guest device time)'];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -19,6 +19,7 @@ function doPost(e) {
     sheet.appendRow([
       new Date(),
       String(p.name || '').trim(),
+      String(p.phone || '').trim(),
       String(p.attending || ''),
       Number(p.guests) || 0,
       String(p.events || ''),

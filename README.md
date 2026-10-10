@@ -12,8 +12,10 @@ Wedding invitation site, served by GitHub Pages at https://nityawedsanuj.com
 ```
 python3 tools/build.py export.html index.html \
   --endpoint https://docs.google.com/forms/d/e/<form id>/formResponse \
-  --fields '{"name":"entry.…","attending":"entry.…","guests":"entry.…","events":"entry.…","note":"entry.…","submittedAt":""}' \
+  --fields '{"name":"entry.…","phone":"","attending":"entry.…","guests":"entry.…","events":"entry.…","note":"entry.…","submittedAt":""}' \
   --base https://nityawedsanuj.com \
   --patch tools/content-patch.json \
   --music music.mp3
 ```
+
+A field mapped to an empty string is not sent; `phone` mapped to an empty string is folded into the note as `Phone: …` instead. `tools/content-patch.json` holds the copy and layout edits applied on top of the export.

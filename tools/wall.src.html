@@ -5,98 +5,109 @@
 <title>Nitya weds Anuj · Photo wall</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Imperial+Script&family=Jost:wght@400;500&display=swap">
 <style>
-  /* Layout: a dark hall-facing screen. Featured photo left, live mosaic right, QR in the corner. */
+__FONTS__
+</style>
+<style>
+  /* A table of printed photographs under fairy lights.
+     One framed print on the left, a growing pile of prints on the right, the invitation's QR card in the corner.
+     Colour: night cloth #1a0806, lamp gold #f0c98a, old gold #c9a25e, parchment #f4ead8, cream ink #fbefd9, marigold #f2c230 (petals only)
+     Type: Imperial Script for the names only; Cormorant Garamond for everything that reads; Jost for the small date line. */
   :root{
-    --bg:#160705; --panel:rgba(255,236,200,.05); --line:rgba(240,201,138,.28);
-    --gold:#f0c98a; --cream:#fbefd9; --muted:#e3c79a; --ink:#3b1a12;
-    --script:'Imperial Script',cursive; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+    --cloth:#1a0806; --cloth2:#2a0f09; --gold:#f0c98a; --oldgold:#c9a25e; --parchment:#f4ead8; --paper:#f8f3e9; --ink:#3b1a12; --cream:#fbefd9; --muted:#d9bc8f;
+    --script:'Imperial Script',cursive; --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif; --sans:'Jost',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;background:var(--bg);color:var(--cream);font-family:var(--serif);overflow:hidden}
-  body{display:grid;grid-template-rows:auto 1fr;gap:1.2vh;padding:1.6vh 1.6vw}
+  html,body{height:100%;overflow:hidden}
+  body{background:radial-gradient(ellipse 120% 90% at 50% 100%,var(--cloth2) 0%,var(--cloth) 55%,#120504 100%);color:var(--cream);font-family:var(--serif);display:grid;grid-template-rows:auto 1fr;}
 
-  header{display:flex;align-items:baseline;justify-content:space-between;gap:2vw}
-  .names{font-family:var(--script);font-size:5.2vh;line-height:1;color:var(--cream)}
-  .names span{font-family:var(--sans);font-weight:500;font-size:1.5vh;letter-spacing:.34em;color:var(--gold);margin:0 1.2vw;vertical-align:.9vh}
-  .meta{display:flex;align-items:center;gap:1.4vw;font-family:var(--sans);font-weight:500;font-size:1.5vh;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
-  .dot{width:.9vh;height:.9vh;border-radius:50%;background:#6fcf8f;box-shadow:0 0 0 .4vh rgba(111,207,143,.25)}
-  .dot.off{background:#d9823b;box-shadow:0 0 0 .4vh rgba(217,130,59,.25)}
+  /* header under the lights */
+  header{position:relative;height:17vh;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6vh;text-align:center;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;background:url("lights.jpg") center 28%/cover no-repeat;opacity:.9}
+  header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,8,6,.15) 0%,rgba(26,8,6,.35) 55%,var(--cloth) 100%)}
+  header > *{position:relative}
+  .names{font-family:var(--script);font-size:8.4vh;line-height:1;color:var(--cream);text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .dateline{font-family:var(--sans);font-weight:500;font-size:1.45vh;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
+  .live{font-family:var(--serif);font-style:italic;font-size:2.3vh;color:var(--muted)}
 
-  main{display:grid;grid-template-columns:minmax(0,1.68fr) minmax(0,1fr);gap:1.6vw;min-height:0}
+  main{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3vw;padding:2.4vh 3vw 3vh;min-height:0}
 
-  /* featured */
-  .stage{position:relative;overflow:hidden;border:1px solid var(--line);background:#000;min-height:0}
-  .layer{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+  /* the framed print */
+  .easel{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8vh;min-height:0}
+  .frame{position:relative;height:calc(100% - 6vh);width:var(--fw,70%);max-width:100%;padding:1.2vh;background:linear-gradient(135deg,#d8b676,#f1d79a 30%,#b8933f 60%,#e9cd8a);box-shadow:0 30px 60px rgba(0,0,0,.6),0 2px 0 rgba(255,236,200,.25) inset}
+  .mat{position:relative;width:100%;height:100%;padding:2.2vh;background:var(--parchment) url("paper.jpg");background-size:280px;box-shadow:inset 0 0 0 1px rgba(120,80,30,.35),inset 0 0 40px rgba(120,80,30,.15)}
+  .print{position:relative;width:100%;height:100%;overflow:hidden;background:#20100b;box-shadow:inset 0 0 0 1px rgba(60,30,10,.5)}
+  .layer{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease}
   .layer.show{opacity:1}
-  .layer .bg{position:absolute;inset:-6%;background-size:cover;background-position:center;filter:blur(28px) saturate(1.1) brightness(.55)}
-  .layer .pic{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center}
-  .caption{position:absolute;left:0;right:0;bottom:0;padding:2.2vh 2vw;display:flex;align-items:flex-end;justify-content:space-between;gap:2vw;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(22,7,5,.78) 100%)}
-  .caption .who{font-family:var(--serif);font-style:italic;font-size:2.6vh;color:var(--cream)}
-  .caption .when{font-family:var(--sans);font-weight:500;font-size:1.4vh;letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
-  .badge{display:inline-block;margin-right:1vw;padding:.5vh 1vw;border:1px solid var(--gold);color:var(--gold);font-family:var(--sans);font-weight:500;font-size:1.3vh;letter-spacing:.3em}
-  .play{position:absolute;left:50%;top:50%;width:9vh;height:9vh;margin:-4.5vh 0 0 -4.5vh;border-radius:50%;border:2px solid rgba(251,239,217,.85);background:rgba(22,7,5,.45);display:none;align-items:center;justify-content:center}
-  .play::after{content:"";margin-left:.8vh;border-left:3vh solid rgba(251,239,217,.9);border-top:1.8vh solid transparent;border-bottom:1.8vh solid transparent}
+  .layer .pic{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;transform:scale(1);transition:transform 9s linear}
+  .layer.show .pic{transform:scale(1.04)}
+  .layer .fill{position:absolute;inset:-8%;background-size:cover;background-position:center;filter:blur(30px) brightness(.5) saturate(1.05)}
+  .play{position:absolute;left:50%;top:50%;width:9vh;height:9vh;margin:-4.5vh 0 0 -4.5vh;border-radius:50%;border:2px solid rgba(251,239,217,.9);background:rgba(26,8,6,.5);display:none;align-items:center;justify-content:center}
+  .play::after{content:"";margin-left:.8vh;border-left:3vh solid rgba(251,239,217,.95);border-top:1.8vh solid transparent;border-bottom:1.8vh solid transparent}
   .layer.video .play{display:flex}
+  .caption{display:flex;align-items:baseline;gap:1.4vw;font-family:var(--serif);font-style:italic;font-size:2.5vh;color:var(--muted);min-height:3vh}
+  .caption .new{font-style:normal;font-family:var(--sans);font-weight:500;font-size:1.35vh;letter-spacing:.3em;color:var(--ink);background:var(--gold);padding:.5vh 1vw;text-transform:uppercase}
 
-  /* right column */
-  aside{display:grid;grid-template-rows:1fr auto;gap:1.6vh;min-height:0}
-  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:.8vh;min-height:0;overflow:hidden}
-  .tile{position:relative;overflow:hidden;background:var(--panel);border:1px solid rgba(240,201,138,.12);animation:tileIn 1.1s cubic-bezier(.16,1,.3,1)}
-  .tile img{width:100%;height:100%;object-fit:cover;display:block}
-  .tile.video::after{content:"";position:absolute;right:.9vh;bottom:.9vh;border-left:1.6vh solid rgba(251,239,217,.95);border-top:1vh solid transparent;border-bottom:1vh solid transparent;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
-  @keyframes tileIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+  /* the pile of prints */
+  .table{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:2vh;min-height:0}
+  .pile{position:relative;min-height:0}
+  .pile .snap{position:absolute;width:var(--w);background:var(--paper);padding:calc(var(--w) * .055) calc(var(--w) * .055) calc(var(--w) * .17);box-shadow:0 14px 30px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.35) inset;transform:translate(-50%,-50%) rotate(var(--r));left:var(--x);top:var(--y);z-index:var(--z);animation:land 1.3s cubic-bezier(.22,1.3,.36,1)}
+  .snap::before{content:"";position:absolute;left:50%;top:-.9vh;width:5.5vh;height:1.8vh;transform:translateX(-50%) rotate(-3deg);background:rgba(240,201,138,.55);box-shadow:0 1px 2px rgba(0,0,0,.25)}
+  .snap img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#2a1a12}
+  .snap .time{position:absolute;left:0;right:0;bottom:3%;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.6vh;color:#6a4a2a}
+  .snap.video img{filter:saturate(.95)}
+  .snap.video::after{content:"";position:absolute;right:9%;top:9%;border-left:1.9vh solid rgba(255,255,255,.95);border-top:1.1vh solid transparent;border-bottom:1.1vh solid transparent;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
+  .snap.leaving{animation:leave .9s ease forwards}
+  @keyframes land{0%{opacity:0;transform:translate(-50%,-70%) rotate(calc(var(--r) - 14deg)) scale(1.3)}60%{opacity:1}100%{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}}
+  @keyframes leave{to{opacity:0;transform:translate(-50%,-44%) rotate(var(--r)) scale(.96)}}
+  .pile .waiting{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:3vh;color:var(--muted);padding:4vh;text-wrap:balance;opacity:0;transition:opacity .8s}
+  .pile .waiting.show{opacity:1}
 
-  .scan{display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:center;padding:1.8vh 1.6vw;border:1px solid var(--line);background:var(--panel)}
-  .scan svg{width:19vh;height:19vh;background:#fff;padding:1.2vh;display:block}
-  .scan svg path{fill:#160705}
-  .scan h2{font-family:var(--serif);font-weight:500;font-size:3.4vh;line-height:1.15;color:var(--cream);text-wrap:balance}
-  .scan p{margin-top:1.2vh;font-family:var(--sans);font-weight:500;font-size:1.45vh;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
-  .scan small{display:block;margin-top:1.4vh;font-family:var(--serif);font-style:italic;font-size:2vh;color:var(--muted)}
+  /* the QR card, printed like the invitation */
+  .card{position:relative;justify-self:center;display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:center;width:100%;max-width:62vh;padding:1.8vh;background:var(--parchment) url("paper.jpg");background-size:280px;color:var(--ink);box-shadow:0 18px 40px rgba(0,0,0,.55)}
+  .card::before{content:"";position:absolute;inset:.9vh;border:1px solid rgba(138,42,32,.55);outline:1px solid rgba(138,42,32,.25);outline-offset:3px;pointer-events:none}
+  .card svg{width:19vh;height:19vh;display:block;background:#fff;padding:1vh}
+  .card svg path{fill:#1a0806}
+  .card h2{font-family:var(--serif);font-weight:500;font-size:3.1vh;line-height:1.15;color:#4a1410;text-wrap:balance}
+  .card p{margin-top:1vh;font-family:var(--serif);font-style:italic;font-size:2vh;line-height:1.3;color:#7a4a2c}
+  .card .site{margin-top:1.2vh;font-family:var(--sans);font-weight:500;font-size:1.35vh;letter-spacing:.28em;color:#8e2a20;text-transform:uppercase}
 
-  /* empty and setup states */
-  .empty{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2vh;padding:4vh;background:radial-gradient(ellipse at 50% 40%,rgba(240,201,138,.12),rgba(22,7,5,0) 60%)}
-  .empty.show{display:flex}
-  .empty .big{font-family:var(--script);font-size:9vh;line-height:1;color:var(--cream)}
-  .empty .sub{font-family:var(--serif);font-style:italic;font-size:3vh;color:var(--muted);max-width:60ch;text-wrap:balance}
-  .empty .note{font-family:var(--sans);font-size:1.5vh;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.9}
-  .hint{position:fixed;left:50%;bottom:2vh;transform:translateX(-50%);font-family:var(--sans);font-size:1.4vh;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;opacity:.75;transition:opacity .6s}
+  canvas.petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;opacity:.75}
+  .hint{position:fixed;left:50%;bottom:1.2vh;transform:translateX(-50%);font-family:var(--serif);font-style:italic;font-size:1.9vh;color:var(--muted);opacity:.7;transition:opacity .6s;z-index:6}
   .hint.gone{opacity:0}
 
   @media (orientation:portrait){
-    main{grid-template-columns:1fr;grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)}
-    .mosaic{grid-template-columns:repeat(5,1fr)}
+    header{height:14vh}
+    main{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) minmax(0,1.05fr);gap:2vh;padding:2vh 4vw 3vh}
+    .card{max-width:100%}
+    .card svg{width:15vh;height:15vh}
   }
-  @media (prefers-reduced-motion:reduce){.layer{transition:none}.tile{animation:none}}
+  @media (prefers-reduced-motion:reduce){.layer{transition:none}.layer .pic{transition:none}.snap{animation:none}canvas.petals{display:none}}
 </style>
 </head>
 <body>
+<canvas class="petals" id="petals"></canvas>
 <header>
-  <div class="names">Nitya <span>WEDS</span> Anuj</div>
-  <div class="meta"><span id="count">Waiting for the first photo</span><span class="dot off" id="dot" title="connection"></span></div>
+  <div class="names">Nitya &amp; Anuj</div>
+  <div class="dateline">11 and 12 December 2026, Kasauli</div>
+  <div class="live" id="count">Waiting for the first photo</div>
 </header>
 <main>
-  <section class="stage" id="stage" aria-live="polite">
-    <div class="empty show" id="empty">
-      <div class="big">Share your moments</div>
-      <div class="sub">Every photo and video you add appears here within a minute.</div>
-      <div class="note" id="status">Scan the code to add yours</div>
-    </div>
+  <section class="easel">
+    <div class="frame"><div class="mat"><div class="print" id="print"></div></div></div>
+    <div class="caption" id="caption"><span id="capText">The first photo from the celebrations will appear here.</span></div>
   </section>
-  <aside>
-    <div class="mosaic" id="mosaic"></div>
-    <div class="scan">
+  <section class="table">
+    <div class="pile" id="pile"><div class="waiting show" id="waiting">Scan the card below and your photos land on this table.</div></div>
+    <div class="card">
       __QR_SVG__
       <div>
         <h2>Scan to add your photos and videos</h2>
-        <p>Nitya weds Anuj · Kasauli</p>
-        <small>They go straight into the family's shared album.</small>
+        <p>Everything you capture goes straight into the family's shared album, and onto this wall within a minute.</p>
+        <div class="site">nityawedsanuj.com</div>
       </div>
     </div>
-  </aside>
+  </section>
 </main>
 <div class="hint" id="hint">Press F or click for full screen</div>
 
@@ -106,119 +117,134 @@
     folderId: '1oWoLtRB513iH9FUlIvNsBbGylcjif09z',
     apiKey: '__API_KEY__',            // Google Cloud API key with the Drive API enabled, restricted to this site
     refreshSeconds: 60,               // how often the folder is re-read
-    featuredSeconds: 7,               // how long each featured photo stays
-    mosaicTiles: 16,                  // newest items shown in the grid
-    recentMinutes: 10                 // uploads newer than this get a NEW badge
+    featuredSeconds: 9,               // how long each framed photo stays
+    pileSize: 12,                     // prints on the table
+    recentMinutes: 10                 // uploads newer than this are marked new
   };
   const qs = new URLSearchParams(location.search);
   const apiKey = qs.get('key') || CONFIG.apiKey;
   const demo = qs.get('demo') === '1';
-
   const $ = id => document.getElementById(id);
-  const stage = $('stage'), mosaic = $('mosaic'), empty = $('empty'), status = $('status'), count = $('count'), dot = $('dot');
-  const items = new Map();          // id -> {id, name, video, created, src}
-  let order = [];                   // ids, newest first
-  let featuredQueue = [], layerA = null, layerB = null, current = null, lastSeen = 0;
-
+  const print = $('print'), pile = $('pile'), waiting = $('waiting'), caption = $('caption'), count = $('count');
+  const items = new Map(); let order = [], queue = [], layerA, layerB, current = null, seenOnce = false;
   const thumb = (id, w) => 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(id) + '&sz=w' + w;
 
   async function fetchList() {
     if (demo) return demoList();
-    if (!apiKey || apiKey.startsWith('__')) { status.textContent = 'Add the Drive API key to connect this wall'; dot.classList.add('off'); return null; }
+    if (!apiKey || apiKey.startsWith('__')) { count.textContent = 'This wall needs its Drive key before it can show photos'; return null; }
     const q = `'${CONFIG.folderId}' in parents and trashed = false and (mimeType contains 'image/' or mimeType contains 'video/')`;
-    const url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(q)
-      + '&fields=' + encodeURIComponent('files(id,name,mimeType,createdTime,hasThumbnail)')
-      + '&orderBy=createdTime%20desc&pageSize=200&key=' + encodeURIComponent(apiKey);
+    const url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(q) + '&fields=' + encodeURIComponent('files(id,name,mimeType,createdTime)') + '&orderBy=createdTime%20desc&pageSize=200&key=' + encodeURIComponent(apiKey);
     const r = await fetch(url);
     if (!r.ok) throw new Error('Drive API ' + r.status);
     const data = await r.json();
-    return (data.files || []).map(f => ({ id: f.id, name: f.name, video: f.mimeType.startsWith('video/'), created: Date.parse(f.createdTime), src: thumb(f.id, 1600), small: thumb(f.id, 480) }));
+    return (data.files || []).map(f => ({ id: f.id, video: f.mimeType.startsWith('video/'), created: Date.parse(f.createdTime), src: thumb(f.id, 1600), small: thumb(f.id, 600) }));
   }
   function demoList() {
     const now = Date.now();
-    return Array.from({ length: 12 }, (_, i) => ({ id: 'demo' + (i + 1), name: 'demo', video: i === 4, created: now - i * 9e5, src: 'demo/' + String(i + 1).padStart(2, '0') + '.jpg', small: 'demo/' + String(i + 1).padStart(2, '0') + '.jpg' }));
+    return Array.from({ length: 12 }, (_, i) => ({ id: 'demo' + (i + 1), video: i === 4, created: now - i * 9e5, src: 'demo/' + String(i + 1).padStart(2, '0') + '.jpg', small: 'demo/' + String(i + 1).padStart(2, '0') + '.jpg' }));
   }
-
+  const clock = t => new Date(t).toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }).toLowerCase();
   function ago(t) {
     const m = Math.round((Date.now() - t) / 60000);
-    if (m < 1) return 'shared just now';
-    if (m < 60) return 'shared ' + m + ' min ago';
-    const h = Math.round(m / 60);
-    return h < 24 ? 'shared ' + h + ' h ago' : 'shared ' + Math.round(h / 24) + ' d ago';
+    if (m < 1) return 'Shared just now'; if (m < 60) return 'Shared ' + m + (m === 1 ? ' minute ago' : ' minutes ago');
+    const h = Math.round(m / 60); return h < 24 ? 'Shared ' + h + (h === 1 ? ' hour ago' : ' hours ago') : 'Shared on ' + new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' });
   }
 
-  function renderMosaic() {
-    const ids = order.slice(0, CONFIG.mosaicTiles);
-    const have = new Set([...mosaic.children].map(n => n.dataset.id));
-    // remove tiles that dropped out
-    [...mosaic.children].forEach(n => { if (!ids.includes(n.dataset.id)) n.remove(); });
-    // add new ones at the front, newest first
-    ids.slice().reverse().forEach(id => {
-      if (have.has(id)) return;
-      const it = items.get(id);
-      const tile = document.createElement('div');
-      tile.className = 'tile' + (it.video ? ' video' : ''); tile.dataset.id = id;
-      const img = document.createElement('img'); img.loading = 'lazy'; img.alt = ''; img.src = it.small;
-      img.onerror = () => tile.remove();
-      tile.appendChild(img); mosaic.prepend(tile);
+  // the pile: twelve slots on a jittered grid, each with its own tilt; the newest print sits on top
+  const slots = []; (function () {
+    const cols = 4, rows = 3, seed = [0.21, 0.73, 0.44, 0.89, 0.12, 0.58, 0.95, 0.31, 0.67, 0.05, 0.82, 0.49];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const i = r * cols + c, j = seed[i], k = seed[(i * 7) % 12];
+      slots.push({ x: 14 + c * 24 + (j - .5) * 9, y: 17 + r * 31 + (k - .5) * 8, rot: (j - .5) * 16 });
+    }
+  })();
+  function renderPile() {
+    pile.style.setProperty('--w', innerHeight > innerWidth ? 'min(21%, 8.5vh)' : 'min(23%, 17vh)');
+    const ids = order.slice(0, CONFIG.pileSize);
+    waiting.classList.toggle('show', ids.length === 0);
+    [...pile.querySelectorAll('.snap')].forEach(n => { if (!ids.includes(n.dataset.id) && !n.classList.contains('leaving')) { n.classList.add('leaving'); setTimeout(() => n.remove(), 900); } });
+    ids.forEach((id, i) => {
+      let n = pile.querySelector('.snap[data-id="' + id + '"]');
+      if (!n) {
+        const it = items.get(id); n = document.createElement('div'); n.className = 'snap' + (it.video ? ' video' : ''); n.dataset.id = id;
+        const img = document.createElement('img'); img.alt = ''; img.src = it.small; img.onerror = () => n.remove();
+        n.appendChild(img); const t = document.createElement('div'); t.className = 'time'; t.textContent = clock(it.created); n.appendChild(t);
+        const s = slots[i % slots.length]; n.style.setProperty('--x', s.x + '%'); n.style.setProperty('--y', s.y + '%'); n.style.setProperty('--r', s.rot.toFixed(1) + 'deg'); 
+        pile.appendChild(n);
+      }
+      n.style.setProperty('--z', String(100 - i));
     });
-    // keep the DOM order newest first
-    ids.forEach((id, i) => { const n = mosaic.querySelector('[data-id="' + id + '"]'); if (n && mosaic.children[i] !== n) mosaic.insertBefore(n, mosaic.children[i] || null); });
   }
 
-  function makeLayer() {
-    const l = document.createElement('div'); l.className = 'layer';
-    l.innerHTML = '<div class="bg"></div><div class="pic"></div><div class="play"></div><div class="caption"><div class="who"></div><div class="when"></div></div>';
-    stage.appendChild(l); return l;
+  function makeLayer() { const l = document.createElement('div'); l.className = 'layer'; l.innerHTML = '<div class="fill"></div><div class="pic"></div><div class="play"></div>'; print.appendChild(l); return l; }
+  // size the frame so the print inside has the photo's own proportions (frame and mat borders add 6.8vh on each axis)
+  let frameAr = 4 / 3;
+  function fitFrame(ar) {
+    if (ar) frameAr = ar;
+    const frame = document.querySelector('.frame'), easel = frame.parentElement, vh = innerHeight / 100;
+    const h = easel.clientHeight - 6 * vh, border = 6.8 * vh;
+    frame.style.setProperty('--fw', Math.min(easel.clientWidth, (h - border) * frameAr + border) + 'px');
   }
+  addEventListener('resize', () => fitFrame());
+  let seq = 0;
   function showFeatured(it) {
     if (!it) return;
-    const next = (current === layerA) ? layerB : layerA;
-    const img = new Image();
+    const my = ++seq, img = new Image();
     img.onload = () => {
-      next.querySelector('.bg').style.backgroundImage = 'url("' + it.src + '")';
+      if (my !== seq) return;                                   // a newer photo was requested while this one loaded
+      const next = current === layerA ? layerB : layerA;
+      fitFrame(img.naturalWidth / img.naturalHeight);
+      next.querySelector('.fill').style.backgroundImage = 'url("' + it.src + '")';
       next.querySelector('.pic').style.backgroundImage = 'url("' + it.src + '")';
       next.classList.toggle('video', it.video);
-      const fresh = Date.now() - it.created < CONFIG.recentMinutes * 60000;
-      next.querySelector('.who').innerHTML = (fresh ? '<span class="badge">NEW</span>' : '') + (it.video ? 'A video from the celebrations' : 'From the celebrations');
-      next.querySelector('.when').textContent = ago(it.created);
       next.classList.add('show'); if (current) current.classList.remove('show'); current = next;
+      if (it.placeholder) { caption.innerHTML = '<span>The first photo from the celebrations will appear here.</span>'; return; }
+      const fresh = Date.now() - it.created < CONFIG.recentMinutes * 60000;
+      caption.innerHTML = (fresh ? '<span class="new">New</span>' : '') + '<span>' + (it.video ? 'A video, ' : '') + ago(it.created).replace(/^Shared/, it.video ? 'shared' : 'Shared') + '</span>';
     };
     img.onerror = () => { items.delete(it.id); order = order.filter(x => x !== it.id); };
     img.src = it.src;
   }
-  function nextFeatured() {
-    if (!order.length) return;
-    if (!featuredQueue.length) featuredQueue = order.slice(0, 40);   // the newest forty, newest first
-    showFeatured(items.get(featuredQueue.shift()));
-  }
+  function nextFeatured() { if (!order.length) return; if (!queue.length) queue = order.slice(0, 40); showFeatured(items.get(queue.shift())); }
 
   async function refresh() {
     try {
-      const list = await fetchList();
-      if (!list) return;
-      dot.classList.remove('off');
+      const list = await fetchList(); if (!list) return;
       const fresh = [];
-      list.forEach(f => { if (!items.has(f.id)) { items.set(f.id, f); if (lastSeen) fresh.push(f.id); } });
-      order = list.map(f => f.id);
-      lastSeen = Date.now();
+      list.forEach(f => { if (!items.has(f.id)) { items.set(f.id, f); if (seenOnce) fresh.push(f.id); } });
+      order = list.map(f => f.id); seenOnce = true;
       const n = order.length;
-      count.textContent = n ? n + (n === 1 ? ' photo or video so far' : ' photos and videos so far') : 'Waiting for the first photo';
-      empty.classList.toggle('show', n === 0);
-      renderMosaic();
-      if (fresh.length) { featuredQueue = fresh.concat(featuredQueue); nextFeatured(); }   // show new uploads straight away
-      else if (!current && n) nextFeatured();
-    } catch (e) {
-      dot.classList.add('off'); status.textContent = 'Cannot reach Google Drive right now, retrying'; console.error(e);
-    }
+      count.textContent = n === 0 ? 'Waiting for the first photo' : n === 1 ? 'One photo so far' : n + ' photos and videos so far';
+      renderPile();
+      if (fresh.length) { queue = fresh.concat(queue); nextFeatured(); } else if (!current && n) nextFeatured();
+    } catch (e) { count.textContent = 'Cannot reach Google Drive at the moment, trying again shortly'; console.error(e); }
   }
+  layerA = makeLayer(); layerB = makeLayer(); fitFrame();
+  showFeatured({ id: 'placeholder', video: false, created: 0, src: 'demo/11.jpg', placeholder: true });   // the couple, until the first photo arrives
+  refresh(); setInterval(refresh, CONFIG.refreshSeconds * 1000); setInterval(nextFeatured, CONFIG.featuredSeconds * 1000);
 
-  layerA = makeLayer(); layerB = makeLayer();
-  refresh();
-  setInterval(refresh, CONFIG.refreshSeconds * 1000);
-  setInterval(nextFeatured, CONFIG.featuredSeconds * 1000);
+  // marigold petals drifting down, slowly
+  (function petals() {
+    const c = $('petals'), ctx = c.getContext('2d'); if (!ctx || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let W, H; const P = [];
+    const size = () => { W = c.width = innerWidth * devicePixelRatio; H = c.height = innerHeight * devicePixelRatio; };
+    addEventListener('resize', size); size();
+    const colours = ['#f2c230', '#ee8a1e', '#e4642a', '#f6d35a'];
+    for (let i = 0; i < 22; i++) P.push({ x: Math.random() * W, y: Math.random() * H, s: (6 + Math.random() * 8) * devicePixelRatio, v: (0.25 + Math.random() * 0.45) * devicePixelRatio, a: Math.random() * Math.PI * 2, w: 0.6 + Math.random() * 0.8, col: colours[i % 4], ph: Math.random() * 6 });
+    let t = 0;
+    (function draw() {
+      ctx.clearRect(0, 0, W, H); t += 0.016;
+      for (const p of P) {
+        p.y += p.v; p.x += Math.sin(t * p.w + p.ph) * 0.35 * devicePixelRatio; p.a += 0.012;
+        if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W; }
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.globalAlpha = 0.55; ctx.fillStyle = p.col;
+        ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * 0.55, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+      }
+      requestAnimationFrame(draw);
+    })();
+  })();
 
-  // full screen on click or F; hide the hint after a while
+  addEventListener('resize', renderPile);
   const hint = $('hint');
   const goFull = () => { const el = document.documentElement; if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen().catch(() => {}); hint.classList.add('gone'); };
   document.addEventListener('click', goFull);

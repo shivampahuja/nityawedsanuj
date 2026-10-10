@@ -1,45 +1,5 @@
 [
   {
-    "find": "font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>",
-    "replace": "font-size:13cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>",
-    "count": 1
-  },
-  {
-    "find": "font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>",
-    "replace": "font-size:13cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>",
-    "count": 1
-  },
-  {
-    "find": "<div style=\"position:absolute;left:0;right:0;top:0;padding:30px 28px 70px;background:linear-gradient(180deg,rgba(255,250,240,.82) 0%,rgba(255,250,240,0) 100%);text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.35;color:#4a1410\">Please wear light pastels for the Varmala and the Pheras.</div>",
-    "replace": "",
-    "count": 1
-  },
-  {
-    "find": "<div style=\"position:absolute;left:11%;right:11%;top:16.5%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw\">",
-    "replace": "<div style=\"position:absolute;inset:0;padding:0 9% 6cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw\">",
-    "count": 1
-  },
-  {
-    "find": "font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands",
-    "replace": "font-size:3.6cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands",
-    "count": 1
-  },
-  {
-    "find": "font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire",
-    "replace": "font-size:3.6cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire",
-    "count": 1
-  },
-  {
-    "find": "<div style=\"display:flex;align-items:center;gap:8px;margin-top:2px\"><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f6d4d8",
-    "replace": "<div style=\"display:flex;flex-direction:column;align-items:center;gap:1.4cqw;margin-top:2px\"><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f6d4d8",
-    "count": 1
-  },
-  {
-    "find": "<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.2cqw;letter-spacing:.3em;color:#8e2a20\">PASTELS</div>",
-    "replace": "<div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.2cqw;line-height:1.3;color:#4a1410\">Pastels welcome, never required.</div>",
-    "count": 1
-  },
-  {
     "find": "Come in shades of yellow and orange. Expect to leave in a little more of it.",
     "replace": "Shades of yellow and orange if you feel like it. Expect to leave in a little more of it regardless.",
     "count": 1
@@ -55,18 +15,88 @@
     "count": 1
   },
   {
-    "find": "\">DRESS CODE</div>",
-    "replace": ";opacity:.8\">IF YOU'D LIKE TO MATCH</div>",
-    "count": 3
+    "find": "        <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#fff8e8\">DRESS CODE</div>\n          <div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f2c230;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#ee8a1e;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#e4642a;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div></div>\n        </div>",
+    "replace": "",
+    "count": 1
   },
   {
-    "find": "width:4.4cqw;height:4.4cqw;border-radius:50%",
-    "replace": "width:3.6cqw;height:3.6cqw;border-radius:50%",
-    "count": 15
+    "find": "\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"217e590f-35da-46ea-b59b-86c03fcfe658\" alt=\"Haldi ceremony\"",
+    "replace": "\n      </div>\n      <div style=\"position:absolute;left:0;right:0;bottom:69cqw;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center\"><div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#a8551c;opacity:.85\">IF YOU'D LIKE TO MATCH</div><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#f2c230;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#ee8a1e;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#e4642a;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div></div></div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"217e590f-35da-46ea-b59b-86c03fcfe658\" alt=\"Haldi ceremony\"",
+    "count": 1
   },
   {
-    "find": "letter-spacing:.34em;color:#fff8e8;opacity:.8\">IF YOU'D LIKE TO MATCH",
-    "replace": "letter-spacing:.34em;color:#a8551c;opacity:.85\">IF YOU'D LIKE TO MATCH",
+    "find": "        <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#f6cf8a\">DRESS CODE</div>\n          <div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0e0e14;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#1b2240;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#4a0f1e;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0f3b33;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div></div>\n        </div>",
+    "replace": "",
+    "count": 1
+  },
+  {
+    "find": "\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"61209456-71ee-4c1d-8dbd-5dd554058677\" alt=\"Sangeet evening\"",
+    "replace": "\n      </div>\n      <div style=\"position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,rgba(30,8,4,0) 0%,rgba(30,8,4,.72) 100%);pointer-events:none\"></div>\n      <div style=\"position:absolute;left:0;right:0;bottom:8cqw;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center\"><div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#f6cf8a;opacity:.85\">IF YOU'D LIKE TO MATCH</div><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#0e0e14;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#1b2240;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#4a0f1e;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#0f3b33;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div></div></div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"61209456-71ee-4c1d-8dbd-5dd554058677\" alt=\"Sangeet evening\"",
+    "count": 1
+  },
+  {
+    "find": "        <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#efb070\">DRESS CODE</div>\n          <div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0e0e10;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f1ede4;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#b9bac2;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#c8a46a;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div></div>\n        </div>",
+    "replace": "",
+    "count": 1
+  },
+  {
+    "find": "\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"b56eac68-4253-40b3-bc7b-ff3704a3b047\" alt=\"Afterparty\"",
+    "replace": "\n      </div>\n      <div style=\"position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,rgba(10,12,8,0) 0%,rgba(10,12,8,.72) 100%);pointer-events:none\"></div>\n      <div style=\"position:absolute;left:0;right:0;bottom:8cqw;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center\"><div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#efb070;opacity:.85\">IF YOU'D LIKE TO MATCH</div><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#0e0e10;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#f1ede4;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#b9bac2;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#c8a46a;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div></div></div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"b56eac68-4253-40b3-bc7b-ff3704a3b047\" alt=\"Afterparty\"",
+    "count": 1
+  },
+  {
+    "find": "font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>",
+    "replace": "font-size:12.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>",
+    "count": 1
+  },
+  {
+    "find": "font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>",
+    "replace": "font-size:12.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"position:absolute;left:11%;right:11%;top:16.5%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw\">",
+    "replace": "<div style=\"position:absolute;inset:0;padding:0 11% 42cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw\">",
+    "count": 1
+  },
+  {
+    "find": "font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands",
+    "replace": "font-size:3.5cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"display:flex;align-items:center;gap:8px;margin:2px 0\"><div style=\"width:7cqw;height:1px;background:#8e2a20\"></div><div style=\"width:5px;height:5px;transform:rotate(45deg);background:#8e2a20\"></div><div style=\"width:7cqw;height:1px;background:#8e2a20\"></div></div>",
+    "replace": "<div style=\"display:flex;align-items:center;gap:8px;margin:5cqw 0\"><div style=\"width:7cqw;height:1px;background:#8e2a20\"></div><div style=\"width:5px;height:5px;transform:rotate(45deg);background:#8e2a20\"></div><div style=\"width:7cqw;height:1px;background:#8e2a20\"></div></div>",
+    "count": 1
+  },
+  {
+    "find": "font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire",
+    "replace": "font-size:3.5cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"display:flex;align-items:center;gap:8px;margin-top:2px\"><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f6d4d8;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#cfe3d4;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f6e7b8;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#d8d6ef;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div></div><div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.2cqw;letter-spacing:.3em;color:#8e2a20\">PASTELS</div></div>",
+    "replace": "",
+    "count": 1
+  },
+  {
+    "find": "\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"4209f1c1-5ea3-4223-8e54-837cc71dd8f6\" alt=\"Varmala under the mandap\"",
+    "replace": "\n      </div>\n      <div style=\"position:absolute;left:0;right:0;bottom:12cqw;display:flex;flex-direction:column;align-items:center;gap:1.4cqw;text-align:center\"><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#f6d4d8;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#cfe3d4;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#f6e7b8;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:3.6cqw;height:3.6cqw;border-radius:50%;background:#d8d6ef;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div></div><div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.2cqw;line-height:1.3;color:#4a1410\">Pastels welcome, never required.</div></div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"4209f1c1-5ea3-4223-8e54-837cc71dd8f6\" alt=\"Varmala under the mandap\"",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"position:absolute;left:0;right:0;top:0;padding:30px 28px 70px;background:linear-gradient(180deg,rgba(255,250,240,.82) 0%,rgba(255,250,240,0) 100%);text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.35;color:#4a1410\">Please wear light pastels for the Varmala and the Pheras.</div>",
+    "replace": "",
+    "count": 1
+  },
+  {
+    "find": "    k.push(e('div', { key: 'ring', style: { position: 'absolute', left: '50%', top: '36%', width: 120, height: 140, animation: 'ringFloat 4.5s ease-in-out infinite', filter: 'drop-shadow(0 10px 18px rgba(0,0,0,.45))' } }, band, prong, gem, ...glints));",
+    "replace": "    const ringImg = e('img', { key: 'ringimg', src: (window.__resources && window.__resources.ring) || 'ring.png', alt: '', style: { position: 'absolute', left: 0, top: 0, width: 180, height: 180, objectFit: 'contain' } });\n    k.push(e('div', { key: 'ring', style: { position: 'absolute', left: '50%', top: '36%', width: 180, height: 180, animation: 'ringFloat 4.5s ease-in-out infinite', filter: 'drop-shadow(0 14px 20px rgba(0,0,0,.55))' } }, ringImg, ...glints));",
+    "count": 1
+  },
+  {
+    "find": "    const glints = [[26, 4, 0], [88, 10, .7], [60, -14, 1.4], [8, 30, 2.1], [100, 40, 1.0]].map(",
+    "replace": "    const glints = [[34, 2, 0], [104, 6, .7], [70, -16, 1.4], [14, 30, 2.1], [124, 36, 1.0]].map(",
     "count": 1
   },
   {

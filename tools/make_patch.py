@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""Generate content-patch.json: the copy, layout and behaviour edits applied on top of the
+Claude Design export by tools/build.py --patch. Run against the export to validate:
+    make_patch.py EXPORT_HTML OUT_JSON
+"""
+import json, re, sys
+
+src, out = sys.argv[1], sys.argv[2]
+lines = open(src, encoding='utf-8').read().split('\n')
+ti = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/template">') + 1
+t = json.loads(lines[ti])
+
+P = []
+def add(find, replace, count=1):
+    n = t.count(find)
+    assert n == count, 'expected %d match(es), found %d: %r' % (count, n, find[:80])
+    P.append({'find': find, 'replace': replace, 'count': count})
+
+LABEL = "IF YOU'D LIKE TO MATCH"
+def label_div(color):
+    return ("<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:%s;opacity:.85\">%s</div>" % (color, LABEL))
+def card_anchor(next_img_uuid, next_alt):
+    a = '\n      </div>\n    </div>\n    <div style="position:relative;aspect-ratio:9/16;overflow:hidden">\n      <img src="%s" alt="%s"' % (next_img_uuid, next_alt)
+    assert t.count(a) == 1, 'card anchor not found: ' + next_alt
+    return a
+def with_bottom(anchor, block, band=None):
+    """Insert a bottom-anchored block (and an optional darkening band) inside the card, before it closes."""
+    inner = '\n      </div>\n      ' + (band + '\n      ' if band else '') + block + anchor[len('\n      </div>'):]
+    return inner
+
+# ---- 1. Dress-code copy: suggestions, not rules
+add('Come in shades of yellow and orange. Expect to leave in a little more of it.',
+    'Shades of yellow and orange if you feel like it. Expect to leave in a little more of it regardless.')
+add('Dark shades and Indo-western are the order of the evening.',
+    'Dark shades and Indo-western suit the evening, but wear whatever you dance best in.')
+add('Western wear suits the handover.', 'Western wear suits the handover, if you fancy a change.')
+
+# ---- 2. Haldi, Sangeet, Afterparty: palette moves from under the text to the foot of the card
+dress = re.compile(r'        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px">\n'
+                   r'          <div style="[^"]*letter-spacing:\.34em;color:(#[0-9a-f]{6})">DRESS CODE</div>\n'
+                   r'          <div style="display:flex;gap:7px;justify-content:center">((?:<div style="width:4\.4cqw;height:4\.4cqw;border-radius:50%;background:#[0-9a-f]{6};box-shadow:[^"]*"></div>)+)</div>\n'
+                   r'        </div>')
+cards = {  # keyed by the alt of the image that follows the card
+    'Haldi ceremony': dict(next='217e590f-35da-46ea-b59b-86c03fcfe658', label='#a8551c', bottom='69cqw', band=None),
+    'Sangeet evening': dict(next='61209456-71ee-4c1d-8dbd-5dd554058677', label=None, bottom='8cqw',
+                            band='<div style="position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,rgba(30,8,4,0) 0%,rgba(30,8,4,.72) 100%);pointer-events:none"></div>'),
+    'Afterparty': dict(next='b56eac68-4253-40b3-bc7b-ff3704a3b047', label=None, bottom='8cqw',
+                       band='<div style="position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(180deg,rgba(10,12,8,0) 0%,rgba(10,12,8,.72) 100%);pointer-events:none"></div>'),
+}
+found = {}
+for m in dress.finditer(t):
+    after = t[m.end():m.end() + 400]
+    alt = re.search(r'alt="([^"]*)"', after).group(1)
+    found[alt] = m
+assert set(found) == set(cards), found.keys()
+for alt, cfg in cards.items():
+    m = found[alt]
+    color = cfg['label'] or m.group(1)
+    swatches = m.group(2).replace('width:4.4cqw;height:4.4cqw', 'width:3.6cqw;height:3.6cqw')
+    block = ('<div style="position:absolute;left:0;right:0;bottom:%s;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">'
+             '%s<div style="display:flex;gap:7px;justify-content:center">%s</div></div>') % (cfg['bottom'], label_div(color), swatches)
+    add(m.group(0), '')                                   # out of the text block
+    anchor = card_anchor(cfg['next'], alt)
+    add(anchor, with_bottom(anchor, block, cfg['band']))  # into the foot of the card
+
+# ---- 3. Varmala and Pheras card: block centred in the open sky, pastel note at the foot; no caption on the mandap photo
+add("font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>",
+    "font-size:12.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>")
+add("font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>",
+    "font-size:12.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>")
+add('<div style="position:absolute;left:11%;right:11%;top:16.5%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw">',
+    '<div style="position:absolute;inset:0;padding:0 11% 42cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw">')
+add("font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands",
+    "font-size:3.5cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands")
+add('<div style="display:flex;align-items:center;gap:8px;margin:2px 0"><div style="width:7cqw;height:1px;background:#8e2a20"></div><div style="width:5px;height:5px;transform:rotate(45deg);background:#8e2a20"></div><div style="width:7cqw;height:1px;background:#8e2a20"></div></div>',
+    '<div style="display:flex;align-items:center;gap:8px;margin:5cqw 0"><div style="width:7cqw;height:1px;background:#8e2a20"></div><div style="width:5px;height:5px;transform:rotate(45deg);background:#8e2a20"></div><div style="width:7cqw;height:1px;background:#8e2a20"></div></div>')
+add("font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire",
+    "font-size:3.5cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire")
+pm = re.search(r'<div style="display:flex;align-items:center;gap:8px;margin-top:2px"><div style="display:flex;gap:7px;justify-content:center">((?:<div style="width:4\.4cqw;height:4\.4cqw;border-radius:50%;background:#[0-9a-f]{6};box-shadow:[^"]*"></div>)+)</div><div style="[^"]*">PASTELS</div></div>', t)
+assert pm, 'pastel wrapper not found'
+pastel_block = ('<div style="position:absolute;left:0;right:0;bottom:12cqw;display:flex;flex-direction:column;align-items:center;gap:1.4cqw;text-align:center">'
+                '<div style="display:flex;gap:7px;justify-content:center">%s</div>'
+                "<div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.2cqw;line-height:1.3;color:#4a1410\">Pastels welcome, never required.</div></div>"
+                % pm.group(1).replace('width:4.4cqw;height:4.4cqw', 'width:3.6cqw;height:3.6cqw'))
+add(pm.group(0), '')
+anchor = card_anchor('4209f1c1-5ea3-4223-8e54-837cc71dd8f6', 'Varmala under the mandap')
+add(anchor, with_bottom(anchor, pastel_block))
+add('<div style="position:absolute;left:0;right:0;top:0;padding:30px 28px 70px;background:linear-gradient(180deg,rgba(255,250,240,.82) 0%,rgba(255,250,240,0) 100%);'
+    "text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.35;color:#4a1410\">Please wear light pastels for the Varmala and the Pheras.</div>", '')
+assert t.count('width:4.4cqw;height:4.4cqw') == 15  # every swatch is rewritten above
+
+# ---- 4. Sangeet evening: the real ring photo instead of the drawn one
+add("    k.push(e('div', { key: 'ring', style: { position: 'absolute', left: '50%', top: '36%', width: 120, height: 140, animation: 'ringFloat 4.5s ease-in-out infinite', filter: 'drop-shadow(0 10px 18px rgba(0,0,0,.45))' } }, band, prong, gem, ...glints));",
+    "    const ringImg = e('img', { key: 'ringimg', src: (window.__resources && window.__resources.ring) || 'ring.png', alt: '', style: { position: 'absolute', left: 0, top: 0, width: 180, height: 180, objectFit: 'contain' } });\n"
+    "    k.push(e('div', { key: 'ring', style: { position: 'absolute', left: '50%', top: '36%', width: 180, height: 180, animation: 'ringFloat 4.5s ease-in-out infinite', filter: 'drop-shadow(0 14px 20px rgba(0,0,0,.55))' } }, ringImg, ...glints));")
+add("    const glints = [[26, 4, 0], [88, 10, .7], [60, -14, 1.4], [8, 30, 2.1], [100, 40, 1.0]].map(",
+    "    const glints = [[34, 2, 0], [104, 6, .7], [70, -16, 1.4], [14, 30, 2.1], [124, 36, 1.0]].map(")
+
+# ---- 5. RSVP: no events preselected; phone number field
+add("ev: { Haldi: true, Sangeet: true, Varmala: true, Pheras: true, Afterparty: true }",
+    "ev: { Haldi: false, Sangeet: false, Varmala: false, Pheras: false, Afterparty: false }")
+name_input = '''          <input value="{{ name }}" sc-camel-on-change="{{ setName }}" placeholder="Full name" style="min-height:50px;background:transparent;border:0;border-bottom:1px solid rgba(240,201,138,.6);color:#fbefd9;font-size:20px;outline:none;padding:0 2px">
+        </label>'''
+add(name_input, name_input + '''
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.2em;color:#e3c79a">PHONE NUMBER</span>
+          <input value="{{ phone }}" sc-camel-on-change="{{ setPhone }}" type="tel" inputmode="tel" autocomplete="tel" placeholder="With country code" style="min-height:50px;background:transparent;border:0;border-bottom:1px solid rgba(240,201,138,.6);color:#fbefd9;font-size:20px;outline:none;padding:0 2px">
+        </label>''')
+add("state = { now: Date.now(), name: '', going: null,", "state = { now: Date.now(), name: '', phone: '', going: null,")
+add("      name: s.name, guests: s.guests, note: s.note,", "      name: s.name, phone: s.phone, guests: s.guests, note: s.note,")
+add("      setName: e => this.setState({ name: e.target.value }),",
+    "      setName: e => this.setState({ name: e.target.value }),\n      setPhone: e => this.setState({ phone: e.target.value }),")
+add("const r = { name: s.name, going: s.going, guests: s.guests, note: s.note, ev: s.ev, submitted: true };",
+    "const r = { name: s.name, phone: s.phone, going: s.going, guests: s.guests, note: s.note, ev: s.ev, submitted: true };")
+
+# validate sequential application
+tt = t
+for p in P:
+    assert tt.count(p['find']) == p['count'], p['find'][:80]
+    tt = tt.replace(p['find'], p['replace'])
+json.dump(P, open(out, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
+print('wrote', out, 'with', len(P), 'edits')

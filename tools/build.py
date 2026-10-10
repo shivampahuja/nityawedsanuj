@@ -22,6 +22,7 @@ ap.add_argument('--fields', default='', help='JSON mapping of posted field names
 ap.add_argument('--base', default='', help='absolute site URL, used for og:image and og:url')
 ap.add_argument('--patch', default='', help='JSON file: list of {"find","replace","count"} exact text edits applied to the page')
 ap.add_argument('--music', default='', help='URL of the background music file (relative to the page, e.g. music.mp3); empty = no music')
+ap.add_argument('--resource', action='append', default=[], help='id=path.png: embed an image in the bundle, available to the page as window.__resources.<id>')
 a = ap.parse_args()
 if a.fields:
     json.loads(a.fields)  # must be valid JSON
@@ -76,6 +77,21 @@ tpl = tpl.replace(OLD_SUBMIT, NEW_SUBMIT)
 # the exporter escapes it as </ and so do we
 lines[ti] = json.dumps(tpl).replace('</', '<\\u002F')
 assert '</' not in lines[ti]
+
+# ---- extra embedded resources (images the page's script references by id)
+if a.resource:
+    import base64, uuid, mimetypes
+    mi = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/manifest">') + 1
+    ei = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/ext_resources">') + 1
+    manifest = json.loads(lines[mi]); ext = json.loads(lines[ei])
+    for spec in a.resource:
+        rid, path = spec.split('=', 1)
+        mime = mimetypes.guess_type(path)[0] or 'application/octet-stream'
+        u = str(uuid.uuid4())
+        manifest[u] = {'mime': mime, 'compressed': False, 'data': base64.b64encode(open(path, 'rb').read()).decode('ascii')}
+        ext = [x for x in ext if x.get('id') != rid] + [{'id': rid, 'uuid': u}]
+    lines[mi] = json.dumps(manifest, separators=(',', ':')).replace('</', '<\\u002F')
+    lines[ei] = json.dumps(ext, separators=(',', ':')).replace('</', '<\\u002F')
 
 # ---- outer shell: title + link preview tags
 shell = '\n'.join(lines)

@@ -113,6 +113,44 @@ add("      setName: e => this.setState({ name: e.target.value }),",
 add("const r = { name: s.name, going: s.going, guests: s.guests, note: s.note, ev: s.ev, submitted: true };",
     "const r = { name: s.name, phone: s.phone, going: s.going, guests: s.guests, note: s.note, ev: s.ev, submitted: true };")
 
+# ---- 6. Closing card: shared album link, shown only once the countdown has ended
+old_cd = """      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a">COUNTING DOWN</div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%">
+        <sc-for list="{{ countdown }}" as="u" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <div style="width:100%;aspect-ratio:1;border:1px solid rgba(240,201,138,.6);border-radius:50%;background:rgba(30,10,6,.35);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:500;font-size:24px;font-variant-numeric:tabular-nums">{{ u.v }}</div>
+            <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;color:#e3c79a">{{ u.l }}</div>
+          </div>
+        </sc-for>
+      </div>"""
+new_cd = """      <sc-if value="{{ albumClosed }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:18px;width:100%">
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a">COUNTING DOWN</div>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%">
+            <sc-for list="{{ countdown }}" as="u" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                <div style="width:100%;aspect-ratio:1;border:1px solid rgba(240,201,138,.6);border-radius:50%;background:rgba(30,10,6,.35);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:500;font-size:24px;font-variant-numeric:tabular-nums">{{ u.v }}</div>
+                <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;color:#e3c79a">{{ u.l }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ hasAlbum }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.35;color:#e3c79a;opacity:.9;max-width:300px">Photos and videos from the celebrations can be shared here from 11 December.</div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ albumOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;width:100%">
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a">SHARE YOUR MOMENTS</div>
+          <a href="{{ albumUrl }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;background:#f0c98a;color:#3b1a12;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;letter-spacing:.26em">ADD PHOTOS &amp; VIDEOS</a>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.35;color:#e3c79a;opacity:.9;max-width:300px">Everything you capture at the celebrations goes into our shared folder.</div>
+        </div>
+      </sc-if>"""
+add(old_cd, new_cd)
+add("      heroMedia, countdown, events, yesBg, yesFg, noBg, noFg,",
+    "      heroMedia, countdown, events, yesBg, yesFg, noBg, noFg,\n"
+    "      hasAlbum: !!this.props.albumUrl, albumUrl: this.props.albumUrl || '#', albumOpen: !!this.props.albumUrl && d <= 0, albumClosed: !(!!this.props.albumUrl && d <= 0),")
+
 # validate sequential application
 tt = t
 for p in P:

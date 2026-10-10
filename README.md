@@ -17,7 +17,10 @@ python3 tools/build.py export.html index.html \
   --base https://nityawedsanuj.com \
   --patch tools/content-patch.json \
   --music music.mp3 \
-  --resource ring=assets/ring.png
+  --resource ring=assets/ring.png \
+  --album https://drive.google.com/drive/folders/<folder id>
 ```
+
+The closing card shows the countdown until 2:30 pm IST on 11 December 2026, then replaces it with a button to the shared photo and video folder (`--album`).
 
 A field mapped to an empty string is not sent; `phone` mapped to an empty string is folded into the note as `Phone: …` instead. `tools/content-patch.json` holds the copy and layout edits applied on top of the export.

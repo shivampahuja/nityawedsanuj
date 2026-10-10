@@ -22,6 +22,7 @@ ap.add_argument('--fields', default='', help='JSON mapping of posted field names
 ap.add_argument('--base', default='', help='absolute site URL, used for og:image and og:url')
 ap.add_argument('--patch', default='', help='JSON file: list of {"find","replace","count"} exact text edits applied to the page')
 ap.add_argument('--music', default='', help='URL of the background music file (relative to the page, e.g. music.mp3); empty = no music')
+ap.add_argument('--album', default='', help='URL of the shared photo/video folder or album; the page shows it once the countdown ends')
 ap.add_argument('--resource', action='append', default=[], help='id=path.png: embed an image in the bundle, available to the page as window.__resources.<id>')
 a = ap.parse_args()
 if a.fields:
@@ -56,6 +57,7 @@ props['rsvpEndpoint']['default'] = a.endpoint
 props['rsvpFields'] = {'editor': 'text', 'default': a.fields, 'tsType': 'string', 'section': 'RSVP'}
 assert 'musicSrc' in props, 'musicSrc prop missing'
 props['musicSrc']['default'] = a.music
+props['albumUrl'] = {'editor': 'text', 'default': a.album, 'tsType': 'string', 'section': 'Photos'}
 new_attr = html.escape(json.dumps(props, separators=(',', ':')), quote=True)
 tpl = tpl[:m.start(1)] + new_attr + tpl[m.end(1):]
 

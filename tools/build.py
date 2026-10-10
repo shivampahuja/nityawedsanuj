@@ -20,6 +20,7 @@ ap.add_argument('--endpoint', default='')
 ap.add_argument('--fields', default='', help='JSON mapping of posted field names to the endpoint\'s names, '
                 'e.g. {"name":"entry.123","submittedAt":""} (empty string drops a field); Google Forms needs this')
 ap.add_argument('--base', default='', help='absolute site URL, used for og:image and og:url')
+ap.add_argument('--patch', default='', help='JSON file: list of {"find","replace","count"} exact text edits applied to the page')
 a = ap.parse_args()
 if a.fields:
     json.loads(a.fields)  # must be valid JSON
@@ -30,6 +31,13 @@ lines = text.split('\n')
 # ---- template (JSON string on its own line inside <script type="__bundler/template">)
 ti = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/template">') + 1
 tpl = json.loads(lines[ti])
+
+# content edits (copy and styling tweaks that are not in the design export)
+if a.patch:
+    for p in json.load(open(a.patch, encoding='utf-8')):
+        n = tpl.count(p['find'])
+        assert n == p.get('count', 1), 'patch %r matched %d times, expected %d' % (p['find'][:50], n, p.get('count', 1))
+        tpl = tpl.replace(p['find'], p['replace'])
 
 # title inside the unpacked document (the loader swaps the whole <html>)
 if '<title>' not in tpl:

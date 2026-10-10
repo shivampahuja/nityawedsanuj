@@ -1,0 +1,42 @@
+[
+  {
+    "find": "Come in shades of yellow and orange. Expect to leave in a little more of it.",
+    "replace": "Shades of yellow and orange if you feel like it. Expect to leave in a little more of it regardless.",
+    "count": 1
+  },
+  {
+    "find": "Dark shades and Indo-western are the order of the evening.",
+    "replace": "Dark shades and Indo-western suit the evening, but wear whatever you dance best in.",
+    "count": 1
+  },
+  {
+    "find": "Please wear light pastels for the Varmala and the Pheras.",
+    "replace": "Light pastels would be lovely for the Varmala and the Pheras, but anything you love wearing is welcome.",
+    "count": 1
+  },
+  {
+    "find": "Western wear suits the handover.",
+    "replace": "Western wear suits the handover, if you fancy a change.",
+    "count": 1
+  },
+  {
+    "find": "\">DRESS CODE</div>",
+    "replace": ";opacity:.8\">IF YOU'D LIKE TO MATCH</div>",
+    "count": 3
+  },
+  {
+    "find": "\">PASTELS</div>",
+    "replace": ";opacity:.8\">PASTELS, IF YOU LIKE</div>",
+    "count": 1
+  },
+  {
+    "find": "width:4.4cqw;height:4.4cqw;border-radius:50%",
+    "replace": "width:3.6cqw;height:3.6cqw;border-radius:50%",
+    "count": 15
+  },
+  {
+    "find": "letter-spacing:.34em;color:#fff8e8;opacity:.8\">IF YOU'D LIKE TO MATCH",
+    "replace": "letter-spacing:.34em;color:#a8551c;opacity:.85\">IF YOU'D LIKE TO MATCH",
+    "count": 1
+  }
+]

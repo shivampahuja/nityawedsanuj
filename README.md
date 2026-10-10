@@ -12,5 +12,6 @@ Wedding invitation site, served by GitHub Pages at https://nityawedsanuj.com
 python3 tools/build.py export.html index.html \
   --endpoint https://docs.google.com/forms/d/e/<form id>/formResponse \
   --fields '{"name":"entry.…","attending":"entry.…","guests":"entry.…","events":"entry.…","note":"entry.…","submittedAt":""}' \
-  --base https://nityawedsanuj.com
+  --base https://nityawedsanuj.com \
+  --patch tools/content-patch.json
 ```

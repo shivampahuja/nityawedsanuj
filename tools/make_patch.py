@@ -124,7 +124,7 @@ old_cd = """      <div style="font-family:'Jost',sans-serif;font-weight:500;font
         </sc-for>
       </div>"""
 new_cd = """      <sc-if value="{{ albumClosed }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:18px;width:100%">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px;width:100%">
           <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a">COUNTING DOWN</div>
           <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%">
             <sc-for list="{{ countdown }}" as="u" hint-placeholder-count="4">
@@ -135,7 +135,7 @@ new_cd = """      <sc-if value="{{ albumClosed }}" hint-placeholder-val="{{ true
             </sc-for>
           </div>
           <sc-if value="{{ hasAlbum }}" hint-placeholder-val="{{ false }}">
-            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.35;color:#e3c79a;opacity:.9;max-width:300px">Photos and videos from the celebrations can be shared here from 11 December.</div>
+            <a href="{{ albumUrl }}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;width:calc(100% - 112px);min-height:48px;margin-top:6px;background:#f0c98a;color:#3b1a12;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.26em">ADD PHOTOS &amp; VIDEOS</a>
           </sc-if>
         </div>
       </sc-if>
@@ -150,6 +150,9 @@ add(old_cd, new_cd)
 add("      heroMedia, countdown, events, yesBg, yesFg, noBg, noFg,",
     "      heroMedia, countdown, events, yesBg, yesFg, noBg, noFg,\n"
     "      hasAlbum: !!this.props.albumUrl, albumUrl: this.props.albumUrl || '#', albumOpen: !!this.props.albumUrl && d <= 0, albumClosed: !(!!this.props.albumUrl && d <= 0),")
+
+add('<div style="position:absolute;left:24px;right:24px;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#fbefd9">',
+    '<div style="position:absolute;left:24px;right:24px;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#fbefd9">')
 
 # validate sequential application
 tt = t

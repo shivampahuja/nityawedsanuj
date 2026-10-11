@@ -16,7 +16,7 @@ def add(find, replace, count=1):
     assert n == count, 'expected %d match(es), found %d: %r' % (count, n, find[:80])
     P.append({'find': find, 'replace': replace, 'count': count})
 
-TRIB = '<em>With the blessings of our elders and of our beloved mother Chanchal Pahuja, who is always with us,</em> '
+TRIB = 'With the blessings of our elders and of our beloved mother Chanchal Pahuja, who is always with us, '
 LABEL = "IF YOU'D LIKE TO MATCH"
 def label_div(color):
     return ("<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:%s;opacity:.85\">%s</div>" % (color, LABEL))

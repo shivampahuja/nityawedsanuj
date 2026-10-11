@@ -57,14 +57,10 @@ reception = '''  <section data-screen-label="04 Reception" style="background:#f4
             <div style="width:6cqw;height:1px;background:#f6cf8a"></div>
           </div>
         </div>
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty">Dinner, music and the newly-weds, for everyone who could not make it to the hills and everyone who did.</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty">Dinner, music and the newly-weds. Come for the food, stay for the dancing.</div>
       </div>
     </div>
-    <div style="padding:44px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px">
-      <div style="width:40px;height:1px;background:#a8682e"></div>
-      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.35;color:NAVY_INK">December in Delhi calls for the good shawl.</div>
-      <div style="width:40px;height:1px;background:#a8682e"></div>
-    </div>
+    <div style="height:56px"></div>
   </section>
 
 '''.replace('TEXT_TOP', a.text_top).replace('NAVY_INK', NAVY_INK)

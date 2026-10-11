@@ -31,9 +31,9 @@ def with_bottom(anchor, block, band=None):
 # ---- 1. Dress-code copy: suggestions, not rules
 add('Come in shades of yellow and orange. Expect to leave in a little more of it.',
     'Shades of yellow and orange if you feel like it. Expect to leave in a little more of it regardless.')
-add('Dark shades and Indo-western are the order of the evening.',
-    'Dark shades and Indo-western suit the evening, but wear whatever you dance best in.')
-add('Western wear suits the handover.', 'Western wear suits the handover, if you fancy a change.')
+# Sangeet and Afterparty: the dress sentence goes entirely; the palette dots at the foot of the card remain
+add(' Dark shades and Indo-western are the order of the evening.', '')
+add(' Western wear suits the handover.', '')
 
 # ---- 2. Haldi, Sangeet, Afterparty: palette moves from under the text to the foot of the card
 dress = re.compile(r'        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px">\n'

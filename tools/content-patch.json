@@ -5,13 +5,13 @@
     "count": 1
   },
   {
-    "find": "Dark shades and Indo-western are the order of the evening.",
-    "replace": "Dark shades and Indo-western suit the evening, but wear whatever you dance best in.",
+    "find": " Dark shades and Indo-western are the order of the evening.",
+    "replace": "",
     "count": 1
   },
   {
-    "find": "Western wear suits the handover.",
-    "replace": "Western wear suits the handover, if you fancy a change.",
+    "find": " Western wear suits the handover.",
+    "replace": "",
     "count": 1
   },
   {

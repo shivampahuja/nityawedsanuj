@@ -10,9 +10,6 @@ Usage: build.py SOURCE_HTML OUT_HTML [--endpoint URL] [--base URL]
 """
 import argparse, html, json, re, sys
 
-TITLE = 'Nitya weds Anuj'
-DESCRIPTION = ('11 and 12 December 2026, Fortune Select Forest Hill, Kasauli. '
-               'Open the invitation and send your RSVP.')
 
 ap = argparse.ArgumentParser()
 ap.add_argument('src'); ap.add_argument('out')
@@ -24,7 +21,12 @@ ap.add_argument('--patch', default='', help='JSON file: list of {"find","replace
 ap.add_argument('--music', default='', help='URL of the background music file (relative to the page, e.g. music.mp3); empty = no music')
 ap.add_argument('--album', default='', help='URL of the shared photo/video folder or album; the page shows it once the countdown ends')
 ap.add_argument('--resource', action='append', default=[], help='id=path.png: embed an image in the bundle, available to the page as window.__resources.<id>')
+ap.add_argument('--image', action='append', default=[], help='name=path.jpg: embed a picture and point every __IMG:name__ in the page at it')
+ap.add_argument('--prune', action='store_true', help='drop embedded pictures the page no longer references')
+ap.add_argument('--title', default='Nitya weds Anuj')
+ap.add_argument('--description', default='11 and 12 December 2026, Fortune Select Forest Hill, Kasauli. Open the invitation and send your RSVP.')
 a = ap.parse_args()
+TITLE, DESCRIPTION = a.title, a.description
 if a.fields:
     json.loads(a.fields)  # must be valid JSON
 
@@ -75,6 +77,27 @@ NEW_SUBMIT = """          const data = { name: s.name, phone: s.phone || '', att
 assert tpl.count(OLD_SUBMIT) == 1, 'submit() code not found in template'
 tpl = tpl.replace(OLD_SUBMIT, NEW_SUBMIT)
 
+# pictures referenced as __IMG:name__ (new manifest entries), and pruning of pictures no longer used
+mi = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/manifest">') + 1
+ei = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/ext_resources">') + 1
+manifest = json.loads(lines[mi]); ext = json.loads(lines[ei])
+if a.image or a.prune:
+    import base64, uuid, mimetypes
+    for spec in a.image:
+        name, path = spec.split('=', 1)
+        tok = '__IMG:%s__' % name
+        assert tok in tpl, 'the page has no ' + tok
+        u = str(uuid.uuid4())
+        manifest[u] = {'mime': mimetypes.guess_type(path)[0] or 'image/jpeg', 'compressed': False, 'data': base64.b64encode(open(path, 'rb').read()).decode('ascii')}
+        tpl = tpl.replace(tok, u)
+    assert '__IMG:' not in tpl, 'unfilled picture token in the page'
+    if a.prune:
+        keep = {x['uuid'] for x in ext}
+        for u in list(manifest):
+            if manifest[u]['mime'].startswith('image/') and u not in keep and u not in tpl:
+                del manifest[u]
+    lines[mi] = json.dumps(manifest, separators=(',', ':')).replace('</', '<\\u002F')
+
 # the template rides inside a <script> element, so a literal "</" would end it early;
 # the exporter escapes it as </ and so do we
 lines[ti] = json.dumps(tpl).replace('</', '<\\u002F')
@@ -83,9 +106,6 @@ assert '</' not in lines[ti]
 # ---- extra embedded resources (images the page's script references by id)
 if a.resource:
     import base64, uuid, mimetypes
-    mi = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/manifest">') + 1
-    ei = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/ext_resources">') + 1
-    manifest = json.loads(lines[mi]); ext = json.loads(lines[ei])
     for spec in a.resource:
         rid, path = spec.split('=', 1)
         mime = mimetypes.guess_type(path)[0] or 'application/octet-stream'

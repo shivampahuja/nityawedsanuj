@@ -9,247 +9,236 @@
 __FONTS__
 </style>
 <style>
-  /* A table of printed photographs under fairy lights.
-     One framed print on the left, a growing pile of prints on the right, the invitation's QR card in the corner.
-     Colour: night cloth #1a0806, lamp gold #f0c98a, old gold #c9a25e, parchment #f4ead8, cream ink #fbefd9, marigold #f2c230 (petals only)
-     Type: Imperial Script for the names only; Cormorant Garamond for everything that reads; Jost for the small date line. */
-  :root{
-    --cloth:#1a0806; --cloth2:#2a0f09; --gold:#f0c98a; --oldgold:#c9a25e; --parchment:#f4ead8; --paper:#f8f3e9; --ink:#3b1a12; --cream:#fbefd9; --muted:#d9bc8f;
-    --script:'Imperial Script',cursive; --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif; --sans:'Jost',system-ui,sans-serif;
-  }
+  /* The wall is the photographs. A slow river of every picture shared so far, drifting upward in columns;
+     one picture at a time comes forward, then settles back. Names, count and the QR sit quietly along the bottom.
+     Colour: night #120504 and cream #fbefd9, one gold hairline. Type: Imperial Script for the names, Cormorant Garamond for the rest. */
+  :root{ --night:#120504; --cream:#fbefd9; --muted:#d9bc8f; --gold:#e3c08a; --gap:.6vmin;
+         --script:'Imperial Script',cursive; --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif; }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;overflow:hidden}
-  body{background:radial-gradient(ellipse 120% 90% at 50% 100%,var(--cloth2) 0%,var(--cloth) 55%,#120504 100%);color:var(--cream);font-family:var(--serif);display:grid;grid-template-rows:auto 1fr;}
+  html,body{height:100%;overflow:hidden;background:var(--night);color:var(--cream);font-family:var(--serif)}
 
-  /* header under the lights */
-  header{position:relative;height:17vh;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6vh;text-align:center;overflow:hidden}
-  header::before{content:"";position:absolute;inset:0;background:url("lights.jpg") center 28%/cover no-repeat;opacity:.9}
-  header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,8,6,.15) 0%,rgba(26,8,6,.35) 55%,var(--cloth) 100%)}
-  header > *{position:relative}
-  .names{font-family:var(--script);font-size:8.4vh;line-height:1;color:var(--cream);text-shadow:0 2px 18px rgba(0,0,0,.55)}
-  .dateline{font-family:var(--sans);font-weight:500;font-size:1.45vh;letter-spacing:.34em;color:var(--gold);text-transform:uppercase}
-  .live{font-family:var(--serif);font-style:italic;font-size:2.3vh;color:var(--muted)}
+  .river{position:absolute;inset:0;display:flex;gap:var(--gap);padding:0 var(--gap);overflow:hidden}
+  .col{position:relative;flex:1 1 0;min-width:0;will-change:transform}
+  .tile{position:absolute;left:0;right:0;background:#1d0c08;overflow:visible}
+  .tile img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+  .tile img.in{opacity:1}
+  .tile .box{position:absolute;inset:0;overflow:hidden;transform-origin:center;transition:transform 1.6s cubic-bezier(.2,.8,.2,1),box-shadow 1.6s ease}
+  .tile.lens{z-index:20}
+  .tile.fresh .box::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.45vmin;background:var(--gold)}
+  .tile .play{position:absolute;right:1.2vmin;bottom:1.2vmin;width:3.2vmin;height:3.2vmin;border-radius:50%;background:rgba(18,5,4,.55);display:none;align-items:center;justify-content:center;pointer-events:none}
+  .tile .play::after{content:"";margin-left:.35vmin;border-left:1.2vmin solid rgba(251,239,217,.95);border-top:.7vmin solid transparent;border-bottom:.7vmin solid transparent}
+  .tile.video .play{display:flex}
+  .just{position:absolute;left:0;right:0;bottom:0;padding:2.4vmin 1vmin .9vmin;text-align:center;font-style:italic;font-size:1.25vmin;color:var(--cream);background:linear-gradient(180deg,rgba(18,5,4,0),rgba(18,5,4,.7));opacity:0;transition:opacity .8s}
+  .tile.lens.fresh .just{opacity:1}
 
-  main{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3vw;padding:2.4vh 3vw 3vh;min-height:0}
+  .veil{position:absolute;z-index:40;left:0;right:0;bottom:0;height:30vmin;background:linear-gradient(180deg,rgba(18,5,4,0) 0%,rgba(18,5,4,.72) 60%,rgba(18,5,4,.9) 100%);pointer-events:none}
+  footer{position:absolute;z-index:41;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:4vmin;padding:0 4vmin 3.2vmin}
+  .names{font-family:var(--script);font-size:9vmin;line-height:.9;text-shadow:0 2px 16px rgba(0,0,0,.6)}
+  .count{margin-top:1.2vmin;font-style:italic;font-size:2.9vmin;color:var(--muted)}
+  .scan{display:flex;align-items:center;gap:2.4vmin;text-align:left}
+  .scan svg{width:15vmin;height:15vmin;background:#fff;padding:1vmin;display:block;flex:none}
+  .scan svg path{fill:#120504}
+  .scan p{font-size:3vmin;line-height:1.2;max-width:14em;text-wrap:balance}
+  .scan p small{display:block;margin-top:.8vmin;font-style:italic;font-size:2.3vmin;color:var(--muted)}
 
-  /* the framed print */
-  .easel{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8vh;min-height:0}
-  .frame{position:relative;height:calc(100% - 6vh);width:var(--fw,70%);max-width:100%;padding:1.2vh;background:linear-gradient(135deg,#d8b676,#f1d79a 30%,#b8933f 60%,#e9cd8a);box-shadow:0 30px 60px rgba(0,0,0,.6),0 2px 0 rgba(255,236,200,.25) inset}
-  .mat{position:relative;width:100%;height:100%;padding:2.2vh;background:var(--parchment) url("paper.jpg");background-size:280px;box-shadow:inset 0 0 0 1px rgba(120,80,30,.35),inset 0 0 40px rgba(120,80,30,.15)}
-  .print{position:relative;width:100%;height:100%;overflow:hidden;background:#20100b;box-shadow:inset 0 0 0 1px rgba(60,30,10,.5)}
-  .layer{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease}
-  .layer.show{opacity:1}
-  .layer .pic{position:absolute;inset:0;background-size:contain;background-repeat:no-repeat;background-position:center;transform:scale(1);transition:transform 9s linear}
-  .layer.show .pic{transform:scale(1.04)}
-  .layer .fill{position:absolute;inset:-8%;background-size:cover;background-position:center;filter:blur(30px) brightness(.5) saturate(1.05)}
-  .play{position:absolute;left:50%;top:50%;width:9vh;height:9vh;margin:-4.5vh 0 0 -4.5vh;border-radius:50%;border:2px solid rgba(251,239,217,.9);background:rgba(26,8,6,.5);display:none;align-items:center;justify-content:center}
-  .play::after{content:"";margin-left:.8vh;border-left:3vh solid rgba(251,239,217,.95);border-top:1.8vh solid transparent;border-bottom:1.8vh solid transparent}
-  .layer.video .play{display:flex}
-  .caption{display:flex;align-items:baseline;gap:1.4vw;font-family:var(--serif);font-style:italic;font-size:2.5vh;color:var(--muted);min-height:3vh}
-  .caption .new{font-style:normal;font-family:var(--sans);font-weight:500;font-size:1.35vh;letter-spacing:.3em;color:var(--ink);background:var(--gold);padding:.5vh 1vw;text-transform:uppercase}
+  /* before the first photo */
+  .empty{position:absolute;z-index:42;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vmin;text-align:center;padding:6vmin;opacity:0;pointer-events:none;transition:opacity 1.2s}
+  .empty.show{opacity:1}
+  .empty .big{font-family:var(--script);font-size:16vmin;line-height:1}
+  .empty .line{font-style:italic;font-size:4vmin;color:var(--muted);max-width:28em;text-wrap:balance}
+  .empty svg{width:26vmin;height:26vmin;background:#fff;padding:1.6vmin;margin-top:2vmin}
+  .empty svg path{fill:#120504}
+  body.empty-state footer{visibility:hidden}
 
-  /* the pile of prints */
-  .table{position:relative;display:grid;grid-template-rows:minmax(0,1fr) auto;gap:2vh;min-height:0}
-  .pile{position:relative;min-height:0}
-  .pile .snap{position:absolute;width:var(--w);background:var(--paper);padding:calc(var(--w) * .055) calc(var(--w) * .055) calc(var(--w) * .17);box-shadow:0 14px 30px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.35) inset;transform:translate(-50%,-50%) rotate(var(--r));left:var(--x);top:var(--y);z-index:var(--z);animation:land 1.3s cubic-bezier(.22,1.3,.36,1)}
-  .snap::before{content:"";position:absolute;left:50%;top:-.9vh;width:5.5vh;height:1.8vh;transform:translateX(-50%) rotate(-3deg);background:rgba(240,201,138,.55);box-shadow:0 1px 2px rgba(0,0,0,.25)}
-  .snap img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#2a1a12}
-  .snap .time{position:absolute;left:0;right:0;bottom:3%;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.6vh;color:#6a4a2a}
-  .snap.video img{filter:saturate(.95)}
-  .snap.video::after{content:"";position:absolute;right:9%;top:9%;border-left:1.9vh solid rgba(255,255,255,.95);border-top:1.1vh solid transparent;border-bottom:1.1vh solid transparent;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
-  .snap.leaving{animation:leave .9s ease forwards}
-  @keyframes land{0%{opacity:0;transform:translate(-50%,-70%) rotate(calc(var(--r) - 14deg)) scale(1.3)}60%{opacity:1}100%{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}}
-  @keyframes leave{to{opacity:0;transform:translate(-50%,-44%) rotate(var(--r)) scale(.96)}}
-  .pile .waiting{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:3vh;color:var(--muted);padding:4vh;text-wrap:balance;opacity:0;transition:opacity .8s}
-  .pile .waiting.show{opacity:1}
-
-  /* the QR card, printed like the invitation */
-  .card{position:relative;justify-self:center;display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:center;width:100%;max-width:62vh;padding:1.8vh;background:var(--parchment) url("paper.jpg");background-size:280px;color:var(--ink);box-shadow:0 18px 40px rgba(0,0,0,.55)}
-  .card::before{content:"";position:absolute;inset:.9vh;border:1px solid rgba(138,42,32,.55);outline:1px solid rgba(138,42,32,.25);outline-offset:3px;pointer-events:none}
-  .card svg{width:19vh;height:19vh;display:block;background:#fff;padding:1vh}
-  .card svg path{fill:#1a0806}
-  .card h2{font-family:var(--serif);font-weight:500;font-size:3.1vh;line-height:1.15;color:#4a1410;text-wrap:balance}
-  .card p{margin-top:1vh;font-family:var(--serif);font-style:italic;font-size:2vh;line-height:1.3;color:#7a4a2c}
-  .card .site{margin-top:1.2vh;font-family:var(--sans);font-weight:500;font-size:1.35vh;letter-spacing:.28em;color:#8e2a20;text-transform:uppercase}
-
-  canvas.petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;opacity:.75}
-  .hint{position:fixed;left:50%;bottom:1.2vh;transform:translateX(-50%);font-family:var(--serif);font-style:italic;font-size:1.9vh;color:var(--muted);opacity:.7;transition:opacity .6s;z-index:6}
+  .hint{position:absolute;z-index:43;left:50%;top:2vmin;transform:translateX(-50%);font-style:italic;font-size:2.2vmin;color:var(--muted);opacity:.8;transition:opacity .8s;pointer-events:none}
   .hint.gone{opacity:0}
 
   @media (orientation:portrait){
-    header{height:14vh}
-    main{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) minmax(0,1.05fr);gap:2vh;padding:2vh 4vw 3vh}
-    .card{max-width:100%}
-    .card svg{width:15vh;height:15vh}
+    footer{flex-direction:column;align-items:flex-start;gap:3vmin}
+    .names{font-size:11vmin}
   }
-  @media (prefers-reduced-motion:reduce){.layer{transition:none}.layer .pic{transition:none}.snap{animation:none}canvas.petals{display:none}}
+  @media (prefers-reduced-motion:reduce){ .tile .box{transition:none} }
 </style>
 </head>
-<body>
-<canvas class="petals" id="petals"></canvas>
-<header>
-  <div class="names">Nitya &amp; Anuj</div>
-  <div class="dateline">11 and 12 December 2026, Kasauli</div>
-  <div class="live" id="count">Waiting for the first photo</div>
-</header>
-<main>
-  <section class="easel">
-    <div class="frame"><div class="mat"><div class="print" id="print"></div></div></div>
-    <div class="caption" id="caption"><span id="capText">The first photo from the celebrations will appear here.</span></div>
-  </section>
-  <section class="table">
-    <div class="pile" id="pile"><div class="waiting show" id="waiting">Scan the card below and your photos land on this table.</div></div>
-    <div class="card">
-      __QR_SVG__
-      <div>
-        <h2>Scan to add your photos and videos</h2>
-        <p>Everything you capture goes straight into the family's shared album, and onto this wall within a minute.</p>
-        <div class="site">nityawedsanuj.com</div>
-      </div>
-    </div>
-  </section>
-</main>
+<body class="empty-state">
+<div class="river" id="river" aria-hidden="true"></div>
+<div class="veil"></div>
+<div class="empty show" id="empty">
+  <div class="big">Nitya &amp; Anuj</div>
+  <div class="line" id="emptyLine">The first photos from the celebrations will appear here.</div>
+  __QR_SVG__
+  <div class="line" style="font-size:3vmin">Scan to add your photos and videos</div>
+</div>
+<footer>
+  <div>
+    <div class="names">Nitya &amp; Anuj</div>
+    <div class="count" id="count">Waiting for the first photo</div>
+  </div>
+  <div class="scan">
+    __QR_SVG__
+    <p>Scan to add your photos and videos<small>They appear on this wall within a minute.</small></p>
+  </div>
+</footer>
 <div class="hint" id="hint">Press F or click for full screen</div>
 
 <script>
 (() => {
   const CONFIG = {
     folderId: '1oWoLtRB513iH9FUlIvNsBbGylcjif09z',
-    apiKey: '__API_KEY__',            // Google Cloud API key with the Drive API enabled, restricted to this site
-    refreshSeconds: 60,               // how often the folder is re-read
-    featuredSeconds: 9,               // how long each framed photo stays
-    pileSize: 12,                     // prints on the table
-    recentMinutes: 10                 // uploads newer than this are marked new
+    apiKey: '__API_KEY__',           // Google Cloud API key, Drive API enabled, restricted to this site
+    refreshSeconds: 60,              // how often the folder is re-read
+    lensEvery: 12,                   // seconds between one picture coming forward
+    lensHold: 5.5,                   // seconds it stays forward
+    speedMin: 7, speedMax: 12,       // drift, pixels per second per column
+    tileWidth: 300                   // target column width in CSS pixels; columns = width / this
   };
   const qs = new URLSearchParams(location.search);
   const apiKey = qs.get('key') || CONFIG.apiKey;
   const demo = qs.get('demo') === '1';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = id => document.getElementById(id);
-  const print = $('print'), pile = $('pile'), waiting = $('waiting'), caption = $('caption'), count = $('count');
-  const items = new Map(); let order = [], queue = [], layerA, layerB, current = null, seenOnce = false;
+  const river = $('river'), countEl = $('count'), empty = $('empty'), emptyLine = $('emptyLine');
+  const count = { set textContent(v) { countEl.textContent = v; if (document.body.classList.contains('empty-state')) emptyLine.textContent = v; } };
   const thumb = (id, w) => 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(id) + '&sz=w' + w;
 
-  async function fetchList() {
+  // ---------- data
+  const photos = new Map(); let order = [], queue = [], seenOnce = false;
+  async function listAll() {
     if (demo) return demoList();
     if (!apiKey || apiKey.startsWith('__')) { count.textContent = 'This wall needs its Drive key before it can show photos'; return null; }
     const q = `'${CONFIG.folderId}' in parents and trashed = false and (mimeType contains 'image/' or mimeType contains 'video/')`;
-    const url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(q) + '&fields=' + encodeURIComponent('files(id,name,mimeType,createdTime)') + '&orderBy=createdTime%20desc&pageSize=200&key=' + encodeURIComponent(apiKey);
-    const r = await fetch(url);
-    if (!r.ok) throw new Error('Drive API ' + r.status);
-    const data = await r.json();
-    return (data.files || []).map(f => ({ id: f.id, video: f.mimeType.startsWith('video/'), created: Date.parse(f.createdTime), src: thumb(f.id, 1600), small: thumb(f.id, 600) }));
-  }
-  function demoList() {
-    const now = Date.now();
-    return Array.from({ length: 12 }, (_, i) => ({ id: 'demo' + (i + 1), video: i === 4, created: now - i * 9e5, src: 'demo/' + String(i + 1).padStart(2, '0') + '.jpg', small: 'demo/' + String(i + 1).padStart(2, '0') + '.jpg' }));
-  }
-  const clock = t => new Date(t).toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }).toLowerCase();
-  function ago(t) {
-    const m = Math.round((Date.now() - t) / 60000);
-    if (m < 1) return 'Shared just now'; if (m < 60) return 'Shared ' + m + (m === 1 ? ' minute ago' : ' minutes ago');
-    const h = Math.round(m / 60); return h < 24 ? 'Shared ' + h + (h === 1 ? ' hour ago' : ' hours ago') : 'Shared on ' + new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' });
-  }
-
-  // the pile: twelve slots on a jittered grid, each with its own tilt; the newest print sits on top
-  const slots = []; (function () {
-    const cols = 4, rows = 3, seed = [0.21, 0.73, 0.44, 0.89, 0.12, 0.58, 0.95, 0.31, 0.67, 0.05, 0.82, 0.49];
-    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-      const i = r * cols + c, j = seed[i], k = seed[(i * 7) % 12];
-      slots.push({ x: 14 + c * 24 + (j - .5) * 9, y: 17 + r * 31 + (k - .5) * 8, rot: (j - .5) * 16 });
-    }
-  })();
-  function renderPile() {
-    pile.style.setProperty('--w', innerHeight > innerWidth ? 'min(21%, 8.5vh)' : 'min(23%, 17vh)');
-    const ids = order.slice(0, CONFIG.pileSize);
-    waiting.classList.toggle('show', ids.length === 0);
-    [...pile.querySelectorAll('.snap')].forEach(n => { if (!ids.includes(n.dataset.id) && !n.classList.contains('leaving')) { n.classList.add('leaving'); setTimeout(() => n.remove(), 900); } });
-    ids.forEach((id, i) => {
-      let n = pile.querySelector('.snap[data-id="' + id + '"]');
-      if (!n) {
-        const it = items.get(id); n = document.createElement('div'); n.className = 'snap' + (it.video ? ' video' : ''); n.dataset.id = id;
-        const img = document.createElement('img'); img.alt = ''; img.src = it.small; img.onerror = () => n.remove();
-        n.appendChild(img); const t = document.createElement('div'); t.className = 'time'; t.textContent = clock(it.created); n.appendChild(t);
-        const s = slots[i % slots.length]; n.style.setProperty('--x', s.x + '%'); n.style.setProperty('--y', s.y + '%'); n.style.setProperty('--r', s.rot.toFixed(1) + 'deg'); 
-        pile.appendChild(n);
-      }
-      n.style.setProperty('--z', String(100 - i));
+    const fields = 'nextPageToken,files(id,mimeType,createdTime,imageMediaMetadata(width,height,rotation),videoMediaMetadata(width,height))';
+    let token = '', out = [];
+    do {
+      const url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(q) + '&fields=' + encodeURIComponent(fields) + '&orderBy=createdTime%20desc&pageSize=1000&key=' + encodeURIComponent(apiKey) + (token ? '&pageToken=' + encodeURIComponent(token) : '');
+      const r = await fetch(url); if (!r.ok) throw new Error('Drive API ' + r.status);
+      const d = await r.json(); out = out.concat(d.files || []); token = d.nextPageToken || '';
+    } while (token);
+    return out.map(f => {
+      const m = f.imageMediaMetadata || f.videoMediaMetadata || {}; let w = m.width || 4, h = m.height || 3;
+      if (f.imageMediaMetadata && (m.rotation === 1 || m.rotation === 3)) [w, h] = [h, w];
+      return { id: f.id, video: f.mimeType.startsWith('video/'), created: Date.parse(f.createdTime), ratio: h / w };
     });
   }
-
-  function makeLayer() { const l = document.createElement('div'); l.className = 'layer'; l.innerHTML = '<div class="fill"></div><div class="pic"></div><div class="play"></div>'; print.appendChild(l); return l; }
-  // size the frame so the print inside has the photo's own proportions (frame and mat borders add 6.8vh on each axis)
-  let frameAr = 4 / 3;
-  function fitFrame(ar) {
-    if (ar) frameAr = ar;
-    const frame = document.querySelector('.frame'), easel = frame.parentElement, vh = innerHeight / 100;
-    const h = easel.clientHeight - 6 * vh, border = 6.8 * vh;
-    frame.style.setProperty('--fw', Math.min(easel.clientWidth, (h - border) * frameAr + border) + 'px');
+  function demoList() {
+    const now = Date.now(), dims = [[900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600], [900, 1600]];
+    return Array.from({ length: 12 }, (_, i) => ({ id: 'demo' + (i + 1), video: i === 4, created: now - i * 9e5, ratio: dims[i][1] / dims[i][0] }));
   }
-  addEventListener('resize', () => fitFrame());
-  let seq = 0;
-  function showFeatured(it) {
-    if (!it) return;
-    const my = ++seq, img = new Image();
-    img.onload = () => {
-      if (my !== seq) return;                                   // a newer photo was requested while this one loaded
-      const next = current === layerA ? layerB : layerA;
-      fitFrame(img.naturalWidth / img.naturalHeight);
-      next.querySelector('.fill').style.backgroundImage = 'url("' + it.src + '")';
-      next.querySelector('.pic').style.backgroundImage = 'url("' + it.src + '")';
-      next.classList.toggle('video', it.video);
-      next.classList.add('show'); if (current) current.classList.remove('show'); current = next;
-      if (it.placeholder) { caption.innerHTML = '<span>The first photo from the celebrations will appear here.</span>'; return; }
-      const fresh = Date.now() - it.created < CONFIG.recentMinutes * 60000;
-      caption.innerHTML = (fresh ? '<span class="new">New</span>' : '') + '<span>' + (it.video ? 'A video, ' : '') + ago(it.created).replace(/^Shared/, it.video ? 'shared' : 'Shared') + '</span>';
-    };
-    img.onerror = () => { items.delete(it.id); order = order.filter(x => x !== it.id); };
-    img.src = it.src;
-  }
-  function nextFeatured() { if (!order.length) return; if (!queue.length) queue = order.slice(0, 40); showFeatured(items.get(queue.shift())); }
+  const src = (p, w) => demo ? 'demo/' + String(p.id.replace('demo', '')).padStart(2, '0') + '.jpg' : thumb(p.id, w);
 
+  // ---------- the river: columns of tiles that drift upward and recycle
+  const cols = []; let colW = 0, gapPx = 0, lastT = 0, running = false;
+  function layout() {
+    const n = Math.max(2, Math.min(8, Math.round(innerWidth / CONFIG.tileWidth)));
+    gapPx = Math.round(Math.min(innerWidth, innerHeight) * 0.006);
+    river.innerHTML = ''; cols.length = 0;
+    colW = (innerWidth - gapPx * (n + 1)) / n;
+    for (let i = 0; i < n; i++) {
+      const el = document.createElement('div'); el.className = 'col'; river.appendChild(el);
+      const speed = CONFIG.speedMin + (CONFIG.speedMax - CONFIG.speedMin) * ((i * 0.618) % 1);
+      const stagger = ((i * 0.37) % 1) * innerHeight * 0.5;      // columns start at different points so the rows never line up
+      cols.push({ el, tiles: [], offset: stagger, bottom: 0, speed: reduced ? 0 : speed });
+    }
+    if (order.length) fill();
+  }
+  function nextPhoto() {
+    if (!queue.length) queue = order.slice();           // start again from the newest once every picture has been shown
+    return photos.get(queue.shift());
+  }
+  function makeTile(p, col) {
+    const h = Math.round(colW * Math.max(0.6, Math.min(1.75, p.ratio)));
+    const t = document.createElement('div'); t.className = 'tile' + (p.video ? ' video' : '') + (p.fresh ? ' fresh' : '');
+    t.style.height = h + 'px'; t.style.top = col.bottom + 'px';
+    const box = document.createElement('div'); box.className = 'box';
+    const img = document.createElement('img'); img.alt = ''; img.decoding = 'async'; img.src = src(p, 800);
+    img.onload = () => img.classList.add('in'); img.onerror = () => { t.dataset.dead = '1'; };
+    box.appendChild(img); const play = document.createElement('div'); play.className = 'play'; box.appendChild(play); t.appendChild(box);
+    if (p.fresh) { const j = document.createElement('div'); j.className = 'just'; j.textContent = 'just now'; box.appendChild(j); }
+    t.dataset.id = p.id; col.el.appendChild(t);
+    col.tiles.push({ el: t, top: col.bottom, h, p }); col.bottom += h + gapPx;
+    p.fresh = false;
+  }
+  function fill() {
+    for (const col of cols) {
+      let guard = 0;
+      while (col.bottom - col.offset < innerHeight * 1.1 && guard++ < 40) makeTile(nextPhoto(), col);
+    }
+  }
+  function tick(now) {
+    const dt = Math.min(0.05, (now - (lastT || now)) / 1000); lastT = now;
+    for (const col of cols) {
+      col.offset += col.speed * dt;
+      while (col.tiles.length && col.tiles[0].top + col.tiles[0].h < col.offset - 10) {
+        const gone = col.tiles.shift(); gone.el.remove();
+      }
+      col.el.style.transform = 'translate3d(0,' + (-col.offset).toFixed(2) + 'px,0)';
+    }
+    if (order.length) fill();
+    requestAnimationFrame(tick);
+  }
+
+  // ---------- the lens: one picture comes forward for a few seconds
+  let lensTile = null, lensTimer = null;
+  // the picture lifts out of the stream to the middle of the screen, then settles back where it was
+  function candidates() {
+    const out = [];
+    cols.forEach((col, ci) => col.tiles.forEach(t => {
+      const top = t.top - col.offset, mid = top + t.h / 2;
+      if (t.el.dataset.dead || t.el.classList.contains('lens')) return;
+      if (mid < innerHeight * 0.06 || mid > innerHeight * 0.94) return;
+      t.ci = ci; t.vmid = mid; out.push(t);
+    }));
+    return out;
+  }
+  function lens(t) {
+    if (!t) return;
+    if (lensTile) { unlens(lensTile); }
+    const scale = Math.min(2.2, (innerWidth * 0.55) / colW, (innerHeight * 0.7) / t.h);
+    const cx = gapPx + t.ci * (colW + gapPx) + colW / 2, cy = t.vmid;
+    const tx = innerWidth / 2 - cx, ty = innerHeight * 0.4 - cy;
+    const box = t.el.querySelector('.box');
+    box.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(' + scale.toFixed(3) + ')';
+    box.style.boxShadow = '0 0 0 .35vmin var(--cream), 0 4vmin 8vmin rgba(0,0,0,.65)';
+    t.el.classList.add('lens'); t.el.parentElement.style.zIndex = '30'; lensTile = t;
+    clearTimeout(lensTimer);
+    lensTimer = setTimeout(() => unlens(t), CONFIG.lensHold * 1000);
+  }
+  function unlens(t) {
+    const box = t.el.querySelector('.box'); box.style.transform = ''; box.style.boxShadow = '';
+    t.el.classList.remove('fresh');
+    setTimeout(() => { t.el.classList.remove('lens'); if (!t.el.parentElement.querySelector('.lens')) t.el.parentElement.style.zIndex = ''; }, 1700);   // stays above the others until it has settled back
+    if (lensTile === t) lensTile = null;
+  }
+  function lensNext() {
+    // a freshly arrived picture first, otherwise a random one from the middle of the screen
+    const c = candidates(); if (!c.length) return;
+    const fresh = c.find(t => t.el.classList.contains('fresh'));
+    lens(fresh || c[Math.floor(Math.random() * c.length)]);
+  }
+
+  // ---------- refresh
   async function refresh() {
     try {
-      const list = await fetchList(); if (!list) return;
+      const list = await listAll(); if (!list) return;
       const fresh = [];
-      list.forEach(f => { if (!items.has(f.id)) { items.set(f.id, f); if (seenOnce) fresh.push(f.id); } });
-      order = list.map(f => f.id); seenOnce = true;
+      list.forEach(p => { if (!photos.has(p.id)) { photos.set(p.id, p); if (seenOnce) { p.fresh = true; fresh.push(p.id); } } });
+      order = list.map(p => p.id); seenOnce = true;
+      if (fresh.length) queue.unshift(...fresh);           // new pictures rise next
       const n = order.length;
+      document.body.classList.toggle('empty-state', n === 0); empty.classList.toggle('show', n === 0);
       count.textContent = n === 0 ? 'Waiting for the first photo' : n === 1 ? 'One photo so far' : n + ' photos and videos so far';
-      renderPile();
-      if (fresh.length) { queue = fresh.concat(queue); nextFeatured(); } else if (!current && n) nextFeatured();
+      if (n === 0) emptyLine.textContent = 'The first photos from the celebrations will appear here.';
+      if (n && !running) { running = true; fill(); requestAnimationFrame(tick); setInterval(lensNext, CONFIG.lensEvery * 1000); }
     } catch (e) { count.textContent = 'Cannot reach Google Drive at the moment, trying again shortly'; console.error(e); }
   }
-  layerA = makeLayer(); layerB = makeLayer(); fitFrame();
-  showFeatured({ id: 'placeholder', video: false, created: 0, src: 'demo/11.jpg', placeholder: true });   // the couple, until the first photo arrives
-  refresh(); setInterval(refresh, CONFIG.refreshSeconds * 1000); setInterval(nextFeatured, CONFIG.featuredSeconds * 1000);
+  layout(); addEventListener('resize', () => { const keep = queue; layout(); });
+  refresh(); setInterval(refresh, (Number(qs.get('refresh')) || CONFIG.refreshSeconds) * 1000);
 
-  // marigold petals drifting down, slowly
-  (function petals() {
-    const c = $('petals'), ctx = c.getContext('2d'); if (!ctx || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let W, H; const P = [];
-    const size = () => { W = c.width = innerWidth * devicePixelRatio; H = c.height = innerHeight * devicePixelRatio; };
-    addEventListener('resize', size); size();
-    const colours = ['#f2c230', '#ee8a1e', '#e4642a', '#f6d35a'];
-    for (let i = 0; i < 22; i++) P.push({ x: Math.random() * W, y: Math.random() * H, s: (6 + Math.random() * 8) * devicePixelRatio, v: (0.25 + Math.random() * 0.45) * devicePixelRatio, a: Math.random() * Math.PI * 2, w: 0.6 + Math.random() * 0.8, col: colours[i % 4], ph: Math.random() * 6 });
-    let t = 0;
-    (function draw() {
-      ctx.clearRect(0, 0, W, H); t += 0.016;
-      for (const p of P) {
-        p.y += p.v; p.x += Math.sin(t * p.w + p.ph) * 0.35 * devicePixelRatio; p.a += 0.012;
-        if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W; }
-        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.globalAlpha = 0.55; ctx.fillStyle = p.col;
-        ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * 0.55, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-      }
-      requestAnimationFrame(draw);
-    })();
-  })();
-
-  addEventListener('resize', renderPile);
   const hint = $('hint');
   const goFull = () => { const el = document.documentElement; if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen().catch(() => {}); hint.classList.add('gone'); };
   document.addEventListener('click', goFull);
   document.addEventListener('keydown', e => { if (e.key === 'f' || e.key === 'F') goFull(); });
-  setTimeout(() => hint.classList.add('gone'), 12000);
+  setTimeout(() => hint.classList.add('gone'), 10000);
 })();
 </script>
 </body>

@@ -16,6 +16,7 @@ def add(find, replace, count=1):
     assert n == count, 'expected %d match(es), found %d: %r' % (count, n, find[:80])
     P.append({'find': find, 'replace': replace, 'count': count})
 
+TRIB = '<em style="color:ACCENT">With the blessings of our elders and of our beloved Chanchal Pahuja, who is always with us,</em> '
 LABEL = "IF YOU'D LIKE TO MATCH"
 def label_div(color):
     return ("<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:%s;opacity:.85\">%s</div>" % (color, LABEL))
@@ -184,6 +185,12 @@ add("""    this.pearlRef.current.style.transform = 'translate(' + (q.x - 12) + '
     this.pearlRef.current.style.transform = 'translate(' + px + 'px,' + py + 'px)';""")
 add("const pts = [{ x: W / 2, y: secs[0].offsetHeight - 46 }];", "const pts = [{ x: W / 2, y: secs[0].offsetHeight - 96 }];")  # the seal waits above the scroll hint
 add("pts.push({ x: W / 2, y: last.offsetTop + 160 });", "pts.push({ x: W / 2, y: last.offsetTop + 200 });")  # and rests under the names on the closing card
+
+# ---- 8. Chanchal Pahuja: her blessing opens the invitation; in the RSVP, Ashok Chanchal Pahuja
+add('<p style="margin:0;font-family:\'Cormorant Garamond\',serif;font-size:3.9cqw;line-height:1.35;text-wrap:balance">With the blessings of our elders, the Pahuja and Agarwal families request the pleasure of your company at the wedding of</p>',
+    '<p style="margin:0;font-family:\'Cormorant Garamond\',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance">TRIBthe Pahuja and Agarwal families request the pleasure of your company at the wedding of</p>'.replace('TRIB', TRIB.replace('ACCENT', '#8a4a3a')))
+add('        <div style="font-size:18px;line-height:1.3">Chanchal Pahuja</div>\n', '')
+add('<div style="font-size:18px;line-height:1.3">Ashok Pahuja</div>', '<div style="font-size:18px;line-height:1.3">Ashok Chanchal Pahuja</div>')
 
 # validate sequential application
 tt = t

@@ -24,12 +24,21 @@ VENUE = 'Gurudwara Nanak Piao Sahib'
 ADDRESS = 'G.T. Karnal Road, Rana Pratap Bagh, Delhi 110033'
 MAPS_Q = 'Gurudwara+Nanak+Piao+Sahib,+G.T.+Karnal+Road,+Rana+Pratap+Bagh,+Delhi+110033'
 
-# ---- 1. Opening: Ik Onkar in place of the Ganesh invocation, the event on the card
-add("<div style=\"font-family:'Tiro Devanagari Hindi',serif;font-size:clamp(13px,1.8svh,16px);color:#8a3a1c;margin-bottom:clamp(2px,.8svh,8px)\">॥ श्री गणेशाय नमः ॥</div>",
-    '<div style="height:clamp(22px,3.2svh,30px);color:#8a3a1c;margin-bottom:clamp(2px,.8svh,8px);display:flex;justify-content:center">%s</div>' % L.ik_onkar_svg('100%'))
-add("<div style=\"position:absolute;left:0;right:0;top:calc(50cqh - 28.67cqw - 64px);text-align:center;font-family:'Tiro Devanagari Hindi',serif;font-size:17px;color:#8a4a3a\">॥ श्री गणेशाय नमः ॥</div>",
-    '<div style="position:absolute;left:0;right:0;top:calc(50cqh - 28.67cqw - 70px);display:flex;justify-content:center;color:#8a4a3a">%s</div>' % L.ik_onkar_svg('32px'))
-add('11 · 12 DECEMBER 2026 · KASAULI', 'KIRTAN &amp; LANGAR · 6 DECEMBER 2026 · DELHI')
+# ---- 1. Opening: no envelope; a saffron rumala with Ik Onkar embroidered on it lifts to reveal the card
+op_start = t.index('  <section data-screen-label="01 Opening"')
+op_end = t.index('  <section data-screen-label="02 Invitation"')
+invocation = '<div style="height:clamp(22px,3.2svh,30px);color:#8a3a1c;margin-bottom:clamp(2px,.8svh,8px);display:flex;justify-content:center">%s</div>' % L.ik_onkar_svg('100%')
+opener = L.opener_section('rumala', invocation, names_color='#6a1e14', label_color='#a8682e',
+                          date_text='KIRTAN &amp; LANGAR · 6 DECEMBER 2026 · DELHI',
+                          ground='radial-gradient(ellipse 90% 70% at 50% 30%,#f3daa0 0%,#ebcd8e 60%,#d9b072 100%)',
+                          top_fade='rgba(245,222,170,.55)',
+                          margins='inset 0 0 0 14px #fbf4e8,inset 0 0 0 15px #d8b98a,inset 0 0 0 19px #fbf4e8,inset 0 0 0 20px #e2c79c',
+                          scroll_color='#6a1e14', hint_color='#fff1c4',
+                          cover_html=L.rumala_cover(L.ik_onkar_svg('22cqw')))
+add(t[op_start:op_end], opener)
+add(L.STYLE_ANCHOR, L.OPENER_KEYFRAMES + L.STYLE_ANCHOR)
+add(L.VALS_OLD, L.opener_vals('rumala'))
+add(L.REVEAL_OLD, L.REVEAL_NEW)
 
 # ---- 2. Invitation: the gurudwara, with the invitation beneath it
 inv_start = t.index('  <section data-screen-label="02 Invitation"')

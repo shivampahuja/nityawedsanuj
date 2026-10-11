@@ -87,3 +87,121 @@ def ik_onkar_svg(height_css, color='currentColor'):
     return ('<svg viewBox="%d %d %d %d" style="height:HEIGHT;width:auto;display:block" aria-label="Ik Onkar" role="img">'
             '<path transform="translate(0,%d) scale(1,-1)" d="%s" fill="%s"/></svg>'
             % (x0 - 20, y0 - 20, x1 - x0 + 40, y1 - y0 + 40, y0 + y1, pen.getCommands(), color)).replace('HEIGHT', height_css)
+
+
+# ---------------------------------------------------------------------------------------------
+# Openers that replace the envelope: a rumala that lifts (kirtan) and a room whose lights come on
+# (reception). Both show the card full-bleed from the start, under a cover that the tap removes.
+
+NOISE = ("url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%3E%3Cfilter%20id%3D%22n%22%3E"
+         "%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.9%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D"
+         "%220%200%200%200%20.45%20%200%200%200%200%20.35%20%200%200%200%200%20.25%20%200%200%200%20.16%200%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23n)%22%2F%3E%3C%2Fsvg%3E')")
+
+OPENER_KEYFRAMES = ("@keyframes clothLift{0%,12%{transform:translateY(0)}100%{transform:translateY(-108%)}}\n"
+                    "@keyframes cardBreathe{0%,30%{transform:scale(1.06)}100%{transform:scale(1)}}\n"
+                    "@keyframes lightsUp{0%,14%{opacity:1}100%{opacity:0}}\n"
+                    "@keyframes glowIn{0%,18%{opacity:0}62%{opacity:1}100%{opacity:.6}}\n"
+                    "@keyframes sparkIn{0%,45%{opacity:0}100%{opacity:1}}\n")
+
+STYLE_ANCHOR = "input,textarea{font:inherit}"
+
+REVEAL_OLD = "}, 5300);\n    clearTimeout(this.autoOpen);"
+REVEAL_NEW = "}, 3300);\n    clearTimeout(this.autoOpen);"
+
+VALS_OLD = """      cardAnim: op ? 'cardOut 5.4s cubic-bezier(.55,0,.25,1) forwards' : 'none',
+      tiltAnim: op ? 'cardTilt 5.4s ease-in-out forwards' : 'none',
+      shadowAnim: op ? 'cardShadow 5.4s ease forwards' : 'none',
+      marginAnim: op ? 'margins 5.4s ease forwards' : 'none',
+      glintAnim: op ? 'glint 5.4s ease-in-out forwards' : 'none',
+      envAnim: op ? 'envDrop 5.4s cubic-bezier(.5,0,.3,1) forwards' : 'none',
+      flapFrontAnim: op ? 'flapFront 5.4s cubic-bezier(.4,0,.2,1) forwards' : 'none',
+      flapBackAnim: op ? 'flapBack 5.4s cubic-bezier(.2,0,.3,1) forwards' : 'none',
+      sealAnim: op ? 'sealPop 5.4s cubic-bezier(.3,0,.3,1) forwards' : 'none',"""
+
+def opener_vals(kind):
+    cover = {'rumala': "'clothLift 2.8s cubic-bezier(.7,0,.2,1) forwards'", 'lights': "'lightsUp 2.6s ease-in-out forwards'"}[kind]
+    return """      cardAnim: op ? 'cardBreathe 3.4s cubic-bezier(.2,.6,.2,1) forwards' : 'none',
+      tiltAnim: 'none',
+      shadowAnim: 'none',
+      marginAnim: op ? 'margins 3.6s ease forwards' : 'none',
+      glintAnim: op ? 'glint 3.2s ease-in-out forwards' : 'none',
+      envAnim: op ? %s : 'none',
+      flapFrontAnim: op ? 'glowIn 3s ease-out forwards' : 'none',
+      flapBackAnim: op ? 'sparkIn 3s ease forwards' : 'none',
+      sealAnim: op ? 'sealPop 2.4s cubic-bezier(.3,0,.3,1) forwards' : 'none',""" % cover
+
+
+def opener_section(kind, invocation, names_color, label_color, date_text, ground, top_fade, margins, scroll_color,
+                   hint_color, glint_alpha='.55', cover_html='', seal_html=''):
+    """The 01 Opening section. `invocation` is the html above the names (Ik Onkar svg or the Devanagari line);
+    `cover_html` is what hides the card until the tap (rumala or dark veil), `seal_html` an optional seal at the centre."""
+    return '''  <section data-screen-label="01 Opening" style="position:relative;height:100svh;min-height:620px;max-height:900px;overflow:hidden;container-type:size;background:#0e1230">
+    <div style="position:absolute;inset:0;z-index:2;transform-origin:50% 50%;animation:{{ cardAnim }}">
+      <div style="position:absolute;inset:0;background:GROUND">
+        {{ heroMedia }}
+        <div style="position:absolute;left:0;right:0;top:0;height:24%;background:linear-gradient(180deg,TOP_FADE 0%,TOP_FADE_0 100%)"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:clamp(150px,21%,210px);padding:8px 20px 0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:NAMES">
+          INVOCATION
+          <div style="display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap">
+          <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:clamp(50px,8svh,74px);line-height:1;color:NAMES">Nitya</div>
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.34em;color:LABEL;text-transform:uppercase">weds</div>
+          <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:clamp(50px,8svh,74px);line-height:1;color:NAMES">Anuj</div>
+        </div>
+          <div style="width:40px;height:1px;background:LABEL;margin:clamp(3px,.8svh,8px) 0"></div>
+          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.2em;color:LABEL">DATE_TEXT</div>
+        </div>
+        <div style="position:absolute;inset:0;box-shadow:MARGINS;animation:{{ marginAnim }}"></div>
+        <div style="position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,GLINT),rgba(255,250,235,0));opacity:0;animation:{{ glintAnim }}"></div>
+      </div>
+    </div>
+COVER
+SEAL
+    <div sc-camel-on-click="{{ openCurtain }}" style="position:absolute;inset:0;z-index:4;pointer-events:{{ curtainPE }};cursor:pointer;opacity:{{ tapOpacity }};transition:opacity .6s ease">
+      <div style="position:absolute;left:0;right:0;top:calc(50cqh + 60px);text-align:center;font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.34em;color:HINT;animation:bob 2.4s ease-in-out infinite">TAP TO BEGIN</div>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:16px;z-index:5;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;opacity:{{ scrollHintO }};transition:opacity 1.2s ease">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:10px;letter-spacing:.36em;color:SCROLL_COLOR">SCROLL DOWN</div>
+      <div style="width:1px;height:22px;background:linear-gradient(180deg,SCROLL_COLOR,rgba(0,0,0,0));animation:bob 2.2s ease-in-out infinite"></div>
+    </div>
+  </section>
+
+'''.replace('GROUND', ground).replace('TOP_FADE_0', top_fade.replace(',.72)', ',0)').replace(',.55)', ',0)')).replace('TOP_FADE', top_fade) \
+   .replace('INVOCATION', invocation).replace('NAMES', names_color).replace('LABEL', label_color).replace('DATE_TEXT', date_text) \
+   .replace('MARGINS', margins).replace('GLINT', glint_alpha).replace('COVER', cover_html).replace('SEAL', seal_html) \
+   .replace('HINT', hint_color).replace('SCROLL_COLOR', scroll_color)
+
+
+def rumala_cover(emblem_html):
+    """A saffron silk cloth with a zari hem and a fringe, the Ik Onkar embroidered at its centre; it lifts on the tap."""
+    return '''    <div style="position:absolute;inset:0;z-index:3;pointer-events:none;animation:{{ envAnim }}">
+      <div style="position:absolute;inset:0;background-image:NOISE,linear-gradient(168deg,#ec9436 0%,#dd7b22 55%,#c96a1c 100%);box-shadow:0 26px 60px rgba(60,30,10,.4)">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,0) 0 7px,rgba(255,240,200,.07) 7px 8px),repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 7px,rgba(120,50,0,.06) 7px 8px)"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:30px;background:repeating-linear-gradient(90deg,#f6dc8f 0 5px,#c9a25e 5px 10px);box-shadow:0 -1px 0 #f6dc8f,0 -5px 0 #c9a25e,0 -6px 0 #f6dc8f"></div>
+        <div style="position:absolute;left:0;right:0;top:100%;height:26px;background:repeating-linear-gradient(90deg,#e6bf66 0 3px,rgba(0,0,0,0) 3px 9px)"></div>
+        <div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);color:#fff1c4;filter:drop-shadow(0 2px 2px rgba(110,50,0,.45))">EMBLEM</div>
+      </div>
+    </div>'''.replace('NOISE', NOISE).replace('EMBLEM', emblem_html)
+
+
+def lights_cover():
+    """Darkness that lifts, a warm glow that blooms at the top and a few chandelier glints that keep twinkling."""
+    sparks = ''.join('<div style="position:absolute;left:%d%%;top:%d%%;width:14px;height:14px;animation:twinkle %ss ease-in-out %ss infinite;opacity:0">'
+                     '<div style="position:absolute;left:6px;top:0;width:2px;height:14px;background:linear-gradient(transparent,#fff,transparent)"></div>'
+                     '<div style="position:absolute;top:6px;left:0;height:2px;width:14px;background:linear-gradient(90deg,transparent,#fff,transparent)"></div></div>'
+                     % (x, y, d, s) for x, y, d, s in [(14, 6, 2.6, 0), (31, 12, 3.1, .8), (52, 4, 2.4, 1.5), (70, 10, 2.9, .4), (86, 7, 2.5, 1.9), (42, 18, 3.4, 2.3), (62, 16, 2.7, 1.1)])
+    return '''    <div style="position:absolute;inset:0;z-index:3;pointer-events:none">
+      <div style="position:absolute;inset:0;opacity:0;animation:{{ flapBackAnim }}">SPARKS</div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 85% 48% at 50% 0%,rgba(255,214,150,.5) 0%,rgba(255,214,150,0) 72%);opacity:0;animation:{{ flapFrontAnim }}"></div>
+      <div style="position:absolute;inset:0;background:#0b0f2a;animation:{{ envAnim }}"></div>
+    </div>'''.replace('SPARKS', sparks)
+
+
+def centre_seal(outer, inner):
+    """The wax seal at the centre of the dark card, which pops as the lights come on."""
+    return '''    <div style="position:absolute;left:50%;top:50%;width:80px;height:80px;transform:translate(-50%,-50%);z-index:3;pointer-events:none;animation:{{ sealAnim }}">
+      <div style="position:absolute;inset:-5px;border-radius:47% 53% 50% 50% / 52% 46% 54% 48%;background:radial-gradient(circle at 36% 30%,OUTER);box-shadow:0 6px 14px rgba(0,0,0,.5),0 0 40px rgba(200,130,210,.25),inset 0 -3px 6px rgba(0,0,0,.25)"></div>
+      <div style="position:absolute;inset:7px;border-radius:50%;box-shadow:inset 0 2px 4px rgba(0,0,0,.35),inset 0 -1px 2px rgba(255,190,240,.35);background:radial-gradient(circle at 40% 35%,INNER)"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:1px;font-family:'Jost',sans-serif;font-weight:500">
+        <span style="font-size:27px;background:linear-gradient(135deg,#fbe3f3 0%,#e7a9d9 28%,#b76eaa 52%,#f3c7e6 74%,#a35d9a 100%);-webkit-background-clip:text;background-clip:text;color:transparent">A</span><span style="font-size:15px;font-style:italic;font-family:'Cormorant Garamond',serif;background:linear-gradient(135deg,#fbe3f3 0%,#e7a9d9 28%,#b76eaa 52%,#f3c7e6 74%,#a35d9a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:4px">&amp;</span><span style="font-size:27px;background:linear-gradient(135deg,#fbe3f3 0%,#e7a9d9 28%,#b76eaa 52%,#f3c7e6 74%,#a35d9a 100%);-webkit-background-clip:text;background-clip:text;color:transparent">N</span>
+      </div>
+    </div>'''.replace('OUTER', outer).replace('INNER', inner)

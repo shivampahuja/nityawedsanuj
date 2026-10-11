@@ -30,8 +30,25 @@ NAVY_INK = '#1b2250'    # script headings on cream paper (was #7a2a1c)
 GOLD = '#e8c88a'        # labels and rules on navy (was #a8682e on gold paper)
 CREAM = '#f6ecdc'       # names on navy
 
-# ---- 1. Opening envelope card and the invitation card
-add('letter-spacing:.2em;color:#7a3b26">11 · 12 DECEMBER 2026 · KASAULI</div>', 'letter-spacing:.2em;color:%s">RECEPTION · 19 DECEMBER 2026 · DELHI</div>' % GOLD)
+# ---- 1. Opening: no envelope; the card waits in the dark with the seal at its centre, and the lights come on
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import patchlib as L
+op_start = t.index('  <section data-screen-label="01 Opening"')
+op_end = t.index('  <section data-screen-label="02 Invitation"')
+invocation = "<div style=\"font-family:'Tiro Devanagari Hindi',serif;font-size:clamp(13px,1.8svh,16px);color:%s;margin-bottom:clamp(2px,.8svh,8px)\">॥ श्री गणेशाय नमः ॥</div>" % GOLD
+opener = L.opener_section('lights', invocation, names_color=CREAM, label_color=GOLD,
+                          date_text='RECEPTION · 19 DECEMBER 2026 · DELHI',
+                          ground='radial-gradient(ellipse 90% 70% at 50% 30%,#1e2756 0%,#151b3f 60%,#0e1230 100%)',
+                          top_fade='rgba(14,18,48,.72)',
+                          margins='inset 0 0 0 14px #141a3a,inset 0 0 0 15px #e8c88a,inset 0 0 0 19px #141a3a,inset 0 0 0 20px #b8945a',
+                          scroll_color=GOLD, hint_color=GOLD, glint_alpha='.32',
+                          cover_html=L.lights_cover(), seal_html=L.centre_seal('#a85aa6 0%,#6e2d7c 55%,#481a58 100%', '#8a3f92,#5b2468'))
+add(t[op_start:op_end], opener)
+add(L.STYLE_ANCHOR, L.OPENER_KEYFRAMES + L.STYLE_ANCHOR)
+add(L.VALS_OLD, L.opener_vals('lights'))
+add(L.REVEAL_OLD, L.REVEAL_NEW)
+
 # the framed card gives way to the two of them under the chandeliers, with the invitation beneath
 inv_start = t.index('  <section data-screen-label="02 Invitation"')
 inv_end = t.index('  <section data-screen-label="04 Friday"')
@@ -165,23 +182,7 @@ add('<div style="position:absolute;left:24px;right:24px;bottom:40px;display:flex
 
 # ---- 6. Night edition: midnight navy and champagne gold in place of maroon and gold paper
 # envelope card (Ganesha) ground and type
-add('background:radial-gradient(ellipse 90% 70% at 50% 30%,#f3daa0 0%,#ebcd8e 60%,#d9b072 100%)',
-    'background:radial-gradient(ellipse 90% 70% at 50% 30%,#1e2756 0%,#151b3f 60%,#0e1230 100%)')
-add('height:24%;background:linear-gradient(180deg,rgba(245,222,170,.55) 0%,rgba(245,222,170,0) 100%)',
-    'height:24%;background:linear-gradient(180deg,rgba(14,18,48,.72) 0%,rgba(14,18,48,0) 100%)')
-add('justify-content:center;gap:2px;color:#6a1e14">', 'justify-content:center;gap:2px;color:%s">' % CREAM)
-add('font-size:clamp(13px,1.8svh,16px);color:#8a3a1c;', 'font-size:clamp(13px,1.8svh,16px);color:%s;' % GOLD)
-add('font-size:clamp(50px,8svh,74px);line-height:1;color:#6a1e14">Nitya</div>', 'font-size:clamp(50px,8svh,74px);line-height:1;color:%s">Nitya</div>' % CREAM)
-add('font-size:clamp(50px,8svh,74px);line-height:1;color:#6a1e14">Anuj</div>', 'font-size:clamp(50px,8svh,74px);line-height:1;color:%s">Anuj</div>' % CREAM)
-add('font-size:11px;letter-spacing:.34em;color:#a8682e;text-transform:uppercase">weds</div>', 'font-size:11px;letter-spacing:.34em;color:%s;text-transform:uppercase">weds</div>' % GOLD)
-add('width:40px;height:1px;background:#a8682e;margin:clamp(3px,.8svh,8px) 0', 'width:40px;height:1px;background:%s;margin:clamp(3px,.8svh,8px) 0' % GOLD)
-add('box-shadow:inset 0 0 0 14px #fbf4e8,inset 0 0 0 15px #d8b98a,inset 0 0 0 19px #fbf4e8,inset 0 0 0 20px #e2c79c',
-    'box-shadow:inset 0 0 0 14px #141a3a,inset 0 0 0 15px #e8c88a,inset 0 0 0 19px #141a3a,inset 0 0 0 20px #b8945a')
-add('background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,.55),rgba(255,250,235,0))',
-    'background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,.32),rgba(255,250,235,0))')
 # plum wax seal
-add('background:radial-gradient(circle at 36% 30%,#c45e64 0%,#93303b 55%,#6b1e28 100%)', 'background:radial-gradient(circle at 36% 30%,#a85aa6 0%,#6e2d7c 55%,#481a58 100%)')
-add('background:radial-gradient(circle at 40% 35%,#a8414a,#7d2430)', 'background:radial-gradient(circle at 40% 35%,#8a3f92,#5b2468)')
 # RSVP and closing card
 add('background:linear-gradient(180deg,#f4ead8 0,#3b1a12 130px)', 'background:linear-gradient(180deg,#f4ead8 0,%s 130px)' % NAVY)
 add('min-height:54px;background:#f0c98a;color:#3b1a12;border:0', 'min-height:54px;background:#f0c98a;color:%s;border:0' % NAVY)
@@ -193,8 +194,6 @@ add('<div style="position:absolute;top:56px;left:0;right:0;text-align:center;col
 
 # closing card: the couple under the chandeliers instead of the hills; scroll hint readable on navy
 add('<img src="eb3ecb4f-8d88-4239-8965-bb56815d4b1b" alt="Nitya and Anuj"', '<img src="__IMG:closing__" alt="Nitya and Anuj"')
-add('font-size:10px;letter-spacing:.36em;color:#6a1e14">SCROLL DOWN</div>', 'font-size:10px;letter-spacing:.36em;color:%s">SCROLL DOWN</div>' % GOLD)
-add('background:linear-gradient(180deg,#6a1e14,rgba(106,30,20,0));animation:bob', 'background:linear-gradient(180deg,%s,rgba(232,200,138,0));animation:bob' % GOLD)
 
 # ---- 7. The wax seal, not a pearl, travels the thread: it leaves the envelope and settles on the string
 old_pearl = """  <div ref="{{ pearlRef }}" style="position:absolute;top:0;left:0;width:24px;height:24px;z-index:6;pointer-events:none;will-change:transform;transform:translate(-200px,-200px);opacity:0;transition:opacity 1.2s ease">

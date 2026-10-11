@@ -24,9 +24,14 @@ def add(find, replace, count=1):
 VENUE = 'The Imperium'
 ADDRESS = 'A-14, M.G. Road, Block A, Ashok Vihar, Delhi 110052'
 MAPS_Q = 'The+Imperium,+A-14,+M.G.+Road,+Block+A,+Ashok+Vihar,+Delhi+110052'
+NAVY = '#141a3a'        # dark sections and buttons (was maroon #3b1a12)
+NAVY_DEEP = '#0e1230'   # closing card and envelope card ground (was #1e0a06)
+NAVY_INK = '#1b2250'    # script headings on cream paper (was #7a2a1c)
+GOLD = '#e8c88a'        # labels and rules on navy (was #a8682e on gold paper)
+CREAM = '#f6ecdc'       # names on navy
 
 # ---- 1. Opening envelope card and the invitation card
-add('11 · 12 DECEMBER 2026 · KASAULI', 'RECEPTION · 19 DECEMBER 2026 · DELHI')
+add('letter-spacing:.2em;color:#7a3b26">11 · 12 DECEMBER 2026 · KASAULI</div>', 'letter-spacing:.2em;color:%s">RECEPTION · 19 DECEMBER 2026 · DELHI</div>' % GOLD)
 add('request the pleasure of your company at the wedding of', 'request the pleasure of your company at the wedding reception of')
 add('Friday 11 and Saturday 12 December 2026', 'Saturday 19 December 2026')
 add("font-size:3.6cqw;line-height:1.3;font-style:italic\">Fortune Select Forest Hill, Kasauli</div>",
@@ -38,7 +43,7 @@ end = t.index('  <section data-screen-label="06 Venue"')
 days = t[start:end]
 reception = '''  <section data-screen-label="04 Reception" style="background:#f4ead8">
     <div style="padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px">
-      <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:58px;line-height:1;color:#7a2a1c">In Delhi</div>
+      <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:58px;line-height:1;color:NAVY_INK">In Delhi</div>
       <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;color:#a8682e">SATURDAY, 19 DECEMBER</div>
     </div>
     <div style="position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size">
@@ -57,17 +62,18 @@ reception = '''  <section data-screen-label="04 Reception" style="background:#f4
     </div>
     <div style="padding:44px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px">
       <div style="width:40px;height:1px;background:#a8682e"></div>
-      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.35;color:#7a2a1c">December in Delhi calls for the good shawl.</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.35;color:NAVY_INK">December in Delhi calls for the good shawl.</div>
       <div style="width:40px;height:1px;background:#a8682e"></div>
     </div>
   </section>
 
-'''.replace('TEXT_TOP', a.text_top)
+'''.replace('TEXT_TOP', a.text_top).replace('NAVY_INK', NAVY_INK)
 add(days, reception)
 
 # ---- 3. Venue
 add('<img src="e11d75ea-8a51-4255-a3c5-d638c4bf2e2a" alt="Fortune Select Forest Hill"', '<img src="__IMG:venue__" alt="%s"' % VENUE)
-add("font-size:46px;line-height:1.05;color:#7a2a1c\">Fortune Select Forest Hill</div>", "font-size:46px;line-height:1.05;color:#7a2a1c\">%s</div>" % VENUE)
+add("font-size:46px;line-height:1.05;color:#7a2a1c\">Fortune Select Forest Hill</div>", "font-size:46px;line-height:1.05;color:%s\">%s</div>" % (NAVY_INK, VENUE))
+add('min-height:52px;background:#3b1a12;color:#fbefd9', 'min-height:52px;background:%s;color:#fbefd9' % NAVY)
 add('<div style="font-size:19px;font-style:italic">Kasauli, Himachal Pradesh</div>', '<div style="font-size:19px;font-style:italic">%s</div>' % ADDRESS)
 add('https://www.google.com/maps?q=Fortune+Select+Forest+Hill+Kasauli&amp;output=embed', 'https://www.google.com/maps?q=%s&amp;output=embed' % MAPS_Q)
 add('https://www.google.com/maps/dir/?api=1&amp;destination=Fortune+Select+Forest+Hill+Kasauli', 'https://www.google.com/maps/dir/?api=1&amp;destination=%s' % MAPS_Q)
@@ -128,12 +134,74 @@ new_cd = """      <sc-if value="{{ albumClosed }}" hint-placeholder-val="{{ true
           <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.35;color:#e3c79a;opacity:.9;max-width:300px">Everything you capture at the celebrations goes into our shared folder.</div>
         </div>
       </sc-if>"""
+new_cd = new_cd.replace('rgba(30,10,6,.35)', 'rgba(14,18,48,.45)').replace('color:#3b1a12', 'color:' + NAVY)
 add(old_cd, new_cd)
 add("      heroMedia, countdown, events, yesBg, yesFg, noBg, noFg,",
     "      heroMedia, countdown, events, yesBg, yesFg, noBg, noFg,\n"
     "      hasAlbum: !!this.props.albumUrl, albumUrl: this.props.albumUrl || '#', albumOpen: !!this.props.albumUrl && d <= 0, albumClosed: !(!!this.props.albumUrl && d <= 0),")
 add('<div style="position:absolute;left:24px;right:24px;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#fbefd9">',
     '<div style="position:absolute;left:24px;right:24px;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#fbefd9">')
+
+# ---- 6. Night edition: midnight navy and champagne gold in place of maroon and gold paper
+# envelope card (Ganesha) ground and type
+add('background:radial-gradient(ellipse 90% 70% at 50% 30%,#f3daa0 0%,#ebcd8e 60%,#d9b072 100%)',
+    'background:radial-gradient(ellipse 90% 70% at 50% 30%,#1e2756 0%,#151b3f 60%,#0e1230 100%)')
+add('height:24%;background:linear-gradient(180deg,rgba(245,222,170,.55) 0%,rgba(245,222,170,0) 100%)',
+    'height:24%;background:linear-gradient(180deg,rgba(14,18,48,.72) 0%,rgba(14,18,48,0) 100%)')
+add('justify-content:center;gap:2px;color:#6a1e14">', 'justify-content:center;gap:2px;color:%s">' % CREAM)
+add('font-size:clamp(13px,1.8svh,16px);color:#8a3a1c;', 'font-size:clamp(13px,1.8svh,16px);color:%s;' % GOLD)
+add('font-size:clamp(50px,8svh,74px);line-height:1;color:#6a1e14">Nitya</div>', 'font-size:clamp(50px,8svh,74px);line-height:1;color:%s">Nitya</div>' % CREAM)
+add('font-size:clamp(50px,8svh,74px);line-height:1;color:#6a1e14">Anuj</div>', 'font-size:clamp(50px,8svh,74px);line-height:1;color:%s">Anuj</div>' % CREAM)
+add('font-size:11px;letter-spacing:.34em;color:#a8682e;text-transform:uppercase">weds</div>', 'font-size:11px;letter-spacing:.34em;color:%s;text-transform:uppercase">weds</div>' % GOLD)
+add('width:40px;height:1px;background:#a8682e;margin:clamp(3px,.8svh,8px) 0', 'width:40px;height:1px;background:%s;margin:clamp(3px,.8svh,8px) 0' % GOLD)
+add('box-shadow:inset 0 0 0 14px #fbf4e8,inset 0 0 0 15px #d8b98a,inset 0 0 0 19px #fbf4e8,inset 0 0 0 20px #e2c79c',
+    'box-shadow:inset 0 0 0 14px #141a3a,inset 0 0 0 15px #e8c88a,inset 0 0 0 19px #141a3a,inset 0 0 0 20px #b8945a')
+add('background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,.55),rgba(255,250,235,0))',
+    'background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,.32),rgba(255,250,235,0))')
+# plum wax seal
+add('background:radial-gradient(circle at 36% 30%,#c45e64 0%,#93303b 55%,#6b1e28 100%)', 'background:radial-gradient(circle at 36% 30%,#a85aa6 0%,#6e2d7c 55%,#481a58 100%)')
+add('background:radial-gradient(circle at 40% 35%,#a8414a,#7d2430)', 'background:radial-gradient(circle at 40% 35%,#8a3f92,#5b2468)')
+# RSVP and closing card
+add('background:linear-gradient(180deg,#f4ead8 0,#3b1a12 130px)', 'background:linear-gradient(180deg,#f4ead8 0,%s 130px)' % NAVY)
+add('min-height:54px;background:#f0c98a;color:#3b1a12;border:0', 'min-height:54px;background:#f0c98a;color:%s;border:0' % NAVY)
+add('aspect-ratio:9/16;overflow:hidden;background:#1e0a06">', 'aspect-ratio:9/16;overflow:hidden;background:%s">' % NAVY_DEEP)
+add('background:linear-gradient(180deg,rgba(20,14,30,.6) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(30,10,6,.92) 100%)',
+    'background:linear-gradient(180deg,rgba(14,18,48,.62) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(14,18,48,.94) 100%)')
+
+# closing card: the couple under the chandeliers instead of the hills; scroll hint readable on navy
+add('<img src="eb3ecb4f-8d88-4239-8965-bb56815d4b1b" alt="Nitya and Anuj"', '<img src="__IMG:closing__" alt="Nitya and Anuj"')
+add('font-size:10px;letter-spacing:.36em;color:#6a1e14">SCROLL DOWN</div>', 'font-size:10px;letter-spacing:.36em;color:%s">SCROLL DOWN</div>' % GOLD)
+add('background:linear-gradient(180deg,#6a1e14,rgba(106,30,20,0));animation:bob', 'background:linear-gradient(180deg,%s,rgba(232,200,138,0));animation:bob' % GOLD)
+
+# ---- 7. The wax seal, not a pearl, travels the thread: it leaves the envelope and settles on the string
+old_pearl = """  <div ref="{{ pearlRef }}" style="position:absolute;top:0;left:0;width:24px;height:24px;z-index:6;pointer-events:none;will-change:transform;transform:translate(-200px,-200px);opacity:0;transition:opacity 1.2s ease">
+    <div style="position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,238,205,.6) 0%,rgba(255,238,205,0) 62%)"></div>
+    <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 30%,#ffffff 0%,#fbf6ee 14%,#ece2d3 42%,#cdbca8 74%,#9d8a74 100%);box-shadow:0 8px 14px rgba(40,20,10,.38),inset -3px -4px 7px rgba(110,80,50,.35)"></div>
+    <div ref="{{ sheenRef }}" style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,200,220,0),rgba(255,190,215,.32),rgba(190,220,255,.32),rgba(210,255,225,.26),rgba(255,230,190,.32),rgba(255,200,220,0));mix-blend-mode:soft-light"></div>
+    <div style="position:absolute;left:5px;top:4px;width:8px;height:6px;border-radius:50%;background:rgba(255,255,255,.95);filter:blur(1px)"></div>
+  </div>"""
+new_seal = """  <div ref="{{ pearlRef }}" style="position:absolute;top:0;left:0;width:36px;height:36px;z-index:6;pointer-events:none;will-change:transform;transform:translate(-200px,-200px);opacity:0;transition:opacity 1.2s ease">
+    <div style="position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(200,130,210,.4) 0%,rgba(200,130,210,0) 62%)"></div>
+    <div style="position:absolute;inset:-2px;border-radius:47% 53% 50% 50% / 52% 46% 54% 48%;background:radial-gradient(circle at 36% 30%,#a85aa6 0%,#6e2d7c 55%,#481a58 100%);box-shadow:0 5px 10px rgba(40,10,50,.45),inset 0 -2px 4px rgba(0,0,0,.25)"></div>
+    <div style="position:absolute;inset:3px;border-radius:50%;box-shadow:inset 0 1px 3px rgba(0,0,0,.35),inset 0 -1px 2px rgba(255,200,240,.3);background:radial-gradient(circle at 40% 35%,#8a3f92,#5b2468)"></div>
+    <div ref="{{ sheenRef }}" style="position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,255,255,0),rgba(255,255,255,.24),rgba(255,255,255,0) 40%);mix-blend-mode:soft-light"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:1px;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;line-height:1;color:#f3d9ef;text-shadow:0 1px 1px rgba(0,0,0,.35)">A<span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:8px;margin-top:2px">&amp;</span>N</div>
+  </div>"""
+add(old_pearl, new_seal)
+add("""    this.pearlRef.current.style.transform = 'translate(' + (q.x - 12) + 'px,' + (q.y - 12 + bob) + 'px)';""",
+    """    let px = q.x - 18, py = q.y - 18 + bob;
+    if (this.state.revealed && !this.handoffDone) {  // the seal leaves the envelope and settles on the thread
+      if (!this.handoffT0) this.handoffT0 = ts;
+      const k = Math.min(1, (ts - this.handoffT0) / 1500), e = 1 - Math.pow(1 - k, 3);
+      const s0 = root.children[0], sx = root.offsetWidth / 2 - 18, sy = s0.offsetHeight / 2 + s0.offsetWidth * .034 - 18;
+      px = sx + (px - sx) * e; py = sy + (py - sy) * e;
+      if (k >= 1) this.handoffDone = true;
+    }
+    this.pearlRef.current.style.transform = 'translate(' + px + 'px,' + py + 'px)';""")
+
+add("const pts = [{ x: W / 2, y: secs[0].offsetHeight - 46 }];", "const pts = [{ x: W / 2, y: secs[0].offsetHeight - 96 }];")  # the seal waits above the scroll hint
+
+add("pts.push({ x: W / 2, y: last.offsetTop + 160 });", "pts.push({ x: W / 2, y: last.offsetTop + 200 });")  # and rests under the names on the closing card
 
 # validate sequential application
 tt = t

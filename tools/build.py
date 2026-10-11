@@ -77,10 +77,22 @@ NEW_SUBMIT = """          const data = { name: s.name, phone: s.phone || '', att
 assert tpl.count(OLD_SUBMIT) == 1, 'submit() code not found in template'
 tpl = tpl.replace(OLD_SUBMIT, NEW_SUBMIT)
 
-# pictures referenced as __IMG:name__ (new manifest entries), and pruning of pictures no longer used
 mi = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/manifest">') + 1
 ei = next(i for i, l in enumerate(lines) if l.strip() == '<script type="__bundler/ext_resources">') + 1
 manifest = json.loads(lines[mi]); ext = json.loads(lines[ei])
+# ---- extra embedded resources (images the page's script references by id)
+if a.resource:
+    import base64, uuid, mimetypes
+    for spec in a.resource:
+        rid, path = spec.split('=', 1)
+        mime = mimetypes.guess_type(path)[0] or 'application/octet-stream'
+        u = str(uuid.uuid4())
+        manifest[u] = {'mime': mime, 'compressed': False, 'data': base64.b64encode(open(path, 'rb').read()).decode('ascii')}
+        ext = [x for x in ext if x.get('id') != rid] + [{'id': rid, 'uuid': u}]
+    lines[mi] = json.dumps(manifest, separators=(',', ':')).replace('</', '<\\u002F')
+    lines[ei] = json.dumps(ext, separators=(',', ':')).replace('</', '<\\u002F')
+
+# pictures referenced as __IMG:name__ (new manifest entries), and pruning of pictures no longer used
 if a.image or a.prune:
     import base64, uuid, mimetypes
     for spec in a.image:
@@ -102,18 +114,6 @@ if a.image or a.prune:
 # the exporter escapes it as </ and so do we
 lines[ti] = json.dumps(tpl).replace('</', '<\\u002F')
 assert '</' not in lines[ti]
-
-# ---- extra embedded resources (images the page's script references by id)
-if a.resource:
-    import base64, uuid, mimetypes
-    for spec in a.resource:
-        rid, path = spec.split('=', 1)
-        mime = mimetypes.guess_type(path)[0] or 'application/octet-stream'
-        u = str(uuid.uuid4())
-        manifest[u] = {'mime': mime, 'compressed': False, 'data': base64.b64encode(open(path, 'rb').read()).decode('ascii')}
-        ext = [x for x in ext if x.get('id') != rid] + [{'id': rid, 'uuid': u}]
-    lines[mi] = json.dumps(manifest, separators=(',', ':')).replace('</', '<\\u002F')
-    lines[ei] = json.dumps(ext, separators=(',', ':')).replace('</', '<\\u002F')
 
 # ---- outer shell: title + link preview tags
 shell = '\n'.join(lines)

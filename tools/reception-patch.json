@@ -1,7 +1,7 @@
 [
   {
-    "find": "11 · 12 DECEMBER 2026 · KASAULI",
-    "replace": "RECEPTION · 19 DECEMBER 2026 · DELHI",
+    "find": "letter-spacing:.2em;color:#7a3b26\">11 · 12 DECEMBER 2026 · KASAULI</div>",
+    "replace": "letter-spacing:.2em;color:#e8c88a\">RECEPTION · 19 DECEMBER 2026 · DELHI</div>",
     "count": 1
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "find": "  <section data-screen-label=\"04 Friday\" style=\"background:#f4ead8\">\n    <div style=\"padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px\">\n      <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:58px;line-height:1;color:#7a2a1c\">Day One</div>\n      <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;color:#a8682e\">FRIDAY, 11 DECEMBER</div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size\">\n      <img src=\"781ccfa9-4e33-45b5-8978-f4b918d8c220\" alt=\"Haldi\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      \n      <div style=\"position:absolute;left:12%;right:12%;top:11%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3cqw\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:26cqw;line-height:.95;color:#7a2a14;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Haldi</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#a8551c\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#a8551c\">2:30 PM</div>\n            <div style=\"width:6cqw;height:1px;background:#a8551c\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#5a2410;text-wrap:pretty\">Come in shades of yellow and orange. Expect to leave in a little more of it.</div>\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#fff8e8\">DRESS CODE</div>\n          <div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f2c230;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#ee8a1e;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#e4642a;box-shadow:0 0 0 1px #fff8e8,0 2px 4px rgba(0,0,0,.25)\"></div></div>\n        </div>\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"217e590f-35da-46ea-b59b-86c03fcfe658\" alt=\"Haldi ceremony\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size\">\n      <img src=\"74423a0b-a992-4aca-b035-a8f1697c22e6\" alt=\"Sangeet\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      <div style=\"position:absolute;inset:0;background:radial-gradient(ellipse 60% 32% at 50% 46%,rgba(60,14,4,.35) 0%,rgba(60,14,4,0) 100%)\"></div>\n      <div style=\"position:absolute;left:12%;right:12%;top:27%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3cqw\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:26cqw;line-height:.95;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Sangeet</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#f6cf8a\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f6cf8a\">8:00 PM</div>\n            <div style=\"width:6cqw;height:1px;background:#f6cf8a\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty\">Performances by both families, and later by everyone who said they would not dance. Dark shades and Indo-western are the order of the evening.</div>\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#f6cf8a\">DRESS CODE</div>\n          <div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0e0e14;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#1b2240;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#4a0f1e;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0f3b33;box-shadow:0 0 0 1px #f6cf8a,0 2px 4px rgba(0,0,0,.25)\"></div></div>\n        </div>\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"61209456-71ee-4c1d-8dbd-5dd554058677\" alt=\"Sangeet evening\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      {{ sangeetFx }}\n    </div>\n  </section>\n\n  <section data-screen-label=\"05 Saturday\" style=\"background:#f4ead8\">\n    <div style=\"padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px\">\n      <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:58px;line-height:1;color:#7a2a1c\">Day Two</div>\n      <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;color:#a8682e\">SATURDAY, 12 DECEMBER</div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size\">\n      <img src=\"018d5092-f478-492b-aff1-17f2f3110ac5\" alt=\"Varmala and Pheras\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      \n      <div style=\"position:absolute;left:11%;right:11%;top:16.5%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Varmala</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#8e2a20\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#8e2a20\">1:00 PM</div>\n            <div style=\"width:6cqw;height:1px;background:#8e2a20\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands, at whatever height their friends allow.</div>\n        <div style=\"display:flex;align-items:center;gap:8px;margin:2px 0\"><div style=\"width:7cqw;height:1px;background:#8e2a20\"></div><div style=\"width:5px;height:5px;transform:rotate(45deg);background:#8e2a20\"></div><div style=\"width:7cqw;height:1px;background:#8e2a20\"></div></div>\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#8e2a20\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#8e2a20\">3:30 PM</div>\n            <div style=\"width:6cqw;height:1px;background:#8e2a20\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Vows around the sacred fire, taken with your blessings. The groom's shoes will be in safe hands.</div>\n        <div style=\"display:flex;align-items:center;gap:8px;margin-top:2px\"><div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f6d4d8;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#cfe3d4;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f6e7b8;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#d8d6ef;box-shadow:0 0 0 1px #fff,0 2px 4px rgba(0,0,0,.25)\"></div></div><div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.2cqw;letter-spacing:.3em;color:#8e2a20\">PASTELS</div></div>\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"4209f1c1-5ea3-4223-8e54-837cc71dd8f6\" alt=\"Varmala under the mandap\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      <div style=\"position:absolute;left:0;right:0;top:0;padding:30px 28px 70px;background:linear-gradient(180deg,rgba(255,250,240,.82) 0%,rgba(255,250,240,0) 100%);text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;line-height:1.35;color:#4a1410\">Please wear light pastels for the Varmala and the Pheras.</div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size\">\n      <img src=\"0fa96e8a-1c63-47d9-8fc2-c784c65f92b9\" alt=\"Afterparty\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      \n      <div style=\"position:absolute;left:12%;right:12%;top:7%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3cqw\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:22cqw;line-height:.95;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Afterparty</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#efb070\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#efb070\">7:00 PM</div>\n            <div style=\"width:6cqw;height:1px;background:#efb070\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#f6e2c4;text-wrap:pretty\">The pandit's work ends here and the DJ's begins. Western wear suits the handover.</div>\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#efb070\">DRESS CODE</div>\n          <div style=\"display:flex;gap:7px;justify-content:center\"><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0e0e10;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#f1ede4;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#b9bac2;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div><div style=\"width:4.4cqw;height:4.4cqw;border-radius:50%;background:#c8a46a;box-shadow:0 0 0 1px #efb070,0 2px 4px rgba(0,0,0,.25)\"></div></div>\n        </div>\n      </div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden\">\n      <img src=\"b56eac68-4253-40b3-bc7b-ff3704a3b047\" alt=\"Afterparty\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n    </div>\n    <div style=\"padding:44px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px\">\n      <div style=\"width:40px;height:1px;background:#a8682e\"></div>\n      <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.35;color:#7a2a1c\">December in Kasauli calls for the good shawl.</div>\n      <div style=\"width:40px;height:1px;background:#a8682e\"></div>\n    </div>\n  </section>\n\n",
-    "replace": "  <section data-screen-label=\"04 Reception\" style=\"background:#f4ead8\">\n    <div style=\"padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px\">\n      <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:58px;line-height:1;color:#7a2a1c\">In Delhi</div>\n      <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;color:#a8682e\">SATURDAY, 19 DECEMBER</div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size\">\n      <img src=\"__IMG:reception__\" alt=\"Reception\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      <div style=\"position:absolute;left:12%;right:12%;top:12%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3cqw\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:24cqw;line-height:.95;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.18)\">Reception</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#f6cf8a\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f6cf8a\">6:00 PM ONWARDS</div>\n            <div style=\"width:6cqw;height:1px;background:#f6cf8a\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty\">Dinner, music and the newly-weds, for everyone who could not make it to the hills and everyone who did.</div>\n      </div>\n    </div>\n    <div style=\"padding:44px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px\">\n      <div style=\"width:40px;height:1px;background:#a8682e\"></div>\n      <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.35;color:#7a2a1c\">December in Delhi still calls for the good shawl.</div>\n      <div style=\"width:40px;height:1px;background:#a8682e\"></div>\n    </div>\n  </section>\n\n",
+    "replace": "  <section data-screen-label=\"04 Reception\" style=\"background:#f4ead8\">\n    <div style=\"padding:64px 24px 36px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px\">\n      <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:58px;line-height:1;color:#1b2250\">In Delhi</div>\n      <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;color:#a8682e\">SATURDAY, 19 DECEMBER</div>\n    </div>\n    <div style=\"position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size\">\n      <img src=\"__IMG:reception__\" alt=\"Reception\" style=\"width:100%;height:100%;object-fit:cover;display:block\">\n      <div style=\"position:absolute;left:12%;right:12%;top:30%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3cqw\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n          <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:24cqw;line-height:.95;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.18)\">Reception</div>\n          <div style=\"display:flex;align-items:center;gap:10px;margin-top:2px\">\n            <div style=\"width:6cqw;height:1px;background:#f6cf8a\"></div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f6cf8a\">6:00 PM ONWARDS</div>\n            <div style=\"width:6cqw;height:1px;background:#f6cf8a\"></div>\n          </div>\n        </div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty\">Dinner, music and the newly-weds, for everyone who could not make it to the hills and everyone who did.</div>\n      </div>\n    </div>\n    <div style=\"padding:44px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px\">\n      <div style=\"width:40px;height:1px;background:#a8682e\"></div>\n      <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.35;color:#1b2250\">December in Delhi calls for the good shawl.</div>\n      <div style=\"width:40px;height:1px;background:#a8682e\"></div>\n    </div>\n  </section>\n\n",
     "count": 1
   },
   {
@@ -31,7 +31,12 @@
   },
   {
     "find": "font-size:46px;line-height:1.05;color:#7a2a1c\">Fortune Select Forest Hill</div>",
-    "replace": "font-size:46px;line-height:1.05;color:#7a2a1c\">The Imperium</div>",
+    "replace": "font-size:46px;line-height:1.05;color:#1b2250\">The Imperium</div>",
+    "count": 1
+  },
+  {
+    "find": "min-height:52px;background:#3b1a12;color:#fbefd9",
+    "replace": "min-height:52px;background:#141a3a;color:#fbefd9",
     "count": 1
   },
   {
@@ -106,7 +111,7 @@
   },
   {
     "find": "      <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a\">COUNTING DOWN</div>\n      <div style=\"display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%\">\n        <sc-for list=\"{{ countdown }}\" as=\"u\" hint-placeholder-count=\"4\">\n          <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px\">\n            <div style=\"width:100%;aspect-ratio:1;border:1px solid rgba(240,201,138,.6);border-radius:50%;background:rgba(30,10,6,.35);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:500;font-size:24px;font-variant-numeric:tabular-nums\">{{ u.v }}</div>\n            <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;color:#e3c79a\">{{ u.l }}</div>\n          </div>\n        </sc-for>\n      </div>",
-    "replace": "      <sc-if value=\"{{ albumClosed }}\" hint-placeholder-val=\"{{ true }}\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:14px;width:100%\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a\">COUNTING DOWN</div>\n          <div style=\"display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%\">\n            <sc-for list=\"{{ countdown }}\" as=\"u\" hint-placeholder-count=\"4\">\n              <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px\">\n                <div style=\"width:100%;aspect-ratio:1;border:1px solid rgba(240,201,138,.6);border-radius:50%;background:rgba(30,10,6,.35);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:500;font-size:24px;font-variant-numeric:tabular-nums\">{{ u.v }}</div>\n                <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;color:#e3c79a\">{{ u.l }}</div>\n              </div>\n            </sc-for>\n          </div>\n          <sc-if value=\"{{ hasAlbum }}\" hint-placeholder-val=\"{{ false }}\">\n            <a href=\"{{ albumUrl }}\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:center;width:calc(100% - 112px);min-height:48px;margin-top:6px;background:#f0c98a;color:#3b1a12;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.26em\">ADD PHOTOS &amp; VIDEOS</a>\n          </sc-if>\n        </div>\n      </sc-if>\n      <sc-if value=\"{{ albumOpen }}\" hint-placeholder-val=\"{{ false }}\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:16px;width:100%\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a\">SHARE YOUR MOMENTS</div>\n          <a href=\"{{ albumUrl }}\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;background:#f0c98a;color:#3b1a12;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;letter-spacing:.26em\">ADD PHOTOS &amp; VIDEOS</a>\n          <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.35;color:#e3c79a;opacity:.9;max-width:300px\">Everything you capture at the celebrations goes into our shared folder.</div>\n        </div>\n      </sc-if>",
+    "replace": "      <sc-if value=\"{{ albumClosed }}\" hint-placeholder-val=\"{{ true }}\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:14px;width:100%\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a\">COUNTING DOWN</div>\n          <div style=\"display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%\">\n            <sc-for list=\"{{ countdown }}\" as=\"u\" hint-placeholder-count=\"4\">\n              <div style=\"display:flex;flex-direction:column;align-items:center;gap:8px\">\n                <div style=\"width:100%;aspect-ratio:1;border:1px solid rgba(240,201,138,.6);border-radius:50%;background:rgba(14,18,48,.45);display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;font-weight:500;font-size:24px;font-variant-numeric:tabular-nums\">{{ u.v }}</div>\n                <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;color:#e3c79a\">{{ u.l }}</div>\n              </div>\n            </sc-for>\n          </div>\n          <sc-if value=\"{{ hasAlbum }}\" hint-placeholder-val=\"{{ false }}\">\n            <a href=\"{{ albumUrl }}\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:center;width:calc(100% - 112px);min-height:48px;margin-top:6px;background:#f0c98a;color:#141a3a;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.26em\">ADD PHOTOS &amp; VIDEOS</a>\n          </sc-if>\n        </div>\n      </sc-if>\n      <sc-if value=\"{{ albumOpen }}\" hint-placeholder-val=\"{{ false }}\">\n        <div style=\"display:flex;flex-direction:column;align-items:center;gap:16px;width:100%\">\n          <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.7cqw;letter-spacing:.32em;color:#f0c98a\">SHARE YOUR MOMENTS</div>\n          <a href=\"{{ albumUrl }}\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;background:#f0c98a;color:#141a3a;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:14px;letter-spacing:.26em\">ADD PHOTOS &amp; VIDEOS</a>\n          <div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.35;color:#e3c79a;opacity:.9;max-width:300px\">Everything you capture at the celebrations goes into our shared folder.</div>\n        </div>\n      </sc-if>",
     "count": 1
   },
   {
@@ -117,6 +122,121 @@
   {
     "find": "<div style=\"position:absolute;left:24px;right:24px;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#fbefd9\">",
     "replace": "<div style=\"position:absolute;left:24px;right:24px;bottom:28px;display:flex;flex-direction:column;align-items:center;gap:18px;color:#fbefd9\">",
+    "count": 1
+  },
+  {
+    "find": "background:radial-gradient(ellipse 90% 70% at 50% 30%,#f3daa0 0%,#ebcd8e 60%,#d9b072 100%)",
+    "replace": "background:radial-gradient(ellipse 90% 70% at 50% 30%,#1e2756 0%,#151b3f 60%,#0e1230 100%)",
+    "count": 1
+  },
+  {
+    "find": "height:24%;background:linear-gradient(180deg,rgba(245,222,170,.55) 0%,rgba(245,222,170,0) 100%)",
+    "replace": "height:24%;background:linear-gradient(180deg,rgba(14,18,48,.72) 0%,rgba(14,18,48,0) 100%)",
+    "count": 1
+  },
+  {
+    "find": "justify-content:center;gap:2px;color:#6a1e14\">",
+    "replace": "justify-content:center;gap:2px;color:#f6ecdc\">",
+    "count": 1
+  },
+  {
+    "find": "font-size:clamp(13px,1.8svh,16px);color:#8a3a1c;",
+    "replace": "font-size:clamp(13px,1.8svh,16px);color:#e8c88a;",
+    "count": 1
+  },
+  {
+    "find": "font-size:clamp(50px,8svh,74px);line-height:1;color:#6a1e14\">Nitya</div>",
+    "replace": "font-size:clamp(50px,8svh,74px);line-height:1;color:#f6ecdc\">Nitya</div>",
+    "count": 1
+  },
+  {
+    "find": "font-size:clamp(50px,8svh,74px);line-height:1;color:#6a1e14\">Anuj</div>",
+    "replace": "font-size:clamp(50px,8svh,74px);line-height:1;color:#f6ecdc\">Anuj</div>",
+    "count": 1
+  },
+  {
+    "find": "font-size:11px;letter-spacing:.34em;color:#a8682e;text-transform:uppercase\">weds</div>",
+    "replace": "font-size:11px;letter-spacing:.34em;color:#e8c88a;text-transform:uppercase\">weds</div>",
+    "count": 1
+  },
+  {
+    "find": "width:40px;height:1px;background:#a8682e;margin:clamp(3px,.8svh,8px) 0",
+    "replace": "width:40px;height:1px;background:#e8c88a;margin:clamp(3px,.8svh,8px) 0",
+    "count": 1
+  },
+  {
+    "find": "box-shadow:inset 0 0 0 14px #fbf4e8,inset 0 0 0 15px #d8b98a,inset 0 0 0 19px #fbf4e8,inset 0 0 0 20px #e2c79c",
+    "replace": "box-shadow:inset 0 0 0 14px #141a3a,inset 0 0 0 15px #e8c88a,inset 0 0 0 19px #141a3a,inset 0 0 0 20px #b8945a",
+    "count": 1
+  },
+  {
+    "find": "background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,.55),rgba(255,250,235,0))",
+    "replace": "background:linear-gradient(90deg,rgba(255,250,235,0),rgba(255,250,235,.32),rgba(255,250,235,0))",
+    "count": 1
+  },
+  {
+    "find": "background:radial-gradient(circle at 36% 30%,#c45e64 0%,#93303b 55%,#6b1e28 100%)",
+    "replace": "background:radial-gradient(circle at 36% 30%,#a85aa6 0%,#6e2d7c 55%,#481a58 100%)",
+    "count": 1
+  },
+  {
+    "find": "background:radial-gradient(circle at 40% 35%,#a8414a,#7d2430)",
+    "replace": "background:radial-gradient(circle at 40% 35%,#8a3f92,#5b2468)",
+    "count": 1
+  },
+  {
+    "find": "background:linear-gradient(180deg,#f4ead8 0,#3b1a12 130px)",
+    "replace": "background:linear-gradient(180deg,#f4ead8 0,#141a3a 130px)",
+    "count": 1
+  },
+  {
+    "find": "min-height:54px;background:#f0c98a;color:#3b1a12;border:0",
+    "replace": "min-height:54px;background:#f0c98a;color:#141a3a;border:0",
+    "count": 1
+  },
+  {
+    "find": "aspect-ratio:9/16;overflow:hidden;background:#1e0a06\">",
+    "replace": "aspect-ratio:9/16;overflow:hidden;background:#0e1230\">",
+    "count": 1
+  },
+  {
+    "find": "background:linear-gradient(180deg,rgba(20,14,30,.6) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(30,10,6,.92) 100%)",
+    "replace": "background:linear-gradient(180deg,rgba(14,18,48,.62) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(14,18,48,.94) 100%)",
+    "count": 1
+  },
+  {
+    "find": "<img src=\"eb3ecb4f-8d88-4239-8965-bb56815d4b1b\" alt=\"Nitya and Anuj\"",
+    "replace": "<img src=\"__IMG:closing__\" alt=\"Nitya and Anuj\"",
+    "count": 1
+  },
+  {
+    "find": "font-size:10px;letter-spacing:.36em;color:#6a1e14\">SCROLL DOWN</div>",
+    "replace": "font-size:10px;letter-spacing:.36em;color:#e8c88a\">SCROLL DOWN</div>",
+    "count": 1
+  },
+  {
+    "find": "background:linear-gradient(180deg,#6a1e14,rgba(106,30,20,0));animation:bob",
+    "replace": "background:linear-gradient(180deg,#e8c88a,rgba(232,200,138,0));animation:bob",
+    "count": 1
+  },
+  {
+    "find": "  <div ref=\"{{ pearlRef }}\" style=\"position:absolute;top:0;left:0;width:24px;height:24px;z-index:6;pointer-events:none;will-change:transform;transform:translate(-200px,-200px);opacity:0;transition:opacity 1.2s ease\">\n    <div style=\"position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,238,205,.6) 0%,rgba(255,238,205,0) 62%)\"></div>\n    <div style=\"position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 30%,#ffffff 0%,#fbf6ee 14%,#ece2d3 42%,#cdbca8 74%,#9d8a74 100%);box-shadow:0 8px 14px rgba(40,20,10,.38),inset -3px -4px 7px rgba(110,80,50,.35)\"></div>\n    <div ref=\"{{ sheenRef }}\" style=\"position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,200,220,0),rgba(255,190,215,.32),rgba(190,220,255,.32),rgba(210,255,225,.26),rgba(255,230,190,.32),rgba(255,200,220,0));mix-blend-mode:soft-light\"></div>\n    <div style=\"position:absolute;left:5px;top:4px;width:8px;height:6px;border-radius:50%;background:rgba(255,255,255,.95);filter:blur(1px)\"></div>\n  </div>",
+    "replace": "  <div ref=\"{{ pearlRef }}\" style=\"position:absolute;top:0;left:0;width:36px;height:36px;z-index:6;pointer-events:none;will-change:transform;transform:translate(-200px,-200px);opacity:0;transition:opacity 1.2s ease\">\n    <div style=\"position:absolute;inset:-16px;border-radius:50%;background:radial-gradient(circle,rgba(200,130,210,.4) 0%,rgba(200,130,210,0) 62%)\"></div>\n    <div style=\"position:absolute;inset:-2px;border-radius:47% 53% 50% 50% / 52% 46% 54% 48%;background:radial-gradient(circle at 36% 30%,#a85aa6 0%,#6e2d7c 55%,#481a58 100%);box-shadow:0 5px 10px rgba(40,10,50,.45),inset 0 -2px 4px rgba(0,0,0,.25)\"></div>\n    <div style=\"position:absolute;inset:3px;border-radius:50%;box-shadow:inset 0 1px 3px rgba(0,0,0,.35),inset 0 -1px 2px rgba(255,200,240,.3);background:radial-gradient(circle at 40% 35%,#8a3f92,#5b2468)\"></div>\n    <div ref=\"{{ sheenRef }}\" style=\"position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,rgba(255,255,255,0),rgba(255,255,255,.24),rgba(255,255,255,0) 40%);mix-blend-mode:soft-light\"></div>\n    <div style=\"position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:1px;font-family:'Jost',sans-serif;font-weight:500;font-size:12px;line-height:1;color:#f3d9ef;text-shadow:0 1px 1px rgba(0,0,0,.35)\">A<span style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:8px;margin-top:2px\">&amp;</span>N</div>\n  </div>",
+    "count": 1
+  },
+  {
+    "find": "    this.pearlRef.current.style.transform = 'translate(' + (q.x - 12) + 'px,' + (q.y - 12 + bob) + 'px)';",
+    "replace": "    let px = q.x - 18, py = q.y - 18 + bob;\n    if (this.state.revealed && !this.handoffDone) {  // the seal leaves the envelope and settles on the thread\n      if (!this.handoffT0) this.handoffT0 = ts;\n      const k = Math.min(1, (ts - this.handoffT0) / 1500), e = 1 - Math.pow(1 - k, 3);\n      const s0 = root.children[0], sx = root.offsetWidth / 2 - 18, sy = s0.offsetHeight / 2 + s0.offsetWidth * .034 - 18;\n      px = sx + (px - sx) * e; py = sy + (py - sy) * e;\n      if (k >= 1) this.handoffDone = true;\n    }\n    this.pearlRef.current.style.transform = 'translate(' + px + 'px,' + py + 'px)';",
+    "count": 1
+  },
+  {
+    "find": "const pts = [{ x: W / 2, y: secs[0].offsetHeight - 46 }];",
+    "replace": "const pts = [{ x: W / 2, y: secs[0].offsetHeight - 96 }];",
+    "count": 1
+  },
+  {
+    "find": "pts.push({ x: W / 2, y: last.offsetTop + 160 });",
+    "replace": "pts.push({ x: W / 2, y: last.offsetTop + 200 });",
     "count": 1
   }
 ]

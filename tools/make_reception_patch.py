@@ -32,10 +32,24 @@ CREAM = '#f6ecdc'       # names on navy
 
 # ---- 1. Opening envelope card and the invitation card
 add('letter-spacing:.2em;color:#7a3b26">11 · 12 DECEMBER 2026 · KASAULI</div>', 'letter-spacing:.2em;color:%s">RECEPTION · 19 DECEMBER 2026 · DELHI</div>' % GOLD)
-add('request the pleasure of your company at the wedding of', 'request the pleasure of your company at the wedding reception of')
-add('Friday 11 and Saturday 12 December 2026', 'Saturday 19 December 2026')
-add("font-size:3.6cqw;line-height:1.3;font-style:italic\">Fortune Select Forest Hill, Kasauli</div>",
-    "font-size:3.6cqw;line-height:1.3;font-style:italic\">%s, Ashok Vihar, Delhi</div>" % VENUE)
+# the framed card gives way to the two of them under the chandeliers, with the invitation beneath
+inv_start = t.index('  <section data-screen-label="02 Invitation"')
+inv_end = t.index('  <section data-screen-label="04 Friday"')
+invitation = '''  <section data-screen-label="02 Invitation" style="position:relative;aspect-ratio:1/2;overflow:hidden;background:#0e1230;container-type:inline-size">
+    <img src="__IMG:invite__" alt="Nitya and Anuj" style="width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block">
+    <div style="position:absolute;left:11%;right:11%;top:63%;bottom:0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqw;color:CREAM">
+      <div style="font-family:'Tiro Devanagari Hindi',serif;font-size:3.2cqw;color:GOLD">॥ श्री गणेशाय नमः ॥</div>
+      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.8cqw;line-height:1.35;text-wrap:balance">With the blessings of our elders, the Pahuja and Agarwal families request the pleasure of your company at the wedding reception of</p>
+      <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.25)">Nitya &amp; Anuj</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:.6cqw">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3">Saturday 19 December 2026</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3;font-style:italic;color:GOLD">VENUE_NAME, Ashok Vihar, Delhi</div>
+      </div>
+    </div>
+  </section>
+
+'''
+add(t[inv_start:inv_end], invitation.replace('VENUE_NAME', VENUE).replace('CREAM', CREAM).replace('GOLD', GOLD))
 
 # ---- 2. The two wedding-day sections become one reception section
 start = t.index('  <section data-screen-label="04 Friday"')
@@ -57,7 +71,7 @@ reception = '''  <section data-screen-label="04 Reception" style="background:#f4
             <div style="width:6cqw;height:1px;background:#f6cf8a"></div>
           </div>
         </div>
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty">Dinner, music and the newly-weds. Come for the food, stay for the dancing.</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#fbe6cc;text-wrap:pretty">An evening of dinner, music and dancing with the newly-weds.</div>
       </div>
     </div>
     <div style="height:56px"></div>

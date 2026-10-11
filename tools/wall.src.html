@@ -111,7 +111,11 @@ __FONTS__
     let token = '', out = [];
     do {
       const url = 'https://www.googleapis.com/drive/v3/files?q=' + encodeURIComponent(q) + '&fields=' + encodeURIComponent(fields) + '&orderBy=createdTime%20desc&pageSize=1000&key=' + encodeURIComponent(apiKey) + (token ? '&pageToken=' + encodeURIComponent(token) : '');
-      const r = await fetch(url); if (!r.ok) throw new Error('Drive API ' + r.status);
+      const r = await fetch(url);
+      if (!r.ok) {  // a 4xx is a setup problem (key, restriction, API not enabled): say what Google said so it can be fixed
+        let msg = 'Drive API ' + r.status; try { const e = await r.json(); if (e.error && e.error.message) msg += ': ' + e.error.message.slice(0, 160); } catch (_) {}
+        const err = new Error(msg); err.setup = r.status >= 400 && r.status < 500; throw err;
+      }
       const d = await r.json(); out = out.concat(d.files || []); token = d.nextPageToken || '';
     } while (token);
     return out.map(f => {
@@ -229,7 +233,7 @@ __FONTS__
       count.textContent = n === 0 ? 'Waiting for the first photo' : n === 1 ? 'One photo so far' : n + ' photos and videos so far';
       if (n === 0) emptyLine.textContent = 'The first photos from the celebrations will appear here.';
       if (n && !running) { running = true; fill(); requestAnimationFrame(tick); setInterval(lensNext, CONFIG.lensEvery * 1000); }
-    } catch (e) { count.textContent = 'Cannot reach Google Drive at the moment, trying again shortly'; console.error(e); }
+    } catch (e) { count.textContent = e.setup ? e.message : 'Cannot reach Google Drive at the moment, trying again shortly'; console.error(e); }
   }
   layout(); addEventListener('resize', () => { const keep = queue; layout(); });
   refresh(); setInterval(refresh, (Number(qs.get('refresh')) || CONFIG.refreshSeconds) * 1000);

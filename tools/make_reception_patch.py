@@ -39,7 +39,7 @@ invitation = '''  <section data-screen-label="02 Invitation" style="position:rel
     <img src="__IMG:invite__" alt="Nitya and Anuj" style="width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block">
     <div style="position:absolute;left:11%;right:11%;top:63%;bottom:0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqw;color:CREAM">
       <div style="font-family:'Tiro Devanagari Hindi',serif;font-size:3.2cqw;color:GOLD">॥ श्री गणेशाय नमः ॥</div>
-      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.8cqw;line-height:1.35;text-wrap:balance">With the blessings of our elders, the Pahuja and Agarwal families request the pleasure of your company at the wedding reception of</p>
+      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.8cqw;line-height:1.35;text-wrap:balance">With the blessings of our elders, the Pahuja family requests the pleasure of your company at the wedding reception of</p>
       <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.25)">Nitya &amp; Anuj</div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:.6cqw">
         <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3">Saturday 19 December 2026</div>
@@ -89,7 +89,17 @@ add('<div style="font-size:19px;font-style:italic">Kasauli, Himachal Pradesh</di
 add('https://www.google.com/maps?q=Fortune+Select+Forest+Hill+Kasauli&amp;output=embed', 'https://www.google.com/maps?q=%s&amp;output=embed' % MAPS_Q)
 add('https://www.google.com/maps/dir/?api=1&amp;destination=Fortune+Select+Forest+Hill+Kasauli', 'https://www.google.com/maps/dir/?api=1&amp;destination=%s' % MAPS_Q)
 
-# ---- 4. RSVP: the event is the reception, so no event chips; phone number field; its own saved response
+# ---- 4. RSVP: hosted by the Pahuja family alone; the event is the reception, so no event chips; phone number field; its own saved response
+fam_start = t.index('    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;text-align:center;padding-bottom:26px;border-bottom:1px solid rgba(240,201,138,.3)">')
+fam_end = t.index('    <sc-if value="{{ submitted }}"')
+add(t[fam_start:fam_end], '''    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding-bottom:26px;border-bottom:1px solid rgba(240,201,138,.3)">
+      <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.22em;color:#f0c98a;margin-bottom:4px">THE PAHUJA FAMILY</div>
+      <div style="font-size:18px;line-height:1.3">Chanchal Pahuja</div>
+      <div style="font-size:18px;line-height:1.3">Ashok Pahuja</div>
+      <div style="font-size:18px;line-height:1.3">Shivam Pahuja</div>
+      <div style="font-size:18px;line-height:1.3">Jorena Pahuja</div>
+    </div>
+''')
 add("ev: { Haldi: true, Sangeet: true, Varmala: true, Pheras: true, Afterparty: true }", "ev: { Reception: true }")
 ev = re.search(r'            <div style="display:flex;flex-direction:column;gap:10px">\n              <span [^\n]*>EVENTS ATTENDING</span>\n(?:.*\n)*?            </div>\n', t)
 assert ev, 'events block not found'

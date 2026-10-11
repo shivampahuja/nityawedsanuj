@@ -30,7 +30,10 @@ def with_bottom(anchor, block, band=None):
 
 # ---- 1. Dress-code copy: suggestions, not rules
 add('Come in shades of yellow and orange. Expect to leave in a little more of it.',
-    'Shades of yellow and orange if you feel like it. Expect to leave in a little more of it regardless.')
+    'Shades of yellow and orange if you like. Either way, expect to leave in a little more of it.')
+# "at the wedding of" needs a noun phrase after it: Nitya & Anuj, not Nitya weds Anuj (the headline on the envelope keeps "weds")
+add("<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#a8682e;text-transform:uppercase;margin:.6cqw 0\">weds</div>",
+    "<div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:6.5cqw;line-height:1;color:#a8682e;margin:.4cqw 0\">&amp;</div>")
 # Sangeet and Afterparty: the dress sentence goes entirely; the palette dots at the foot of the card remain
 add(' Dark shades and Indo-western are the order of the evening.', '')
 add(' Western wear suits the handover.', '')

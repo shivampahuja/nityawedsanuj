@@ -25,8 +25,8 @@
     "count": 1
   },
   {
-    "find": "<img src=\"e11d75ea-8a51-4255-a3c5-d638c4bf2e2a\" alt=\"Fortune Select Forest Hill\"",
-    "replace": "<img src=\"__IMG:venue__\" alt=\"The Imperium\"",
+    "find": "<img src=\"e11d75ea-8a51-4255-a3c5-d638c4bf2e2a\" alt=\"Fortune Select Forest Hill\" style=\"width:100%;height:100%;object-fit:cover;display:block\">",
+    "replace": "<img src=\"__IMG:venue__\" alt=\"The Imperium\" style=\"width:100%;height:100%;object-fit:cover;object-position:50% 100%;display:block\">",
     "count": 1
   },
   {
@@ -201,7 +201,12 @@
   },
   {
     "find": "background:linear-gradient(180deg,rgba(20,14,30,.6) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(30,10,6,.92) 100%)",
-    "replace": "background:linear-gradient(180deg,rgba(14,18,48,.62) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(14,18,48,.94) 100%)",
+    "replace": "background:linear-gradient(180deg,rgba(14,18,48,.84) 0%,rgba(14,18,48,.5) 18%,rgba(0,0,0,0) 36%,rgba(0,0,0,0) 58%,rgba(14,18,48,.94) 100%)",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"position:absolute;top:56px;left:0;right:0;text-align:center;color:#fbefd9;display:flex;flex-direction:column;gap:8px\">",
+    "replace": "<div style=\"position:absolute;top:56px;left:0;right:0;text-align:center;color:#fbefd9;display:flex;flex-direction:column;gap:8px;text-shadow:0 2px 14px rgba(10,12,40,.95),0 0 3px rgba(10,12,40,.8)\">",
     "count": 1
   },
   {

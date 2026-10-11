@@ -71,7 +71,8 @@ reception = '''  <section data-screen-label="04 Reception" style="background:#f4
 add(days, reception)
 
 # ---- 3. Venue
-add('<img src="e11d75ea-8a51-4255-a3c5-d638c4bf2e2a" alt="Fortune Select Forest Hill"', '<img src="__IMG:venue__" alt="%s"' % VENUE)
+add('<img src="e11d75ea-8a51-4255-a3c5-d638c4bf2e2a" alt="Fortune Select Forest Hill" style="width:100%;height:100%;object-fit:cover;display:block">',
+    '<img src="__IMG:venue__" alt="%s" style="width:100%%;height:100%%;object-fit:cover;object-position:50%% 100%%;display:block">' % VENUE)  # the 4:5 window keeps the entrance, not the sky
 add("font-size:46px;line-height:1.05;color:#7a2a1c\">Fortune Select Forest Hill</div>", "font-size:46px;line-height:1.05;color:%s\">%s</div>" % (NAVY_INK, VENUE))
 add('min-height:52px;background:#3b1a12;color:#fbefd9', 'min-height:52px;background:%s;color:#fbefd9' % NAVY)
 add('<div style="font-size:19px;font-style:italic">Kasauli, Himachal Pradesh</div>', '<div style="font-size:19px;font-style:italic">%s</div>' % ADDRESS)
@@ -166,7 +167,9 @@ add('background:linear-gradient(180deg,#f4ead8 0,#3b1a12 130px)', 'background:li
 add('min-height:54px;background:#f0c98a;color:#3b1a12;border:0', 'min-height:54px;background:#f0c98a;color:%s;border:0' % NAVY)
 add('aspect-ratio:9/16;overflow:hidden;background:#1e0a06">', 'aspect-ratio:9/16;overflow:hidden;background:%s">' % NAVY_DEEP)
 add('background:linear-gradient(180deg,rgba(20,14,30,.6) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(30,10,6,.92) 100%)',
-    'background:linear-gradient(180deg,rgba(14,18,48,.62) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 58%,rgba(14,18,48,.94) 100%)')
+    'background:linear-gradient(180deg,rgba(14,18,48,.84) 0%,rgba(14,18,48,.5) 18%,rgba(0,0,0,0) 36%,rgba(0,0,0,0) 58%,rgba(14,18,48,.94) 100%)')
+add('<div style="position:absolute;top:56px;left:0;right:0;text-align:center;color:#fbefd9;display:flex;flex-direction:column;gap:8px">',
+    '<div style="position:absolute;top:56px;left:0;right:0;text-align:center;color:#fbefd9;display:flex;flex-direction:column;gap:8px;text-shadow:0 2px 14px rgba(10,12,40,.95),0 0 3px rgba(10,12,40,.8)">')
 
 # closing card: the couple under the chandeliers instead of the hills; scroll hint readable on navy
 add('<img src="eb3ecb4f-8d88-4239-8965-bb56815d4b1b" alt="Nitya and Anuj"', '<img src="__IMG:closing__" alt="Nitya and Anuj"')

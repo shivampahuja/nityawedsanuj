@@ -47,7 +47,7 @@ invitation = '''  <section data-screen-label="02 Invitation" style="position:rel
     <img src="__IMG:invite__" alt="VENUE_NAME" style="width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block">
     <div style="position:absolute;left:11%;right:11%;top:64%;bottom:0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqw;color:#4a2216">
       <div style="height:6cqw;color:#a8682e;display:flex;justify-content:center">IK_ONKAR</div>
-      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance"><em style="color:#8a4a3a">With the blessings of our elders and of our beloved Chanchal Pahuja, who is always with us,</em> the Pahuja family invites you to a kirtan and langar in prayer for the wedding of</p>
+      <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance"><em>With the blessings of our elders and of our beloved mother Chanchal Pahuja, who is always with us,</em> the Pahuja family invites you to a kirtan and langar in prayer for the wedding of</p>
       <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#6a1e14">Nitya &amp; Anuj</div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:.6cqw">
         <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3">Sunday 6 December 2026</div>

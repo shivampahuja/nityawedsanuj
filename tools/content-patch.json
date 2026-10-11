@@ -171,7 +171,7 @@
   },
   {
     "find": "<p style=\"margin:0;font-family:'Cormorant Garamond',serif;font-size:3.9cqw;line-height:1.35;text-wrap:balance\">With the blessings of our elders, the Pahuja and Agarwal families request the pleasure of your company at the wedding of</p>",
-    "replace": "<p style=\"margin:0;font-family:'Cormorant Garamond',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance\"><em style=\"color:#8a4a3a\">With the blessings of our elders and of our beloved Chanchal Pahuja, who is always with us,</em> the Pahuja and Agarwal families request the pleasure of your company at the wedding of</p>",
+    "replace": "<p style=\"margin:0;font-family:'Cormorant Garamond',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance\"><em>With the blessings of our elders and of our beloved mother Chanchal Pahuja, who is always with us,</em> the Pahuja and Agarwal families request the pleasure of your company at the wedding of</p>",
     "count": 1
   },
   {

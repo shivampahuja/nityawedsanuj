@@ -62,10 +62,12 @@ add(t[inv_start:inv_end], invitation)
 # ---- 3. The two wedding-day sections become the Sunday: kirtan, then langar
 start = t.index('  <section data-screen-label="04 Friday"')
 end = t.index('  <section data-screen-label="06 Venue"')
-def card(img, alt, title, time, line, top, title_size='24cqw'):
+def card(img, alt, title, time, line, top, title_size='21cqw'):
+    # The text block sits in the plain marble between the toran and the palki (kirtan) or on the bare wall
+    # (langar); a faint wash of the paper colour behind it keeps the words readable where the picture is busy.
     return '''    <div style="position:relative;aspect-ratio:9/16;overflow:hidden;container-type:inline-size">
       <img src="%s" alt="%s" style="width:100%%;height:100%%;object-fit:cover;display:block">
-      <div style="position:absolute;left:12%%;right:12%%;top:%s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3cqw">
+      <div style="position:absolute;left:8%%;right:8%%;top:%s;padding:2cqw 4%%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2.4cqw;background:radial-gradient(ellipse 62%% 58%% at 50%% 50%%,rgba(246,239,226,.82) 0%%,rgba(246,239,226,.5) 45%%,rgba(246,239,226,0) 72%%)">
         <div style="display:flex;flex-direction:column;align-items:center;gap:0">
           <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:%s;line-height:.95;color:#7a2a14;text-shadow:0 2px 14px rgba(0,0,0,.08)">%s</div>
           <div style="display:flex;align-items:center;gap:10px;margin-top:2px">
@@ -74,7 +76,7 @@ def card(img, alt, title, time, line, top, title_size='24cqw'):
             <div style="width:6cqw;height:1px;background:#a8551c"></div>
           </div>
         </div>
-        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#5a2410;text-wrap:pretty">%s</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:4.4cqw;line-height:1.38;color:#5a2410;text-wrap:balance">%s</div>
       </div>
     </div>
 ''' % (img, alt, top, title_size, title, time, line)
@@ -84,7 +86,7 @@ sunday = '''  <section data-screen-label="04 Sunday" style="background:#f4ead8">
       <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:12px;letter-spacing:.34em;color:#a8682e">SUNDAY, 6 DECEMBER</div>
     </div>
 ''' + card('__IMG:kirtan__', 'Kirtan', 'Kirtan', '11:30 AM TO 1:30 PM',
-           'Shabad kirtan in the Darbar Sahib: the wedding week begins with a prayer.', '30%') \
+           'Shabad kirtan in the Darbar Sahib: the wedding week begins with a prayer.', '21.5%') \
   + card('__IMG:langar__', 'Langar', 'Langar', '1:30 PM ONWARDS',
          'Lunch from the Guru’s kitchen, served to everyone seated together.', '8%') + '''    <div style="padding:44px 32px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px">
       <div style="width:40px;height:1px;background:#a8682e"></div>

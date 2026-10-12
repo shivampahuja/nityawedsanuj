@@ -43,7 +43,8 @@ opener = L.opener_section('lights', invocation, names_color=CREAM, label_color=G
                           top_fade='rgba(14,18,48,.72)',
                           margins='inset 0 0 0 14px #141a3a,inset 0 0 0 15px #e8c88a,inset 0 0 0 19px #141a3a,inset 0 0 0 20px #b8945a',
                           scroll_color=GOLD, hint_color=GOLD, glint_alpha='.32',
-                          cover_html=L.lights_cover(), seal_html=L.centre_seal('#a85aa6 0%,#6e2d7c 55%,#481a58 100%', '#8a3f92,#5b2468'))
+                          cover_html=L.lights_cover(), seal_html=L.centre_seal('#a85aa6 0%,#6e2d7c 55%,#481a58 100%', '#8a3f92,#5b2468'),
+                          conj_html=L.ampersand(GOLD))  # married by then: Nitya & Anuj, not weds
 add(t[op_start:op_end], opener)
 add(L.STYLE_ANCHOR, L.OPENER_KEYFRAMES + L.STYLE_ANCHOR)
 add(L.VALS_OLD, L.opener_vals('lights'))
@@ -55,12 +56,12 @@ inv_end = t.index('  <section data-screen-label="04 Friday"')
 invitation = '''  <section data-screen-label="02 Invitation" style="position:relative;aspect-ratio:1/2;overflow:hidden;background:#0e1230;container-type:inline-size">
     <img src="__IMG:invite__" alt="Nitya and Anuj" style="width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block">
     <div style="position:absolute;left:11%;right:11%;top:63%;bottom:0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqw;color:CREAM">
-      <div style="font-family:'Tiro Devanagari Hindi',serif;font-size:3.2cqw;color:GOLD">॥ श्री गणेशाय नमः ॥</div>
+      <div style="font-family:'Tiro Devanagari Hindi',serif;font-size:3.4cqw;color:GOLD">॥ श्री गणेशाय नमः ॥</div>
       <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance">With the blessings of our elders and of our beloved mother Chanchal Pahuja, who is always with us, the Pahuja family requests the pleasure of your company at the wedding reception of</p>
       <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#fdeed6;text-shadow:0 2px 14px rgba(0,0,0,.25)">Nitya &amp; Anuj</div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:.6cqw">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3">Saturday 19 December 2026</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3;font-style:italic;color:GOLD">VENUE_NAME, Ashok Vihar, Delhi</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1.2cqw">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;text-wrap:balance">Saturday 19 December 2026</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;font-style:italic;text-wrap:balance;color:GOLD">VENUE_NAME, Ashok Vihar, Delhi</div>
       </div>
     </div>
   </section>
@@ -224,12 +225,14 @@ add("const pts = [{ x: W / 2, y: secs[0].offsetHeight - 46 }];", "const pts = [{
 
 add("pts.push({ x: W / 2, y: last.offsetTop + 160 });", "pts.push({ x: W / 2, y: last.offsetTop + 200 });")  # and rests under the names on the closing card
 
-# validate sequential application
+# validate sequential application, then the type scale shared by every page
 tt = t
 for p in P:
     assert tt.count(p['find']) == p['count'], p['find'][:80]
     tt = tt.replace(p['find'], p['replace'])
-for leftover in ('Haldi', 'Sangeet', 'Pheras', 'Afterparty', 'Kasauli', 'Fortune Select'):
+for find, replace, count in L.type_polish(tt):
+    P.append({'find': find, 'replace': replace, 'count': count}); tt = tt.replace(find, replace)
+for leftover in ('Haldi', 'Sangeet', 'Pheras', 'Afterparty', 'Kasauli', 'Fortune Select', '>weds<'):
     where = [m.start() for m in re.finditer(re.escape(leftover), tt)]
     assert not where or all('sangeetFx' in tt[w - 20:w + 20] for w in where), (leftover, where)
 json.dump(P, open(a.out, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)

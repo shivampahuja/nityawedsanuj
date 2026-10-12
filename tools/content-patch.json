@@ -5,8 +5,13 @@
     "count": 1
   },
   {
-    "find": "<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#a8682e;text-transform:uppercase;margin:.6cqw 0\">weds</div>",
-    "replace": "<div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:6.5cqw;line-height:1;color:#a8682e;margin:.4cqw 0\">&amp;</div>",
+    "find": "<div style=\"position:absolute;left:28%;width:49%;top:25%;height:50%;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqw;color:#4a2216\">",
+    "replace": "<div style=\"position:absolute;left:28%;width:49%;top:22%;height:50%;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqw;color:#4a2216\">",
+    "count": 1
+  },
+  {
+    "find": "      <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n        <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:14cqw;line-height:1;color:#6a1e14\">Nitya</div>\n        <div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#a8682e;text-transform:uppercase;margin:.6cqw 0\">weds</div>\n        <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:14cqw;line-height:1;color:#6a1e14\">Anuj</div>\n      </div>\n      <div style=\"font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3\">Friday 11 and Saturday 12 December 2026</div>\n      <div style=\"font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3;font-style:italic\">Fortune Select Forest Hill, Kasauli</div>",
+    "replace": "      <div style=\"display:flex;flex-direction:column;align-items:center;gap:0\">\n        <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#6a1e14\">Nitya</div>\n        <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:8cqw;line-height:1;color:#a8682e;margin:.6cqw 0\">&amp;</div>\n        <div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#6a1e14\">Anuj</div>\n      </div>\n      <div style=\"display:flex;flex-direction:column;align-items:center;gap:1.2cqw\">\n        <div style=\"font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;text-wrap:balance\">Friday 11 and Saturday 12 December 2026</div>\n        <div style=\"font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;font-style:italic;text-wrap:balance\">Fortune Select Forest Hill, Kasauli</div>\n      </div>",
     "count": 1
   },
   {
@@ -61,7 +66,7 @@
   },
   {
     "find": "<div style=\"position:absolute;left:11%;right:11%;top:16.5%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw\">",
-    "replace": "<div style=\"position:absolute;inset:0;padding:0 11% 42cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw\">",
+    "replace": "<div style=\"position:absolute;inset:0;padding:0 11% 42cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8cqw\">",
     "count": 1
   },
   {
@@ -182,6 +187,66 @@
   {
     "find": "<div style=\"font-size:18px;line-height:1.3\">Ashok Pahuja</div>",
     "replace": "<div style=\"font-size:18px;line-height:1.3\">Ashok Chanchal Pahuja</div>",
+    "count": 1
+  },
+  {
+    "find": "font-size:3.7cqw;line-height:1.35;text-wrap:balance\">With the blessings",
+    "replace": "font-size:3.7cqw;line-height:1.5;text-wrap:balance\">With the blessings",
+    "count": 1
+  },
+  {
+    "find": "font-style:italic;font-size:4.4cqw;line-height:1.38;",
+    "replace": "font-style:italic;font-size:4.4cqw;line-height:1.5;",
+    "count": 3
+  },
+  {
+    "find": "font-style:italic;font-size:3.5cqw;line-height:1.3;",
+    "replace": "font-style:italic;font-size:3.5cqw;line-height:1.5;",
+    "count": 2
+  },
+  {
+    "find": "font-size:3.2cqw;line-height:1.3;color:#4a1410\">Pastels",
+    "replace": "font-size:3.2cqw;line-height:1.5;color:#4a1410\">Pastels",
+    "count": 1
+  },
+  {
+    "find": "font-size:46px;line-height:1.05;color:",
+    "replace": "font-size:46px;line-height:1.15;text-wrap:balance;color:",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"font-size:19px;font-style:italic\">",
+    "replace": "<div style=\"font-size:19px;line-height:1.45;font-style:italic;text-wrap:balance\">",
+    "count": 1
+  },
+  {
+    "find": "<div style=\"font-size:18px;line-height:1.3\">",
+    "replace": "<div style=\"font-size:18px;line-height:1.4\">",
+    "count": 6
+  },
+  {
+    "find": "<div style=\"font-style:italic;font-size:22px;color:",
+    "replace": "<div style=\"font-style:italic;font-size:22px;line-height:1.45;color:",
+    "count": 1
+  },
+  {
+    "find": "top:56px;left:0;right:0;text-align:center;color:#fbefd9;display:flex;flex-direction:column;gap:8px",
+    "replace": "top:56px;left:0;right:0;text-align:center;color:#fbefd9;display:flex;flex-direction:column;gap:10px",
+    "count": 1
+  },
+  {
+    "find": "font-style:italic;font-size:24px;line-height:1.35;color:#7a2a1c\">",
+    "replace": "font-style:italic;font-size:22px;line-height:1.5;color:#7a2a1c;max-width:330px;text-wrap:balance\">",
+    "count": 1
+  },
+  {
+    "find": "font-size:15px;line-height:1.35;color:#e3c79a",
+    "replace": "font-size:15px;line-height:1.5;color:#e3c79a",
+    "count": 1
+  },
+  {
+    "find": "font-size:11px;letter-spacing:.2em;color:#7a3b26\">",
+    "replace": "font-size:11px;line-height:1.6;letter-spacing:.2em;color:#7a3b26\">",
     "count": 1
   }
 ]

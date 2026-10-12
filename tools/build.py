@@ -26,7 +26,7 @@ ap.add_argument('--prune', action='store_true', help='drop embedded pictures the
 ap.add_argument('--title', default='Nitya weds Anuj')
 ap.add_argument('--description', default='11 and 12 December 2026, Fortune Select Forest Hill, Kasauli. Open the invitation and send your RSVP.')
 a = ap.parse_args()
-TITLE, DESCRIPTION = a.title, a.description
+TITLE, DESCRIPTION = html.escape(a.title, quote=True), a.description
 if a.fields:
     json.loads(a.fields)  # must be valid JSON
 

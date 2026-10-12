@@ -49,9 +49,9 @@ invitation = '''  <section data-screen-label="02 Invitation" style="position:rel
       <div style="height:6cqw;color:#a8682e;display:flex;justify-content:center">IK_ONKAR</div>
       <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:3.7cqw;line-height:1.35;text-wrap:balance">With the blessings of our elders and of our beloved mother Chanchal Pahuja, who is always with us, the Pahuja family invites you to a kirtan and langar in prayer for the wedding of</p>
       <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#6a1e14">Nitya &amp; Anuj</div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:.6cqw">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3">Sunday 6 December 2026</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3;font-style:italic;color:#8a4a3a">VENUE_NAME, Delhi</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1.2cqw">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;text-wrap:balance">Sunday 6 December 2026</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;font-style:italic;text-wrap:balance;color:#8a4a3a">VENUE_NAME, Delhi</div>
       </div>
     </div>
   </section>
@@ -99,7 +99,7 @@ add(t[start:end], sunday)
 # ---- 4. Venue
 add('<img src="e11d75ea-8a51-4255-a3c5-d638c4bf2e2a" alt="Fortune Select Forest Hill" style="width:100%;height:100%;object-fit:cover;display:block">',
     '<img src="__IMG:venue__" alt="%s" style="width:100%%;height:100%%;object-fit:cover;object-position:50%% 0%%;display:block">' % VENUE)
-add("font-size:46px;line-height:1.05;color:#7a2a1c\">Fortune Select Forest Hill</div>", "font-size:42px;line-height:1.05;color:#7a2a1c\">%s</div>" % VENUE)
+add("font-size:46px;line-height:1.05;color:#7a2a1c\">Fortune Select Forest Hill</div>", "font-size:46px;line-height:1.05;color:#7a2a1c\">%s</div>" % VENUE)
 add('<div style="font-size:19px;font-style:italic">Kasauli, Himachal Pradesh</div>', '<div style="font-size:19px;font-style:italic">%s</div>' % ADDRESS)
 add('https://www.google.com/maps?q=Fortune+Select+Forest+Hill+Kasauli&amp;output=embed', 'https://www.google.com/maps?q=%s&amp;output=embed' % MAPS_Q)
 add('https://www.google.com/maps/dir/?api=1&amp;destination=Fortune+Select+Forest+Hill+Kasauli', 'https://www.google.com/maps/dir/?api=1&amp;destination=%s' % MAPS_Q)
@@ -132,11 +132,13 @@ add(L.HANDOFF_OLD, L.HANDOFF_NEW)
 add(L.PATH_START_OLD, L.PATH_START_NEW)
 add(L.PATH_END_OLD, L.PATH_END_NEW)
 
-# validate sequential application
+# validate sequential application, then the type scale shared by every page
 tt = t
 for p in P:
     assert tt.count(p['find']) == p['count'], p['find'][:80]
     tt = tt.replace(p['find'], p['replace'])
+for find, replace, count in L.type_polish(tt):
+    P.append({'find': find, 'replace': replace, 'count': count}); tt = tt.replace(find, replace)
 for leftover in ('Haldi', 'Sangeet', 'Pheras', 'Afterparty', 'Kasauli', 'Fortune Select', 'गणेशाय', '>RSVP<', 'KINDLY RESPOND'):
     where = [m.start() for m in re.finditer(re.escape(leftover), tt)]
     assert not where or all('sangeetFx' in tt[w - 20:w + 20] for w in where), (leftover, [tt[w - 60:w + 40] for w in where][:3])

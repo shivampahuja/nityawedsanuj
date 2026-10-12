@@ -75,6 +75,47 @@ PATH_START_OLD, PATH_START_NEW = "const pts = [{ x: W / 2, y: secs[0].offsetHeig
 PATH_END_OLD, PATH_END_NEW = "pts.push({ x: W / 2, y: last.offsetTop + 160 });", "pts.push({ x: W / 2, y: last.offsetTop + 200 });"
 
 
+# ---------------------------------------------------------------------------------------------
+# One type scale for all three pages. The design export sets its leading tight (1.2 to 1.38) and
+# lets some lines run at the browser default; these rules open every multi-line setting up to the
+# same values, so the pages read alike:
+#   running text in Cormorant Garamond ........ line-height 1.5
+#   date, venue and address lines ............. line-height 1.45, balanced wrapping
+#   script headings that can wrap (venue) ..... line-height 1.15, balanced wrapping
+#   lists of names ............................ line-height 1.4
+# They run last, on the patched text, so they reach the blocks each generator writes itself.
+
+TYPE_RULES = [
+    # (pattern, replacement, min matches, max matches)
+    (r'font-size:3\.7cqw;line-height:1\.35;text-wrap:balance">With the blessings', 'font-size:3.7cqw;line-height:1.5;text-wrap:balance">With the blessings', 1, 1),
+    (r'font-style:italic;font-size:4\.4cqw;line-height:1\.38;', 'font-style:italic;font-size:4.4cqw;line-height:1.5;', 1, 3),   # the event cards
+    (r'font-style:italic;font-size:3\.5cqw;line-height:1\.3;', 'font-style:italic;font-size:3.5cqw;line-height:1.5;', 0, 2),    # Varmala and Pheras
+    (r'font-size:3\.2cqw;line-height:1\.3;color:#4a1410">Pastels', 'font-size:3.2cqw;line-height:1.5;color:#4a1410">Pastels', 0, 1),
+    (r'font-size:46px;line-height:1\.05;color:', 'font-size:46px;line-height:1.15;text-wrap:balance;color:', 1, 1),               # venue name
+    (r'<div style="font-size:19px;font-style:italic">', '<div style="font-size:19px;line-height:1.45;font-style:italic;text-wrap:balance">', 1, 1),  # address
+    (r'<div style="font-size:18px;line-height:1\.3">', '<div style="font-size:18px;line-height:1.4">', 0, 8),                    # RSVP hosts
+    (r'<div style="font-style:italic;font-size:22px;color:', '<div style="font-style:italic;font-size:22px;line-height:1.45;color:', 1, 1),  # closing line
+    (r'(top:56px;left:0;right:0;text-align:center;color:#[0-9a-f]{6};display:flex;flex-direction:column;gap:)8px', r'\g<1>10px', 1, 1),
+    (r"font-style:italic;font-size:2[24]px;line-height:1\.(?:35|4);color:#7a2a1c(?:;max-width:330px)?\">", "font-style:italic;font-size:22px;line-height:1.5;color:#7a2a1c;max-width:330px;text-wrap:balance\">", 0, 1),  # the note under a day
+    (r'font-size:15px;line-height:1\.35;color:#e3c79a', 'font-size:15px;line-height:1.5;color:#e3c79a', 1, 1),                   # album note
+    (r'font-size:11px;letter-spacing:\.2em;color:(#[0-9a-f]{6})">', r'font-size:11px;line-height:1.6;letter-spacing:.2em;color:\1">', 1, 1),  # date line on the opening card, if it wraps
+]
+
+def type_polish(tt):
+    """Apply TYPE_RULES to the patched template text; returns the exact-text edits (find, replace, count) for build.py."""
+    import re
+    edits = []
+    for pat, repl, lo, hi in TYPE_RULES:
+        found = {}
+        for m in re.finditer(pat, tt):
+            found.setdefault(m.group(0), 0); found[m.group(0)] += 1
+        total = sum(found.values())
+        assert lo <= total <= hi, 'type rule %r matched %d times, expected %d..%d' % (pat[:50], total, lo, hi)
+        for text, n in found.items():
+            edits.append((text, re.sub(pat, repl, text), n))
+    return edits
+
+
 def ik_onkar_svg(height_css, color='currentColor'):
     """Inline SVG of the Ik Onkar glyph, traced from GNU FreeSerif so it renders the same on every device."""
     from fontTools.ttLib import TTFont
@@ -131,10 +172,18 @@ def opener_vals(kind):
       sealAnim: op ? 'sealPop 2.4s cubic-bezier(.3,0,.3,1) forwards' : 'none',""" % cover
 
 
+def ampersand(color):
+    """The script ampersand that joins the names once they are married (the reception page)."""
+    return "<div style=\"font-family:'Imperial Script',cursive;font-weight:400;font-size:clamp(30px,4.8svh,44px);line-height:1;color:%s\">&amp;</div>" % color
+
+
 def opener_section(kind, invocation, names_color, label_color, date_text, ground, top_fade, margins, scroll_color,
-                   hint_color, glint_alpha='.55', cover_html='', seal_html=''):
+                   hint_color, glint_alpha='.55', cover_html='', seal_html='', conj_html=None):
     """The 01 Opening section. `invocation` is the html above the names (Ik Onkar svg or the Devanagari line);
-    `cover_html` is what hides the card until the tap (rumala or dark veil), `seal_html` an optional seal at the centre."""
+    `cover_html` is what hides the card until the tap (rumala or dark veil), `seal_html` an optional seal at the centre;
+    `conj_html` is what sits between the names (default: the small 'weds' label)."""
+    if conj_html is None:
+        conj_html = "<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.34em;color:LABEL;text-transform:uppercase\">weds</div>"
     return '''  <section data-screen-label="01 Opening" style="position:relative;height:100svh;min-height:620px;max-height:900px;overflow:hidden;container-type:size;background:#0e1230">
     <div style="position:absolute;inset:0;z-index:2;transform-origin:50% 50%;animation:{{ cardAnim }}">
       <div style="position:absolute;inset:0;background:GROUND">
@@ -144,7 +193,7 @@ def opener_section(kind, invocation, names_color, label_color, date_text, ground
           INVOCATION
           <div style="display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap">
           <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:clamp(50px,8svh,74px);line-height:1;color:NAMES">Nitya</div>
-          <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.34em;color:LABEL;text-transform:uppercase">weds</div>
+          CONJ
           <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:clamp(50px,8svh,74px);line-height:1;color:NAMES">Anuj</div>
         </div>
           <div style="width:40px;height:1px;background:LABEL;margin:clamp(3px,.8svh,8px) 0"></div>
@@ -166,7 +215,7 @@ SEAL
   </section>
 
 '''.replace('GROUND', ground).replace('TOP_FADE_0', top_fade.replace(',.72)', ',0)').replace(',.55)', ',0)')).replace('TOP_FADE', top_fade) \
-   .replace('INVOCATION', invocation).replace('NAMES', names_color).replace('LABEL', label_color).replace('DATE_TEXT', date_text) \
+   .replace('INVOCATION', invocation).replace('CONJ', conj_html).replace('NAMES', names_color).replace('LABEL', label_color).replace('DATE_TEXT', date_text) \
    .replace('MARGINS', margins).replace('GLINT', glint_alpha).replace('COVER', cover_html).replace('SEAL', seal_html) \
    .replace('HINT', hint_color).replace('SCROLL_COLOR', scroll_color)
 

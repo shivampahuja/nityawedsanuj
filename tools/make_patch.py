@@ -3,7 +3,9 @@
 Claude Design export by tools/build.py --patch. Run against the export to validate:
     make_patch.py EXPORT_HTML OUT_JSON
 """
-import json, re, sys
+import json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import patchlib as L
 
 src, out = sys.argv[1], sys.argv[2]
 lines = open(src, encoding='utf-8').read().split('\n')
@@ -32,9 +34,28 @@ def with_bottom(anchor, block, band=None):
 # ---- 1. Dress-code copy: suggestions, not rules
 add('Come in shades of yellow and orange. Expect to leave in a little more of it.',
     'Shades of yellow and orange if you like. Either way, expect to leave in a little more of it.')
-# "at the wedding of" needs a noun phrase after it: Nitya & Anuj, not Nitya weds Anuj (the headline on the envelope keeps "weds")
-add("<div style=\"font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#a8682e;text-transform:uppercase;margin:.6cqw 0\">weds</div>",
-    "<div style=\"font-family:'Cormorant Garamond',serif;font-style:italic;font-size:6.5cqw;line-height:1;color:#a8682e;margin:.4cqw 0\">&amp;</div>")
+# the text block sits a little higher in the oval frame, so its last line falls where the frame is still wide
+add('<div style="position:absolute;left:28%;width:49%;top:25%;height:50%;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2cqw;color:#4a2216">',
+    '<div style="position:absolute;left:28%;width:49%;top:22%;height:50%;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.4cqw;color:#4a2216">')
+# "at the wedding of" needs a noun phrase after it: Nitya & Anuj, not Nitya weds Anuj (the headline on the envelope keeps "weds").
+# The names are set at the size the other pages use, with the script ampersand of the closing card between them,
+# and the date and venue lines get the leading and spacing every page shares.
+add("""      <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+        <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:14cqw;line-height:1;color:#6a1e14">Nitya</div>
+        <div style="font-family:'Jost',sans-serif;font-weight:500;font-size:2.3cqw;letter-spacing:.34em;color:#a8682e;text-transform:uppercase;margin:.6cqw 0">weds</div>
+        <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:14cqw;line-height:1;color:#6a1e14">Anuj</div>
+      </div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3">Friday 11 and Saturday 12 December 2026</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.3;font-style:italic">Fortune Select Forest Hill, Kasauli</div>""",
+    """      <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+        <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#6a1e14">Nitya</div>
+        <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:8cqw;line-height:1;color:#a8682e;margin:.6cqw 0">&amp;</div>
+        <div style="font-family:'Imperial Script',cursive;font-weight:400;font-size:13cqw;line-height:1;color:#6a1e14">Anuj</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1.2cqw">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;text-wrap:balance">Friday 11 and Saturday 12 December 2026</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:3.6cqw;line-height:1.45;font-style:italic;text-wrap:balance">Fortune Select Forest Hill, Kasauli</div>
+      </div>""")
 # Sangeet and Afterparty: the dress sentence goes entirely; the palette dots at the foot of the card remain
 add(' Dark shades and Indo-western are the order of the evening.', '')
 add(' Western wear suits the handover.', '')
@@ -73,7 +94,7 @@ add("font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba
 add("font-size:14.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>",
     "font-size:12.5cqw;line-height:.95;color:#6a1416;text-shadow:0 2px 14px rgba(0,0,0,.08)\">Pheras</div>")
 add('<div style="position:absolute;left:11%;right:11%;top:16.5%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.6cqw">',
-    '<div style="position:absolute;inset:0;padding:0 11% 42cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw">')
+    '<div style="position:absolute;inset:0;padding:0 11% 42cqw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8cqw">')
 add("font-size:3.9cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands",
     "font-size:3.5cqw;line-height:1.3;color:#4a1410;text-wrap:pretty\">Nitya and Anuj exchange garlands")
 add('<div style="display:flex;align-items:center;gap:8px;margin:2px 0"><div style="width:7cqw;height:1px;background:#8e2a20"></div><div style="width:5px;height:5px;transform:rotate(45deg);background:#8e2a20"></div><div style="width:7cqw;height:1px;background:#8e2a20"></div></div>',
@@ -192,10 +213,12 @@ add('<p style="margin:0;font-family:\'Cormorant Garamond\',serif;font-size:3.9cq
 add('        <div style="font-size:18px;line-height:1.3">Chanchal Pahuja</div>\n', '')
 add('<div style="font-size:18px;line-height:1.3">Ashok Pahuja</div>', '<div style="font-size:18px;line-height:1.3">Ashok Chanchal Pahuja</div>')
 
-# validate sequential application
+# validate sequential application, then the type scale shared by every page
 tt = t
 for p in P:
     assert tt.count(p['find']) == p['count'], p['find'][:80]
     tt = tt.replace(p['find'], p['replace'])
+for find, replace, count in L.type_polish(tt):
+    P.append({'find': find, 'replace': replace, 'count': count}); tt = tt.replace(find, replace)
 json.dump(P, open(out, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
 print('wrote', out, 'with', len(P), 'edits')
